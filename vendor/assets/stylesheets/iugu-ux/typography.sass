@@ -1,0 +1,268 @@
+body
+  font-family      : $baseFontFamily
+  font-size        : $baseFontSize
+  line-height      : $baseLineHeight
+  color            : $textColor
+  background-color : $bodyBackgroundColor
+
+body.page-ui_library-components
+  background-color: $applicationBackgroundColor
+
+h1,h2,h3,h4,h5,h6,p,iframe,pre,address,blockquote,cite,code,img,ul,fieldset,form,table,mark,audio,video,hr
+  margin-bottom: $baseElementSpacing
+
+p
+  line-height: $baseFontSize + $baseLineSpacing
+
+h1,h2,h3,h4,h5,h6
+  font-weight: $headingFontWeight
+  color: $headingFontColor
+h1
+  font-size: $baseFontSize * 2
+  line-height: ($baseFontSize * 2) + $baseLineSpacing
+h2,.lead
+  font-size: $baseFontSize * 1.8
+  line-height: ($baseFontSize * 1.8) + $baseLineSpacing
+.lead
+  font-weight: normal
+  +opacity(0.5)
+h3
+  font-size: $baseFontSize * 1.4
+  line-height: ($baseFontSize * 1.4) + $baseLineSpacing
+h4
+  font-size: $baseFontSize * 1.0
+  line-height: ($baseFontSize * 1.0) + $baseLineSpacing
+h5
+  font-size: $baseFontSize * 0.8
+  line-height: ($baseFontSize * 0.8) + $baseLineSpacing
+h6
+  font-size: $baseFontSize * 0.8
+  line-height: ($baseFontSize * 0.8) + $baseLineSpacing
+  +opacity(0.5)
+  text-transform: uppercase
+
+strong
+  font-weight: bold
+
+blockquote
+  p
+    margin-bottom: 0px
+    font-size: $baseFontSize * 1.2
+    line-height: ($baseFontSize * 1.2) + $baseLineSpacing
+    font-weight: 300
+  small:before
+    content: "— "
+  small
+    font-size: $baseFontSize * 1.1
+    +opacity(0.5)
+
+ul
+  list-style: disc outside none
+
+ul,ol
+  margin-left: $baseElementSpacing
+
+ul ul
+  margin-bottom: 0px
+
+li
+  font-size: ($baseFontSize * 0.9)
+  line-height: ($baseFontSize * 0.9) + $baseLineSpacing/2
+  padding-bottom: $baseLineSpacing
+
+ul li:first-child
+  padding-top: $baseLineSpacing
+
+ul li:last-child
+  padding-bottom: 0px
+
+ul.rip
+  list-style: none
+  margin-left: 0px
+
+address
+  display: block
+  font-style: normal
+
+small
+  font-size: 100%
+
+hr
+  border: none
+  padding: 0px
+  border-top: 1px solid $baseLineShadowColor
+  height: 0px
+  border-bottom: 1px solid $baseLineColor
+
+dl
+  margin-bottom: $baseElementSpacing
+
+dt, dd
+  font-size: $baseFontSize
+  line-height: $baseFontSize + $baseLineSpacing
+dt
+  font-weight: bold
+.dl-horizontal
+  dt
+    display: block
+    float: left
+    width: 120px
+    clear: left
+    text-align: right
+    +text-overflow()
+  dd
+    margin-left: 130px
+
+table
+  max-width: 100%
+  width: 100%
+  border-spacing: 0
+  border-collapse: separate
+  border: 1px solid $baseLineColor
+  border-left: 0px
+  +border-radius(5px)
+  tbody + tbody
+    border-top: 2px solid $baseLineColor
+  th
+    font-weight: bold
+    vertical-align: bottom
+  th,td
+    padding: $baseLineSpacing*2
+    text-align: left
+    border-left: 1px solid $baseLineColor
+    border-top: 1px solid $baseLineColor
+  caption + thead tr:first-child th,caption + tbody tr:first-child th,caption + tbody tr:first-child td,colgroup + thead tr:first-child th,colgroup + tbody tr:first-child th,colgroup + tbody tr:first-child td,thead:first-child tr:first-child th,tbody:first-child tr:first-child th,tbody:first-child tr:first-child td
+    border-top: 0px
+  thead:first-child tr:first-child th:first-child, tbody:first-child tr:first-child td:first-child
+    -webkit-border-top-left-radius: 5px
+    border-top-left-radius: 5px
+    -moz-border-radius-topleft: 5px
+  thead:first-child tr:first-child th:last-child, tbody:first-child tr:first-child td:last-child
+    -webkit-border-top-right-radius: 5px
+    border-top-right-radius: 5px
+    -moz-border-radius-topright: 5px
+  thead:last-child tr:last-child th:first-child, tbody:last-child tr:last-child td:first-child
+    -webkit-border-bottom-left-radius: 5px
+    border-bottom-left-radius: 5px
+    -moz-border-radius-bottomleft: 5px
+  thead:last-child tr:last-child th:last-child, tbody:last-child tr:last-child td:last-child
+    -webkit-border-bottom-right-radius: 5px
+    border-bottom-right-radius: 5px
+    -moz-border-radius-bottomright: 5px
+
+.ie table
+  border-collapse: collapse
+
+.table-stripping
+  tbody
+    tr:nth-child(odd) td, tr:nth-child(odd) th
+      background-color: $lineAlternateBackgroundColor
+
+.table-highlighting
+  tbody tr:hover td, tbody tr:hover td
+    background-color: $lineHighlightBackgroundColor 
+    cursor: pointer
+
+pre.prettyprint
+  word-break: break-all
+  word-wrap: break-word
+  white-space: pre
+  white-space: pre-wrap
+  ol.linenums li
+    padding-left: 6px
+
+  .tag
+    +border-radius(0px)
+    background: none
+    font-weight: normal
+    padding: 0px
+    margin: 0px
+
+code
+  background-color: $lineAlternateBackgroundColor
+  border: 1px solid $baseLineColor
+  padding: 2px 4px
+  +border-radius( 3px )
+  color: $red
+  font-weight: normal
+
+.box
+  +box-mode
+  max-width: 100%
+  border: 1px solid $baseLineColor
+  padding: 4px
+  +box-shadow( -1px 1px 1px rgba(0, 0, 0, 0.15))
+  margin-bottom: $gridSpacing
+  &.box-highlighting:hover
+    border: 1px solid $gray
+    cursor: pointer
+  &.box-rounded
+    +border-radius( 3px )
+
+.borderless,.close
+  font-size: 20px
+  font-weight: bold
+  line-height: 20px
+  color: #000
+  +text-shadow(0 1px 0 rgba(255,255,255,1))
+  +opacity(0.2)
+  padding: 0px
+  margin: 0px
+  margin-top: -5px
+  cursor: pointer
+  background: transparent
+  border: 0
+  -webkit-appearance: none
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+  &:hover
+    color: #000
+    text-decoration: none
+    cursor: pointer
+    +opacity(0.4)
+
+.notice .borderless, .notice .close
+  float: right
+  position: relative
+  top: 0px
+  right: -25px
+  line-height: 18px
+
+.notice
+  font-size: $baseFontSize * 0.92857
+  line-height: ($baseFontSize * 0.92857)
+  padding: 10px
+  padding-right: 35px
+  margin-bottom: $baseElementSpacing
+  +text-shadow( 0 1px 0 rgba(255,255,255,.5) )
+  +border-radius( 5px )
+  border: 1px solid $yellowBorder
+  background-color: $yellowBackground
+  color: $yellowText
+  .notice-heading
+    color: inherit
+  p,h1,h2,h3,h4,h5,h6
+    margin: 0px
+    padding: 0px
+  ul
+    margin-bottom: 0px
+    padding-top: 0px
+    padding-bottom: 0px
+    margin-top: $baseLineSpacing
+  ul ul
+    margin-top: 0px
+  ul li
+    line-height: $baseElementSpacing
+    padding-top: 0px
+    padding-bottom: 0px
+  &.notice-red
+    border-color: $redBorder
+    background-color: $redBackground
+    color: $redText
+  &.notice-green
+    border-color: $greenBorder
+    background-color: $greenBackground
+    color: $greenText
+  &.notice-blue
+    border-color: $blueBorder
+    background-color: $blueBackground
+    color: $blueText

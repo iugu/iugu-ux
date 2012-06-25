@@ -1,0 +1,17 @@
+!!! 5
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %title= content_for?(:title) ? (yield(:title) + " - Iugu UX Development") : "Iugu UX Development"
+    = csrf_meta_tags
+
+    = stylesheet_link_tag    "iugu-ux"
+    = javascript_include_tag "iugu-ux"
+
+  %body{ :class => 'iugu-ui' }
+
+
+    .content{ :style => "margin:20px" }
+      .wrapper{ :style => "max-width:860px;margin-left:auto;margin-right:auto" }
+
+        = yield

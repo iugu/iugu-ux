@@ -1,0 +1,186 @@
+%div{ :style => "margin-bottom: 20px" }
+  = link_to "Base CSS", "/"
+  = ' | '
+  = link_to "Components", "/components"
+
+%h3
+  Tags
+
+.element-spacing
+  %p.no-bottom-margin
+    %span.tag new
+    Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+  %p.no-bottom-margin
+    %span.tag.red error
+    Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+  %p.no-bottom-margin
+    %span.tag.yellow warning
+    Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+  %p.no-bottom-margin
+    %span.tag.green done
+    Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+  %p.no-bottom-margin
+    %span.tag.blue shipping
+    Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+
+%dl.dl-horizontal
+  %dt
+    %span.tag new
+  %dd A description list is perfect for defining terms.
+  %dt
+    %span.tag.red error
+  %dd Vestibulum id ligula porta felis euismod semper.
+  %dt
+    %span.tag.green done
+  %dd Vestibulum id ligula porta felis euismod semper.
+  %dt
+    %span.tag.green done
+  %dd Vestibulum id ligula porta felis euismod semper.
+  %dt
+    %span.tag.green done
+  %dd Vestibulum id ligula porta felis euismod semper.
+  %dt
+    %span.tag.green done
+  %dd Vestibulum id ligula porta felis euismod semper.
+  %dt
+    %span.tag.green done
+  %dd Vestibulum id ligula porta felis euismod semper.
+
+%h3
+  Badges
+
+.element-spacing
+  %span.badge
+    1
+  %span.badge.red
+    45
+  %span.badge.red
+    102
+  %span.badge.green
+    3
+
+%h3
+  Notices
+
+.notice
+  %button.close{ :'data-dismiss' => "notice" }
+    &times;
+  %strong
+    Warning!
+  Best check yo self, you're not looking too good.
+
+.notice
+  %button.close{ :'data-dismiss' => "notice" }
+    &times;
+  %h4.notice-heading
+    Warning!
+  Best check yo self, you're not looking too good.
+
+.notice.notice-red
+  %button.close{ :'data-dismiss' => "notice" }
+    &times;
+  %h4.notice-heading
+    Error!
+  Best check yo self, you're not looking too good.
+
+.notice.notice-green
+  %button.close{ :'data-dismiss' => "notice" }
+    &times;
+  %h4.notice-heading
+    Success!
+  Best check yo self, you're not looking too good.
+
+.notice.notice-blue
+  %button.close{ :'data-dismiss' => "notice" }
+    &times;
+  %h4.notice-heading
+    Info!
+  Best check yo self, you're not looking too good.
+  %ul
+    %li
+      Checking item #5
+    %li
+      Analysing lorem ipsum
+
+%h3
+  Progress Bar
+
+.progress
+  .bar{ :style => "width: 20%" }
+
+%h3
+  Containers
+
+.container
+  Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+
+.container.no-padding
+  .header
+    Header
+  .padding
+    Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+  .footer
+    Footer
+
+.container
+  %p Cras mattis consectetur purus sit amet fermentum.
+  .container.no-bottom-margin
+    Container inside container. Cras mattis consectetur purus sit amet fermentum.
+
+%h3
+  Tabbed Container
+
+.tabbed
+  %ul.nav
+    %li.active
+      %a Profile
+    %li
+      %a Account
+  .container
+    Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+
+.tabbed
+  %ul.nav
+    %li.active
+      %a Profile
+    %li
+      %a{ :href => "http://google.com.br", :target => "_blank" }
+        Account
+  .container
+    .tabbed
+      %ul.nav
+        %li.active
+          %a First
+        %li
+          %a Middle
+        %li
+          %a Last
+      .container.no-bottom-margin
+        Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+
+.tabbed
+  %ul.nav
+    %li
+      %a Profile
+    %li.active
+      %a Account
+    %li
+      %a
+        %i.icon-test{ :style => "background-image: url('http://www.condorapartments.com.au/img/icon-bank.png')" }
+        Payment History
+    %li.fixed{ :style => "width:50px;line-height:16px" }
+      %a
+        &times;
+      
+  .container
+    Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+
+.tabbed
+  
+  %ul.nav
+    %li
+      %a Profile
+    %li.active
+      %a Account
+  .container
+    Praesent commodo cursus magna, vel scelerisque nisl consectetur et.

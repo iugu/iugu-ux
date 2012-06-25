@@ -1,0 +1,9 @@
+Storing this for Future - Compiling Stuff on Rails 3.1
+
+# Enabling assets precompiling under rails 3.1
+if Rails.version >= '3.1'
+  initializer :assets do |config|
+    Rails.application.config.assets.precompile +=
+%w( community_engine.js )
+  end
+end 
