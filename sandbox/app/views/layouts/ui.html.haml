@@ -9,7 +9,7 @@
     = javascript_include_tag "application"
     = javascript_include_tag "iugu-ux"
 
-  %body{ :class => 'iugu-ui' }
+  %body{ :class => "iugu-ui #{action_name == "components" ? 'applicationBackground':''}" }
 
 
     .content{ :style => "margin:20px" }
