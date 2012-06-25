@@ -7,3 +7,6 @@ if Rails.version >= '3.1'
 %w( community_engine.js )
   end
 end 
+
+# More references
+http://thomas.vondeyen.com/2011/11/09/precompile-assets-from-rails-3-1-engines/
