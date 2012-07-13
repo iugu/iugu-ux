@@ -3,8 +3,8 @@
   = ' | '
   = link_to "Components", "/components"
 
-.auto-columns
-  .column
+.grid
+  .grid-item{ :style => "width:640px" }
     %h3 Titles
     %h1 H1 Lorem ipsum dolor sit amet
     %h2 H2 Lorem ipsum dolor sit amet
@@ -29,7 +29,7 @@
     %p.lead
       Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum. Integer <em>posuere erat</em> a ante venenatis dapibus posuere <strong>velit aliquet</strong>.
 
-  .fixed-column
+  .grid-item-right{ :style => "width:200px" }
     %h3 Titles in a Box
     .wrapper.b10
 
@@ -76,41 +76,21 @@
     Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Nullam quis risus eget urna mollis ornare vel eu leo. Vestibulum id ligula porta felis euismod semper.
 
 %h3
-  Auto Columns
+  Grid
 
-.auto-columns
-  .column
-    %h1 Variable Column
+.grid
+  .grid-item.b10
+    %h1 B10
     %p
       Curabitur blandit tempus porttitor. Aenean lacinia bibendum nulla sed consectetur. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec sed odio dui.
-  .column
-    %h1 Variable Column
+  .grid-item.b21
+    %h1 Fixed B21
     %p
       Curabitur blandit tempus porttitor. Aenean lacinia bibendum nulla sed consectetur. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec sed odio dui.
-  .fixed-column.b14
-    %h1 Fixed Column
+  .grid-item.b10
+    %h1 B10
     %p
       Curabitur blandit tempus porttitor. Aenean lacinia bibendum nulla sed consectetur. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec sed odio dui.
-
-%h3
-  Block System
-
-.auto-columns
-  .fixed-column.b5
-    %h1 B5 Size
-    %p
-      Curabitur blandit tempus porttitor. Aenean lacinia bibendum nulla sed consectetur. 
-  .column
-    %h1 Remnant Size
-    %p
-      Curabitur blandit tempus porttitor. Aenean lacinia bibendum nulla sed consectetur. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec sed odio dui.
-    %p
-      Curabitur blandit tempus porttitor. Aenean lacinia bibendum nulla sed consectetur. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec sed odio dui.
-
-  .fixed-column.b4
-    %h1 B4 Size
-    %p
-      Curabitur blandit tempus porttitor. Aenean lacinia bibendum nulla sed consectetur.
 
 %h3
   Quotes
@@ -124,8 +104,8 @@
 %h3
   Lists
 
-.auto-columns
-  .column
+.grid
+  .grid-item.b15
     %h4 Unordered
     %ul
       %li Maecenas faucibus mollis interdum.
@@ -143,7 +123,7 @@
       %li Maecenas faucibus mollis interdum.
       %li Maecenas faucibus mollis interdum.
 
-  .column
+  .grid-item.b13
     %h4 Unstyled
     %ul.rip
       %li Maecenas faucibus mollis interdum.
@@ -161,7 +141,7 @@
       %li Maecenas faucibus mollis interdum.
       %li Maecenas faucibus mollis interdum.
 
-  .column
+  .grid-item.b13
     %h4 Ordered
     %ol
       %li Maecenas faucibus mollis interdum.
@@ -192,14 +172,14 @@
   mollis euismod.
 
 %h3 Description Lists
-.auto-columns
-  .column
+.grid
+  .grid-item.b14
     %dl
       %dt Description Lists
       %dd A description list is perfect for defining terms.
       %dt Euismod
       %dd Vestibulum id ligula porta felis euismod semper.
-  .column
+  .grid-item.b18
     %dl.dl-horizontal
       %dt Description Lists
       %dd A description list is perfect for defining terms.
@@ -260,31 +240,31 @@
   Boxes
 %h6 Box, Box-Highlighting &amp; Box-Rounded
 
-.auto-columns
-  .column
+.grid
+  .grid-item.b21
     .box.box-highlighting
       %img.responsive.no-bottom-margin{ :src => "http://placehold.it/400x400" }
-  .column
+  .grid-item.b21
     .box.box-highlighting
       %img.responsive.no-bottom-margin{ :src => "http://placehold.it/400x400" }
-  .column
+  .grid-item.b21
     .box.box-highlighting
       %img.responsive.no-bottom-margin{ :src => "http://placehold.it/400x400" }
-  .column
+  .grid-item.b21
     .box.box-highlighting
       %img.responsive.no-bottom-margin{ :src => "http://placehold.it/400x400" }
 
-.auto-columns
-  .column
+.grid
+  .grid-item.b21
     .box.box-highlighting.box-rounded
       %img.responsive.no-bottom-margin{ :src => "http://placehold.it/400x400" }
-  .column
+  .grid-item.b21
     .box.box-highlighting.box-rounded
       %img.responsive.no-bottom-margin{ :src => "http://placehold.it/400x400" }
-  .column
+  .grid-item.b21
     .box.box-highlighting.box-rounded
       %img.responsive.no-bottom-margin{ :src => "http://placehold.it/400x400" }
-  .column
+  .grid-item.b21
     .box.box-highlighting.box-rounded
       %img.responsive.no-bottom-margin{ :src => "http://placehold.it/400x400" }
 

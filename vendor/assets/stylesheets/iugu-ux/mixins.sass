@@ -4,13 +4,6 @@
   -moz-box-sizing: border-box
   -webkit-box-sizing: border-box
 
-@mixin auto-columns
-  +display-box
-  +box-orient(horizontal)
-  +box-align(stretch)
-  +box-mode
-  width: 100%
-
 @mixin block( $size:1 )
   width: #{($size * $baseBlockSize)}
 

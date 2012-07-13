@@ -1,0 +1,48 @@
+@mixin build-sprites($name, $images, $size: normal)
+  $sprite-names: sprite-names($images)
+  
+  .#{$name}-sprite-map 
+    background-image: $images
+    background-repeat: no-repeat
+
+    $width: 0px
+    @each $sprite-name in $sprite-names 
+      $tmp-width: image-width(sprite-file($images, $sprite-name))
+      @if $tmp-width > $width
+        $width: $tmp-width
+    @if $size == retina
+      @include background-size($width/2 auto)
+
+  @each $sprite-name in $sprite-names
+    $full-sprite-name: "#{$name}-#{$sprite-name}"
+    .#{$full-sprite-name}-no-dimensions
+      @extend .#{$name}-sprite-map
+      @include sprite($images, $sprite-name)
+
+    $spt_pos: sprite-position($images, $sprite-name)
+    $xpos: 0
+    $ypos: 0
+    $width: 0
+    $height: 0
+    @if $size == retina
+      $xpos: round(nth($spt_pos, 1) / 2)
+      $ypos: round(nth($spt_pos, 2) / 2)
+      $height: image-height(sprite-file($images, $sprite-name))/2
+      $width: image-width(sprite-file($images, $sprite-name))/2
+    @else
+      $xpos: round(nth($spt_pos, 1))
+      $ypos: round(nth($spt_pos, 2))
+      $height: image-height(sprite-file($images, $sprite-name))
+      $width: image-width(sprite-file($images, $sprite-name))
+
+    .#{$full-sprite-name}-half-x
+      left: -($width/2)
+    .#{$full-sprite-name}-half-y
+      top: -($height/2)
+
+    .#{$full-sprite-name}
+      @extend .#{$name}-sprite-map
+      //@include sprite-background-position($images, $sprite-name)
+      background-position: $xpos $ypos
+      width: $width
+      height: $height

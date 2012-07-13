@@ -107,6 +107,10 @@
 
 .progress
   .bar{ :style => "width: 20%" }
+    20%
+
+.progress
+  .bar{ :style => "width: 20%" }
 
 %h3
   Containers
@@ -132,45 +136,43 @@
 
 .tabbed
   %ul.nav
-    %li.active
+    %li.active{ :style => "width:50%" }
       %a Profile
-    %li
+    %li{ :style => "width:50%" }
       %a Account
   .container
     Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
 
 .tabbed
   %ul.nav
-    %li.active
+    %li.active{ :style => "width:50%" }
       %a Profile
-    %li
+    %li{ :style => "width:50%" }
       %a{ :href => "http://google.com.br", :target => "_blank" }
         Account
   .container
     .tabbed
       %ul.nav
-        %li.active
+        %li.active{ :style => "width:33.33%" }
           %a First
-        %li
+        %li{ :style => "width:33.33%" }
           %a Middle
-        %li
+        %li{ :style => "width:33.33%" }
           %a Last
       .container.no-bottom-margin
         Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
 
 .tabbed
   %ul.nav
-    %li
+    %li{ :style => "width:33.33%" }
       %a Profile
-    %li.active
+    %li.active{ :style => "width:33.33%" }
       %a Account
-    %li
-      %a
-        %i.icon-test{ :style => "background-image: url('http://www.condorapartments.com.au/img/icon-bank.png')" }
-        Payment History
-    %li.fixed{ :style => "width:50px;line-height:16px" }
-      %a
-        &times;
+    %li{ :style => "width:33.33%" }
+      %a.no-padding
+        %span
+          %i.icon-test{ :style => "background-image: url('http://www.condorapartments.com.au/img/icon-bank.png')" }
+          Payment History
       
   .container
     Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
@@ -178,9 +180,10 @@
 .tabbed
   
   %ul.nav
-    %li
+    %li{ :style => "width: 50%" }
       %a Profile
-    %li.active
+    %li.active{ :style => "width: 50%" }
       %a Account
   .container
     Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+

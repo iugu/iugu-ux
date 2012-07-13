@@ -70,13 +70,14 @@ $badge_size: 0.70
   height: 18px
   margin-bottom: $baseElementSpacing
   +box-shadow( inset 0 1px 2px rgba(0,0,0,.1) )
-  +border-radius( 3px )
+  +border-radius( 9px )
   +background( linear-gradient( #f5f5f5, #f9f9f9 ) )
   .bar
     width: 0%
     height: 18px
     color: #FFF
     font-size: 12px
+    line-height: 18px
     text-align: center
     +text-shadow( 0 -1px 0 rgba(0,0,0,.25) )
     +background( linear-gradient( #149bdf, #0480be ) )
@@ -115,16 +116,18 @@ $badge_size: 0.70
   +border-radius(5px)
   background: darken( $white, 15% )
   .nav
-    @extend .auto-columns
+    @extend .auto-clear
     margin: 0px !important
     padding: 0px
     height: auto !important
+    &:after
+      margin-bottom: 0px
     > li
+      @extend .floating-left
       display: block
       list-style: none
       margin: 0px
       padding: 0px
-      +box-flex(5)
       background: darken( $white, 15% )
       text-align: center
       font-size: 20px
@@ -133,6 +136,7 @@ $badge_size: 0.70
       cursor: pointer
       color: lighten( $textColor, 50% ) 
       +box-mode()
+      overflow: hidden
       [class^="icon-"],[class*=" icon-"]
         vertical-align: baseline
         +opacity( 0.30 )
@@ -150,8 +154,6 @@ $badge_size: 0.70
       background: darken( $white, 10% ) 
       [class^="icon-"],[class*=" icon-"]
         +opacity( 0.4 )
-    > li.fixed
-      +box-flex(0)
     > li > a, > li > a:visited, li > a:hover
       text-decoration: none
       color: inherit
@@ -159,7 +161,15 @@ $badge_size: 0.70
       width: 100%
       padding: 15px
       height: auto
+      overflow: hidden
       +box-mode()
+      white-space: nowrap
+      &.no-padding
+        padding: 0px
+      span
+        display: block
+        overflow: hidden
+        margin: 15px
 
   > .container
     +border-radius( 0px 0px 5px 5px )

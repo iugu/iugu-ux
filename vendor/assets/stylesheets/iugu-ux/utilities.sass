@@ -1,34 +1,8 @@
-.no-bottom-margin
+.no-bottom-margin,.no-bottom-margin:after
   margin-bottom: 0px !important
 
 .element-spacing
   margin-bottom: $baseElementSpacing
-
-.auto-columns
-  +auto-columns
-
-.firefox
-  .auto-columns
-    // Forces Firefox Reload
-    height: 1px
-
-.chrome,.safari
-  .auto-columns
-    margin-bottom: $baseElementSpacing
-
-.column
-  +box-flex(5)
-
-.fixed-column
-  +box-flex(0)
-
-.auto-columns > *
-  margin-right: $gridSpacing / 2
-  margin-left: $gridSpacing / 2
-.auto-columns > *:first-child
-  margin-left: 0px
-.auto-columns > *:last-child
-  margin-right: 0px
 
 .box-model
   +box-mode
@@ -37,7 +11,6 @@
   float: left
   margin-right: $baseElementSpacing
   margin-bottom: $baseElementSpacing
-
 
 .floating-right
   float: right
@@ -52,8 +25,9 @@
     margin-right: 0px
     margin-left: $gridSpacing
     margin-bottom: 0px
-    &.grid-item-right
-      float: right
+  .grid-item-right
+    @extend .grid-item
+    float: right
 
 .tal
   text-align: left
