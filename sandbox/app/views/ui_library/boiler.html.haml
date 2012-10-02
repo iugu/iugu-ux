@@ -9,10 +9,14 @@
     = javascript_include_tag "vendor"
     = javascript_include_tag "iugu-ux"
 
-  %body{ :class => "iugu-ui #{action_name == "components" ? 'applicationBackground':''}" }
+  %body{ :class => "iugu-ui" }
+    %noscript
+      .js-warning
 
+    #app
 
-    .content{ :style => "margin:20px" }
-      .wrapper{ :style => "max-width:860px;margin-left:auto;margin-right:auto" }
-
-        = yield
+    %script
+      (function() { $(function() {
+      if (typeof(run_webapp) == 'function') return run_webapp(true);
+      });
+      }).call(this);

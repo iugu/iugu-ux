@@ -7,9 +7,5 @@
 //= require_tree ./google-code-prettify
 //= require ./twitter-bootstrap/bootstrap.js
 //= require ./capabilities
-//= require ./main
-//= require_self
-
-$( function() {
-  prettyPrint()
-});
+//= require ./enable-prettify
+//= require ./web-app

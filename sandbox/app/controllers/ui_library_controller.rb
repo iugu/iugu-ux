@@ -8,4 +8,8 @@ class UiLibraryController < ApplicationController
   def components
   end
 
+  def boiler
+    render :layout => false
+  end
+
 end
