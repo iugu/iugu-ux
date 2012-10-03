@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
   s.add_dependency "railties", ">= 3.1.0"
   s.add_dependency 'coffee-script'
   s.add_dependency 'sass', ">= 3.2.0.alpha.0"
-  s.add_dependency 'sass-rails'
+  s.add_dependency 'sass-rails', "3.1.4"
   s.add_dependency 'eco'
   s.add_dependency 'haml'
   s.add_dependency 'haml-rails'
