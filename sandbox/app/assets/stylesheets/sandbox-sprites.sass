@@ -1,0 +1,8 @@
+@import "iugu-ux/core"
+
+@include for-hd()
+  $assets-hd: sprite-map("assets-hd/*.png", $layout: smart, $spacing: 0px, $cleanup: true, $sprite-dimensions: true)
+  @include build-sprites("assets", $assets-hd, retina)
+  
+$assets: sprite-map("assets/*.png", $layout: smart, $spacing: 0px, $cleanup: true, $sprite-dimensions: true)
+@include build-sprites("assets", $assets, normal)

@@ -7,9 +7,10 @@
 
     $width: 0px
     @each $sprite-name in $sprite-names 
-      $tmp-width: image-width(sprite-file($images, $sprite-name))
-      @if $tmp-width > $width
-        $width: $tmp-width
+      @if $sprite-name != nil and $images != nil
+        $tmp-width: image-width(sprite-file($images, $sprite-name))
+        @if $tmp-width > $width
+          $width: $tmp-width
     @if $size == retina
       @include background-size($width/2 auto)
 

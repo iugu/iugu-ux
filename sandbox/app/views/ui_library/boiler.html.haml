@@ -5,6 +5,7 @@
     %title= content_for?(:title) ? (yield(:title) + " - Iugu UX Development") : "Iugu UX Development"
     = csrf_meta_tags
 
+    = stylesheet_link_tag    "sandbox-sprites"
     = stylesheet_link_tag    "iugu-ux"
     = javascript_include_tag "vendor"
     = javascript_include_tag "iugu-ux"
