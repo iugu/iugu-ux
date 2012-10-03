@@ -53,7 +53,7 @@ String.prototype.capitalize = ->
 
   if @app.initialize_backbone_history and Backbone.history
     debug 'BackBone History Detected'
-    Backbone.history.start({pushState: true})
+    Backbone.history.start({pushState: true, root: @app.root})
 
 @run_webapp = ( run_routes = false ) ->
   debug 'Running Application'
@@ -68,6 +68,11 @@ String.prototype.capitalize = ->
   @app._features = {}
   @app._features['xdr'] = true
   @app.ajax = jQuery.ajax
+
+  @app.root = '/'
+  if app_root
+    @app.root = app_root
+    debug 'Custom Application Root Detected: ' + @app.root
 
   if typeof(subdomain_xdr_url) != 'undefined' && subdomain_xdr_url != ''
     console.log 'Has XDR'
