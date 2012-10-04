@@ -17,27 +17,15 @@ Gem::Specification.new do |s|
   s.test_files = Dir["sandbox/**/*"]
   s.require_paths = ["lib"]
 
-  # specify any dependencies here; for example:
-  # s.add_development_dependency "rspec"
-  # s.add_runtime_dependency "rest-client"
-  # s.add_dependency             'railties',   '>= 3.1'
-  # s.add_dependency             'actionpack', '>= 3.1'
-
-  s.add_development_dependency "rails", ">= 3.1"
-  s.add_development_dependency "uglifier"
-  # s.add_development_dependency "rails", "~> 3.1"
-  # s.add_development_dependency "uglifier"
-  # s.add_dependency 'sprockets', "~> 2.6"
-  s.add_dependency "railties", ">= 3.1.0"
-  s.add_dependency 'railties'
   s.add_dependency 'coffee-script'
   s.add_dependency 'sass', ">= 3.2.0.alpha.0"
-  s.add_dependency 'sass-rails', "3.1.4"
+  s.add_dependency 'sass-rails'
   s.add_dependency 'eco'
   s.add_dependency 'haml'
   s.add_dependency 'haml-rails'
   s.add_dependency 'compass'
   s.add_dependency 'compass-rails'
-  # s.add_dependency 'jquery-rails'
+  s.add_dependency 'jquery-rails'
+  s.add_dependency 'railties', "~> 3.1"
 
 end
