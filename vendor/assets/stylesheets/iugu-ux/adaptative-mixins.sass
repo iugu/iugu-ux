@@ -21,16 +21,30 @@
 @mixin for-mobile-portrait()
   @media only screen and ( max-width: 479px)
     @content
+  .mq-mp
+    @content
 
 @mixin for-mobile-landscape()
   @media only screen and (max-width: 767px) and (min-width: 480px)
+    @content
+  .mp-ml
     @content
 
 @mixin for-tablets()
   @media only screen and (max-width: 1024px) and (min-width: 768px)
     @content
+  .mp-tb
+    @content
 
 @mixin for-large-screens()
   @media only screen and (min-width: 1025px)
+    @content
+  .mq-ls
+    @content
+
+@mixin for-small-screens()
+  @media only screen and (max-width: 768px)
+    @content
+  .mq-sm
     @content
 

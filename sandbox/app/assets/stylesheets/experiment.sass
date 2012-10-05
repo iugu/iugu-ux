@@ -1,0 +1,32 @@
+@import "iugu-ux/core"
+@import "compass/utilities/general/clearfix"
+
+body
+  padding: 20px !important
+
+.experiment
+  @include pie-clearfix
+  background: #F00
+  max-width: 980px
+  margin-left: auto
+  margin-right: auto
+  position: relative
+  color: #FFF
+
+.experiment .sidebar
+  float: left
+  width: 200px
+  height: 40px
+  background: #333
+
+.experiment .content
+  height: 40px
+  margin-left: 220px
+  background: #333
+
+@include for-small-screens()
+  .experiment
+    .sidebar
+      display: none
+    .content
+      margin-left: 0px

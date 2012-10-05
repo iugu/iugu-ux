@@ -3,3 +3,11 @@
 </header>
 <section id="app-content">
 </section>
+<div class="experiment pie-clearfix">
+  <div class="sidebar">
+    SIDEBAR
+  </div>
+  <div class="content">
+    CONTENT
+  </div>
+</div>

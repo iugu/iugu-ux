@@ -144,5 +144,56 @@ $( function() {
   $("html").addClass( 'os_' + BrowserDetect.OS.toLowerCase() )
 
   window.TOUCH_SUPPORT = jQuery.support.touch;
+
+  window.matchMedia = window.matchMedia || (function(doc, undefined){
+    
+    var bool,
+        docElem = doc.documentElement,
+        refNode = docElem.firstElementChild || docElem.firstChild,
+        // fakeBody required for <FF4 when executed in <head>
+        fakeBody = doc.createElement('body'),
+        div = doc.createElement('div');
+    
+    div.id = 'mq-test-1';
+    div.style.cssText = "position:absolute;top:-100em";
+    fakeBody.style.background = "none";
+    fakeBody.appendChild(div);
+    
+    return function(q){
+      
+      div.innerHTML = '&shy;<style media="'+q+'"> #mq-test-1 { width: 42px; }</style>';
+      
+      docElem.insertBefore(fakeBody, refNode);
+      bool = div.offsetWidth == 42;
+      docElem.removeChild(fakeBody);
+      
+      return { matches: bool, media: q };
+    };
+    
+  })(document);
+
+  window.HAS_MEDIAQUERY = window.matchMedia && window.matchMedia( "only all" ).matches;
+
+  function configureMediaQuery() {
+      $("body").removeClass("mq-mp"); // Mobile Portrait
+      $("body").removeClass("mq-ml"); // Mobile Landscape
+      $("body").removeClass("mq-tb"); // For Tablets
+      $("body").removeClass("mq-ls"); // For Large Screens
+      $("body").removeClass("mq-sm"); // For Small Screens
+      var queryWidth = $(window).width();
+      if (queryWidth < 480) $("body").addClass("mq-mp");
+      else if (queryWidth < 768 && queryWidth > 479) $("body").addClass("mq-mp");
+      else if (queryWidth < 1023 && queryWidth > 767) $("body").addClass("mq-tb");
+      else if (queryWidth > 1024) $("body").addClass("mq-ls");
+      else if (queryWidth < 769) $("body").addClass("mq-sm");
+  }
+  
+  if (window.HAS_MEDIAQUERY) {
+    $("html").addClass("mediaquery");
+  } else {
+    configureMediaQuery();
+    $(window).resize(configureMediaQuery);
+  }
+
 });
 

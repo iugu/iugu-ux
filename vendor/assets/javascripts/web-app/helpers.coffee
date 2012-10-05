@@ -58,7 +58,7 @@ String.prototype.capitalize = ->
 @run_webapp = ( run_routes = false ) ->
   debug 'Running Application'
 
-  if app_domain
+  if app_domain && enable_ajax_on_subdomain
     @app.APP_DOMAIN = app_domain
     document.domain = @app.APP_DOMAIN
 
