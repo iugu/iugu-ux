@@ -5,32 +5,53 @@
     SIDEBAR
   </div>
   <div class="content handle-sidebar">
-    <div class="toggle-sidebar"></div>
+    <div class="small-navigation">
+      <div class="toggle-sidebar"><div class="iux-default-menu-icon"></div></div>
+    </div>
     CONTENT
   </div>
 </div>
 <script type="text/javascript">
   $(function() {
-    var sidebarSize = $('.sidebar').outerWidth()+30;
-    $('.toggle-sidebar').bind('click', function(evt) {
-      var uibox = $(this).parents('.ui-box')
+    var sidebarSize = $('.sidebar').outerWidth();
+
+    function closeSidebar(uibox) {
+      var uicontent = uibox.children('.content');
       var uisidebar = uibox.children('.sidebar');
+      if ( uisidebar.css('z-index') != '1000' ) return;
+      uicontent.css('margin-left', sidebarSize + 'px');
+
+      uicontent.animate({
+        'margin-left': '0px'
+      }, {
+        duration: 250,
+        complete: function() {
+          uicontent.removeAttr('style');
+          uibox.removeClass('open');
+        }
+      });
+    }
+
+    $('.ui-box .sidebar').bind('click', function(evt) {
+      var uibox = $(this).parents('.ui-box');
+      closeSidebar( uibox );
+    });
+
+    $('.toggle-sidebar').bind('click', function(evt) {
+      var uibox = $(this).parents('.ui-box');
+      var uicontent = uibox.children('.content');
 
       if (uibox.hasClass('open')) {
-        uibox.removeClass('open');
+        closeSidebar( uibox );
       } else {
         uibox.addClass('open');
-        uisidebar.css('margin-left', -(sidebarSize) + 'px');
-        uibox.css('margin-left', '0px');
-        uisidebar.animate({
-          'margin-left': -sidebarSize
-        });
-        uibox.animate({
+        uicontent.css('margin-left', '0px');
+        uicontent.animate({
           'margin-left': sidebarSize
         }, {
+          duration: 250,
           complete: function() {
-            uibox.removeAttr('style');
-            uisidebar.removeAttr('style');
+            uicontent.removeAttr('style');
           }
         });
       }
