@@ -8,6 +8,7 @@ $background_base_color: #DBA978
 $base_ui_color: #E8E8DB
 
 $desktop_navigation_size: 200px
+$mobile_navigation_size: 276px
 
 // Color Palette
 $background_highlight_color: lighten( $background_base_color, 10 )
@@ -28,6 +29,7 @@ html,body,#app
   width: 100%
   position: relative
   @include box-sizing( border-box )
+  overflow: hidden
 
 body
   background: $background_base_color
@@ -58,14 +60,17 @@ body
   @include box-sizing( border-box )
 
 
-.ui-box .content
-  height: 100%
-  padding: 20px
-  @include box-sizing( border-box )
-
-.ui-box .content.handle-sidebar
-  border-left: 1px solid $secondary_ui_color_lighten
-  margin-left: $desktop_navigation_size
+.ui-box
+  .content
+    height: 100%
+    padding: 20px
+    @include box-sizing( border-box )
+    .toggle-sidebar
+      display: none
+    
+    &.handle-sidebar
+      border-left: 1px solid $secondary_ui_color_lighten
+      margin-left: $desktop_navigation_size
 
 @include for-large-screens()
   body
@@ -78,9 +83,39 @@ body
     @include border-radius( 4px, 4px )
 
 @include for-small-screens()
+  body
+    background: $secondary_ui_color
   .ui-box
     .sidebar
       display: none
+      float: none
+      position: absolute
+      z-index: 1000
     .content.handle-sidebar
       margin-left: 0px
       border-left: none
+
+    .content  
+      &.handle-sidebar
+        .toggle-sidebar
+          display: block
+          width: 44px
+          height: 44px
+          cursor: pointer
+          background: #333
+          position: absolute
+          top: 0px
+          left: 0px
+          z-index: 10
+
+  .open
+    margin-left: ($mobile_navigation_size+30)
+    @include box-shadow( rgba(0,0,0,0.54) 0px 0px 2px, rgba(0,0,0,0.25) 0px 0px 20px )
+    border: 1px solid #FF0000, 2px solid #00FFFF
+    @include border-radius( 4px, 4px )
+    .sidebar
+      display: block
+      margin-left: -($mobile_navigation_size+30)
+      width: $mobile_navigation_size
+      border: none
+  

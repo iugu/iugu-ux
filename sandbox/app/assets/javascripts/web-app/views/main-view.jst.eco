@@ -5,6 +5,35 @@
     SIDEBAR
   </div>
   <div class="content handle-sidebar">
+    <div class="toggle-sidebar"></div>
     CONTENT
   </div>
 </div>
+<script type="text/javascript">
+  $(function() {
+    var sidebarSize = $('.sidebar').outerWidth()+30;
+    $('.toggle-sidebar').bind('click', function(evt) {
+      var uibox = $(this).parents('.ui-box')
+      var uisidebar = uibox.children('.sidebar');
+
+      if (uibox.hasClass('open')) {
+        uibox.removeClass('open');
+      } else {
+        uibox.addClass('open');
+        uisidebar.css('margin-left', -(sidebarSize) + 'px');
+        uibox.css('margin-left', '0px');
+        uisidebar.animate({
+          'margin-left': -sidebarSize
+        });
+        uibox.animate({
+          'margin-left': sidebarSize
+        }, {
+          complete: function() {
+            uibox.removeAttr('style');
+            uisidebar.removeAttr('style');
+          }
+        });
+      }
+    });
+  });
+</script>
