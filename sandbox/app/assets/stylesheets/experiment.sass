@@ -1,32 +1,86 @@
 @import "iugu-ux/core"
 @import "compass/utilities/general/clearfix"
 
-body
-  padding: 20px !important
+// CINZA
+// $background_base_color: #ECECEC
+// $base_ui_color: #F1ECE7
+$background_base_color: #DBA978
+$base_ui_color: #E8E8DB
 
-.experiment
+$desktop_navigation_size: 200px
+
+// Color Palette
+$background_highlight_color: lighten( $background_base_color, 10 )
+
+$base_ui_color_lighten: lighten( $base_ui_color, 10 )
+$base_ui_color_darken: darken( $base_ui_color, 10 )
+$base_ui_color_highlight: lighten( $base_ui_color, 50 )
+$base_ui_color_shadow: darken( $base_ui_color, 50 )
+
+$secondary_ui_color: darken( $base_ui_color, 3 )
+$secondary_ui_color_lighten: lighten( $secondary_ui_color, 10 )
+$secondary_ui_color_darken: darken( $secondary_ui_color, 10 )
+$secondary_ui_color_highlight: lighten( $secondary_ui_color, 50 )
+$secondary_ui_color_shadow: darken( $secondary_ui_color, 50 )
+
+html,body,#app
+  height: 100%
+  width: 100%
+  position: relative
+  @include box-sizing( border-box )
+
+body
+  background: $background_base_color
+
+.ui-box
   @include pie-clearfix
-  background: #F00
-  max-width: 980px
+  background: $base_ui_color
+  width: 100%
   margin-left: auto
   margin-right: auto
   position: relative
-  color: #FFF
+  color: #666
+  height: 100%
+  @include box-sizing( border-box )
+  @include background( top, linear-gradient( lighten($base_ui_color, 3) 44px, $base_ui_color ) )
+  border-left: 1px solid $base_ui_color_highlight
+  border-top: 1px solid $base_ui_color_highlight
+  border-right: 1px solid $base_ui_color
+  border-bottom: 1px solid $base_ui_color
 
-.experiment .sidebar
+.ui-box .sidebar
   float: left
-  width: 200px
-  height: 40px
-  background: #333
+  width: $desktop_navigation_size 
+  height: 100%
+  background: $secondary_ui_color
+  border-right: 1px solid $secondary_ui_color_darken
+  padding: 20px
+  @include box-sizing( border-box )
 
-.experiment .content
-  height: 40px
-  margin-left: 220px
-  background: #333
+
+.ui-box .content
+  height: 100%
+  padding: 20px
+  @include box-sizing( border-box )
+
+.ui-box .content.handle-sidebar
+  border-left: 1px solid $secondary_ui_color_lighten
+  margin-left: $desktop_navigation_size
+
+@include for-large-screens()
+  body
+    padding: 20px
+    @include background-image( radial-gradient(top center, circle, $background_highlight_color 0px, rgba($background_highlight_color,0) 300px) ,linear-gradient(bottom, $background_highlight_color 30%,$background_base_color 70%) )
+  .ui-box
+    max-width: 980px
+    @include box-shadow( rgba(0,0,0,0.54) 0px 0px 2px, rgba(0,0,0,0.25) 0px 0px 20px )
+    border: 1px solid #FF0000, 2px solid #00FFFF
+    @include border-radius( 4px, 4px )
 
 @include for-small-screens()
-  .experiment
+  .ui-box
     .sidebar
       display: none
-    .content
+    .content.handle-sidebar
       margin-left: 0px
+      border-left: none

@@ -1,13 +1,10 @@
-<header>
-  <div class="assets-arrow-up"></div>
-</header>
 <section id="app-content">
 </section>
-<div class="experiment pie-clearfix">
+<div class="ui-box">
   <div class="sidebar">
     SIDEBAR
   </div>
-  <div class="content">
+  <div class="content handle-sidebar">
     CONTENT
   </div>
 </div>
