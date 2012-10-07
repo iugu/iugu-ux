@@ -9,8 +9,10 @@ $base_ui_color: #ECECEC
 $mobile_navigation_color: #3D3D3D
 $header_ui_color: #5282BC
 
-$desktop_navigation_size: 200px
+$desktop_navigation_size: 256px
 $mobile_navigation_size: 256px
+
+$toolbar_height: 44px
 
 // Color Palette
 $background_highlight_color: lighten( $background_base_color, 10 )
@@ -138,7 +140,7 @@ body
       &.handle-sidebar
         .small-navigation
           display: block
-          height: 60px
+          height: $toolbar_height
           position: relative
           background: $header_ui_color
           @include background( top, linear-gradient( $header_ui_color 22px, $header_ui_color_darken ) )
@@ -158,8 +160,8 @@ body
             height: 44px
             cursor: pointer
             position: absolute
-            top: 8px
-            left: 8px
+            top: 0px
+            left: 0px
             z-index: 10
 
   .desktop .open, .mobile .open
