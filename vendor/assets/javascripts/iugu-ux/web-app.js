@@ -15,10 +15,10 @@
 //= require web-app/environment
 //= require web-app/config
 //= require web-app/comm
-//= require web-app/views
+//= require web-app/presenters
 //= require web-app/i18n-languages
 //= require web-app/i18n
 //= require web-app/sound
 //= require web-app/helpers
 //= require web-app/models
-//= require web-app/controllers
+//= require web-app/usecode

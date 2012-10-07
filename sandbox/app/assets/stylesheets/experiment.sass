@@ -94,6 +94,12 @@ body
 @include for-small-screens()
   body
     background: $mobile_navigation_color
+
+  .mobile
+    .ui-box
+      .content.handle-sidebar
+        @include translate3d(0,0,0)
+
   .ui-box
     border: none
     background: $mobile_navigation_color
@@ -115,11 +121,11 @@ body
       border-left: none
       z-index: 2000
       min-width: 320px
-      @include translate3d(0,0,0)
-      @include transition-property( transition )
+      @include transition-property( all )
       @include transition-duration( 0.3s )
       @include transition-timing-function( ease )
 
+    // A merda esta aki
     .content
       @include background( top, linear-gradient( lighten($base_ui_color, 3) 44px, $base_ui_color ) )
       @include box-shadow( rgba(0,0,0,0.54) 0px 0px 2px, rgba(0,0,0,0.8) 0px 0px 15px )
@@ -156,7 +162,7 @@ body
             left: 8px
             z-index: 10
 
-  .open
+  .desktop .open, .mobile .open
     border: none
     .content.handle-sidebar
       @include translate3d( $mobile_navigation_size, 0, 0 )

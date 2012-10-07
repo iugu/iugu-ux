@@ -4,7 +4,7 @@ RootView = Backbone.View.extend
     _.bindAll @, 'render'
 
   render: ->
-    $(@el).html JST["web-app/views/main-view"]
+    $(@el).html JST["web-app/presenters/main-view"]
 
     @
 
