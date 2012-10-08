@@ -143,6 +143,16 @@ $( function() {
   $("html").addClass( BrowserDetect.browser.toLowerCase() + '_' + BrowserDetect.version )
   $("html").addClass( 'os_' + BrowserDetect.OS.toLowerCase() )
 
+  var ua = navigator.userAgent;
+  if( ua.indexOf("Android") >= 0 )
+  {
+    var androidversion = parseFloat(ua.slice(ua.indexOf("Android")+8)); 
+    if (androidversion < 3)
+    {
+      $("html").addClass( 'deprecated_android' );
+    }
+  }
+
   window.TOUCH_SUPPORT = jQuery.support.touch;
 
   window.matchMedia = window.matchMedia || (function(doc, undefined){
