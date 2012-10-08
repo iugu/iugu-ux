@@ -10,5 +10,6 @@
 //= require ./vendor/jquery.checkboxes
 //= require ./vendor/jquery.ui
 //= require ./vendor/jquery.ui.touch-punch
+//= require ./vendor/jquery.base64
 //= require ./vendor/underscore
 //= require ./vendor/backbone
