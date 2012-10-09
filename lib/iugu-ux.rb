@@ -7,7 +7,13 @@ require "iugu-ux/version"
 
 module IuguUX
 
-  mattr_accessor :src
+  def self.src
+    @@src
+  end
+
+  def self.src=(src)
+    @@src = src
+  end
 
   self.src = %w( iugu-ux.css iugu-ux.js vendor.js )
 
