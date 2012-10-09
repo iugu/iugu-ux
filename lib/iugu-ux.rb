@@ -1,12 +1,35 @@
 require 'haml'
 require 'compass'
 
-require 'haml-rails'
-require 'compass-rails'
-# require 'jquery-rails'
+require "iugu-ux/railtie" if defined?(::Rails)
 
 require "iugu-ux/version"
-require "iugu-ux/engine"
 
 module IuguUX
+
+  mattr_accessor :src
+
+  self.src = %w( iugu-ux.css iugu-ux.js vendor.js )
+
+  class << self
+    def sprite_load_path
+      File.join( File.expand_path("../..",__FILE__),'vendor','assets','sprites')
+    end
+
+    def root
+      File.join( File.expand_path("../..",__FILE__))
+    end
+
+    def assets_path
+      File.join( File.expand_path("../..",__FILE__),'vendor','assets')
+    end
+  end
+
+  def initialize
+  end
+
+  def self.setup
+    yield self
+  end
+
 end
