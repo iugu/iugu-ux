@@ -1,6 +1,7 @@
 require 'haml'
-require 'haml-rails'
 require 'compass'
+
+require 'haml-rails'
 require 'compass-rails'
 # require 'jquery-rails'
 

@@ -6,10 +6,10 @@ Gem::Specification.new do |s|
   s.name        = "iugu-ux"
   s.version     = IuguUX::VERSION
   s.authors     = ["Patrick Negri"]
-  s.email       = ["patrick@iugu.com.br"]
+  s.email       = ["support@iugu.com"]
   s.homepage    = ""
   s.summary     = %q{Iugu UX Library}
-  s.description = %q{Iugu Typografy and Components for HTML5,CSS,JS}
+  s.description = %q{Iugu User Experience and Components for HTML5,CSS,JS}
 
   s.rubyforge_project = "iugu-ux"
 
@@ -19,13 +19,13 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'coffee-script'
   s.add_dependency 'sass', ">= 3.2.0.alpha.0"
-  s.add_dependency 'sass-rails'
   s.add_dependency 'eco'
   s.add_dependency 'haml'
-  s.add_dependency 'haml-rails'
   s.add_dependency 'compass'
+
+  s.add_dependency 'sass-rails'
+  s.add_dependency 'haml-rails'
   s.add_dependency 'compass-rails'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'railties', "~> 3.1"
-
 end
