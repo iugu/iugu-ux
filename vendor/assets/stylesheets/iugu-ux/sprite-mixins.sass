@@ -1,23 +1,27 @@
+@mixin build-sprite-css( $images, $size, $width )
+  @content
+  background-image: $images
+  background-repeat: no-repeat
+  @if $size == retina
+    @include background-size($width/2 auto)
+
 @mixin build-sprites($name, $images, $size: normal)
   $sprite-names: sprite-names($images)
-  
-  .#{$name}-sprite-map 
-    background-image: $images
-    background-repeat: no-repeat
 
-    $width: 0px
-    @each $sprite-name in $sprite-names 
-      @if $sprite-name != nil and $images != nil
-        $tmp-width: image-width(sprite-file($images, $sprite-name))
-        @if $tmp-width > $width
-          $width: $tmp-width
-    @if $size == retina
-      @include background-size($width/2 auto)
+  $width: 0px
+  @each $sprite-name in $sprite-names 
+    @if $sprite-name != nil and $images != nil
+      $tmp-width: image-width(sprite-file($images, $sprite-name))
+      @if $tmp-width > $width
+        $width: $tmp-width
+
+  .#{$name}-sprite-map
+    @include build-sprite-css( $images, $size, $width )
 
   @each $sprite-name in $sprite-names
     $full-sprite-name: "#{$name}-#{$sprite-name}"
     .#{$full-sprite-name}-no-dimensions
-      @extend .#{$name}-sprite-map
+      @include build-sprite-css( $images, $size, $width )
       @include sprite($images, $sprite-name)
 
     $spt_pos: sprite-position($images, $sprite-name)
@@ -42,7 +46,7 @@
       top: -($height/2)
 
     .#{$full-sprite-name}
-      @extend .#{$name}-sprite-map
+      @include build-sprite-css( $images, $size, $width )
       //@include sprite-background-position($images, $sprite-name)
       background-position: $xpos $ypos
       width: $width
