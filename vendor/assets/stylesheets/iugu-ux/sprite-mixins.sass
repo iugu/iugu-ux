@@ -14,14 +14,15 @@
       $tmp-width: image-width(sprite-file($images, $sprite-name))
       @if $tmp-width > $width
         $width: $tmp-width
+  $background-width: $width
 
   .#{$name}-sprite-map
-    @include build-sprite-css( $images, $size, $width )
+    @include build-sprite-css( $images, $size, $background-width )
 
   @each $sprite-name in $sprite-names
     $full-sprite-name: "#{$name}-#{$sprite-name}"
     .#{$full-sprite-name}-no-dimensions
-      @include build-sprite-css( $images, $size, $width )
+      @include build-sprite-css( $images, $size, $background-width )
       @include sprite($images, $sprite-name)
 
     $spt_pos: sprite-position($images, $sprite-name)
@@ -46,7 +47,7 @@
       top: -($height/2)
 
     .#{$full-sprite-name}
-      @include build-sprite-css( $images, $size, $width )
+      @include build-sprite-css( $images, $size, $background-width )
       //@include sprite-background-position($images, $sprite-name)
       background-position: $xpos $ypos
       width: $width
