@@ -194,7 +194,7 @@ $( function() {
       if (queryWidth < 480) $("body").addClass("mq-mp");
       else if (queryWidth < 768 && queryWidth > 479) $("body").addClass("mq-mp");
       else if (queryWidth < 1023 && queryWidth > 767) $("body").addClass("mq-tb");
-      else if (queryWidth > 1024) $("body").addClass("mq-ls");
+      else if (queryWidth > 768) $("body").addClass("mq-ls");
       else if (queryWidth < 769) $("body").addClass("mq-sm");
   }
   
