@@ -23,9 +23,13 @@ Gem::Specification.new do |s|
   s.add_dependency 'haml'
   s.add_dependency 'compass'
 
+  s.add_development_dependency 'bundler', ['>= 1.0.0']
   s.add_development_dependency 'sass-rails'
   s.add_development_dependency 'haml-rails'
   s.add_development_dependency 'compass-rails'
   s.add_development_dependency 'jquery-rails'
   s.add_development_dependency 'railties', "~> 3.1"
+  s.add_development_dependency 'rails', "~> 3.2.6"
+  s.add_development_dependency 'uglifier'
+
 end
