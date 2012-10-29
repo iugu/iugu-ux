@@ -7,7 +7,7 @@
   padding: 20px
 
   .my_mq_button
-    @extend .assets-letsyell-logo
+    +find-sprite( $assets, 'letsyell-logo' )
 
 @mixin get-image()
   background: #F00
@@ -17,10 +17,10 @@
 
     .my_mq_button
       border: 1px solid #000
-      +get-image()
+      +find-sprite( $assets, 'arrow-up' )
 
 @include for-hd()
   .mqc
     .my_mq_button
       border: 1px solid #F00
-
+      +find-sprite( $assets-hd, 'letsyell-logo' )

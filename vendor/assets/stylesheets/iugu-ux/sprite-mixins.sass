@@ -1,53 +1,60 @@
-@mixin build-sprite-css( $images, $size, $width )
-  background-image: $images
-  background-repeat: no-repeat
-  @if $size == retina
-    @include background-size($width/2 auto)
-
-@mixin build-sprites($name, $images, $size: normal)
+@function calculate-atlas-width($images)
   $sprite-names: sprite-names($images)
-
   $width: 0px
   @each $sprite-name in $sprite-names 
     @if $sprite-name != nil and $images != nil
       $tmp-width: image-width(sprite-file($images, $sprite-name))
       @if $tmp-width > $width
         $width: $tmp-width
-  $background-width: $width
+  @return $width
 
-  .#{$name}-sprite-map
-    @include build-sprite-css( $images, $size, $background-width )
+@mixin build-sprite-atlas( $images, $size: normal )
+  background-image: $images
+  background-repeat: no-repeat
+  @if $size == retina
+    @include background-size( calculate-atlas-width($images) /2 auto)
+
+@mixin build-sprite-css( $images, $name, $size: normal )
+  $spt_pos: sprite-position($images, $name)
+  $xpos: 0
+  $ypos: 0
+  $width: 0
+  $height: 0
+  @if $size == retina
+    $xpos: round(nth($spt_pos, 1) / 2)
+    $ypos: round(nth($spt_pos, 2) / 2)
+    $height: image-height(sprite-file($images, $name))/2
+    $width: image-width(sprite-file($images, $name))/2
+  @else
+    $xpos: round(nth($spt_pos, 1))
+    $ypos: round(nth($spt_pos, 2))
+    $height: image-height(sprite-file($images, $name))
+    $width: image-width(sprite-file($images, $name))
+  background-position: $xpos $ypos
+  width: $width
+  height: $height
+
+@mixin sprite-half-position( $images, $name, $size )
+  $spt_pos: sprite-position($images, $name)
+  $width: 0
+  $height: 0
+  @if $size == retina
+    $height: image-height(sprite-file($images, $name))/2
+    $width: image-width(sprite-file($images, $name))/2
+  @else
+    $height: image-height(sprite-file($images, $name))
+    $width: image-width(sprite-file($images, $name))
+  left: -($width/2)
+  top: -($height/2)
+
+@mixin find-sprite( $images, $name, $size: normal )
+  @include build-sprite-atlas( $images, $size )
+  @include build-sprite-css( $images, $name, $size )
+
+@mixin build-sprites($name, $images, $size: normal)
+  $sprite-names: sprite-names($images)
 
   @each $sprite-name in $sprite-names
-    $full-sprite-name: "#{$name}-#{$sprite-name}"
-    .#{$full-sprite-name}-no-dimensions
-      @include build-sprite-css( $images, $size, $background-width )
-      @include sprite($images, $sprite-name)
-
-    $spt_pos: sprite-position($images, $sprite-name)
-    $xpos: 0
-    $ypos: 0
-    $width: 0
-    $height: 0
-    @if $size == retina
-      $xpos: round(nth($spt_pos, 1) / 2)
-      $ypos: round(nth($spt_pos, 2) / 2)
-      $height: image-height(sprite-file($images, $sprite-name))/2
-      $width: image-width(sprite-file($images, $sprite-name))/2
-    @else
-      $xpos: round(nth($spt_pos, 1))
-      $ypos: round(nth($spt_pos, 2))
-      $height: image-height(sprite-file($images, $sprite-name))
-      $width: image-width(sprite-file($images, $sprite-name))
-
-    .#{$full-sprite-name}-half-x
-      left: -($width/2)
-    .#{$full-sprite-name}-half-y
-      top: -($height/2)
-
-    .#{$full-sprite-name}
-      @include build-sprite-css( $images, $size, $background-width )
-      //@include sprite-background-position($images, $sprite-name)
-      background-position: $xpos $ypos
-      width: $width
-      height: $height
+    .#{$name}-#{$sprite-name}
+      @include build-sprite-atlas( $images, $size )
+      @include build-sprite-css( $images, $sprite-name, $size )
