@@ -2,7 +2,7 @@
 
 Um pacote de bibliotecas e códigos de apoio (glue code) para facilitar o desenvolvimento de aplicações web.
 
-### Vendor / Javascripts ( vendor.js )
+### Vendor / Javascripts ( vendor.js ) 
 
   - backbone.js
   - gmaps.js (experimental)
