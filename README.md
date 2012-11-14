@@ -188,5 +188,6 @@ $blueBorder: darken(adjust-hue($blueBackground, -10), 3%)
 ```
 
 ### Aplicação (Web-App)
+_________________________________________________________________
 
 
