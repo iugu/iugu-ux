@@ -100,7 +100,8 @@ body
   .mobile
     .ui-box
       .content.handle-sidebar
-        @include translate3d(0,0,0)
+        // @include translate3d(0,0,0)
+        +translateZ(0px)
 
   .ui-box
     border: none
@@ -115,7 +116,7 @@ body
       background: $mobile_navigation_color
       visibility: hidden
 
-      @include transition-property( visibility, border, margin )
+      // @include transition-property( visibility, border, margin )
       @include transition-delay( 0.3s )
 
     .content.handle-sidebar
@@ -123,9 +124,10 @@ body
       border-left: none
       z-index: 2000
       min-width: 320px
-      @include transition-property( all )
-      @include transition-duration( 0.3s )
-      @include transition-timing-function( ease )
+
+      @include transition-property( transform )
+      @include transition-duration( 300ms )
+      @include transition-timing-function( cubic-bezier(0.39, 0.575, 0.565, 1) )
 
     // A merda esta aki
     .content
@@ -167,7 +169,8 @@ body
   .desktop .open, .mobile .open
     border: none
     .content.handle-sidebar
-      @include translate3d( $mobile_navigation_size, 0, 0 )
+      // @include translate3d( $mobile_navigation_size, 0, 0 )
+      +translateX( $mobile_navigation_size )
 
     .sidebar
       display: block

@@ -43,8 +43,13 @@
       uibox.toggleClass('open');
     }
 
-    $('.ui-box .sidebar').bind('click', function(evt) { toggleSidebar( this ) });
-    $('.toggle-sidebar').bind('click', function(evt) { toggleSidebar(this) });
+    if (window.TOUCH_SUPPORT) {
+      $('.ui-box .sidebar').bind('touchstart', function(evt) { toggleSidebar( this ) });
+      $('.toggle-sidebar').bind('touchstart', function(evt) { toggleSidebar(this) });
+    } else {
+      $('.ui-box .sidebar').bind('click', function(evt) { toggleSidebar( this ) });
+      $('.toggle-sidebar').bind('click', function(evt) { toggleSidebar(this) });
+    }
 
   });
 </script>
