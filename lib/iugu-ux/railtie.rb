@@ -7,6 +7,7 @@ module IuguUX
         app.config.assets.precompile += IuguUX.src
         app.config.compass.sprite_load_path << app.root.join('app','assets','sprites')
         app.config.compass.sprite_load_path << IuguUX.sprite_load_path 
+        app.config.compass.add_import_path << File.join( IuguUX.assets_path, 'stylesheets' )
       end
 
   end
