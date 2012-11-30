@@ -10,7 +10,7 @@ module IuguUX
         app.config.compass.add_import_path File.join( IuguUX.assets_path, 'stylesheets' )
         app.config.sass.load_paths << File.join( IuguUX.assets_path, 'stylesheets' )
         app.config.sass.load_paths << File.join( IuguUX.assets_path, 'stylesheets', 'iugu-ux' )
-        app.config.sass.load_paths << File.join( IuguUX.assets_path, 'stylesheets', 'iugu-ux', 'google-code-prettyfy' )
+        app.config.sass.load_paths << File.join( IuguUX.assets_path, 'stylesheets', 'iugu-ux', 'google-code-prettify' )
       end
 
   end
