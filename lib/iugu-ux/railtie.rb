@@ -4,7 +4,7 @@ require 'compass-rails'
 module IuguUX
   class Engine < Rails::Engine
       initializer 'iugu-ux.setup' do |app|
-        if app.consig.assets
+        if app.config.assets
           app.config.assets.precompile += IuguUX.src
         end
         if app.config.compass
