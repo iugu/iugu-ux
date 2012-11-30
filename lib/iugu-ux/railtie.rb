@@ -9,6 +9,7 @@ module IuguUX
         app.config.compass.sprite_load_path << IuguUX.sprite_load_path 
         app.config.compass.add_import_path File.join( IuguUX.assets_path, 'stylesheets' )
         app.config.sass.load_paths << File.join( IuguUX.assets_path, 'stylesheets' )
+        app.config.sass.load_paths << File.join( IuguUX.assets_path, 'stylesheets', 'iugu-ux' )
       end
 
   end
