@@ -1,7 +1,146 @@
-%div{ :style => "margin-bottom: 20px" }
-  = link_to "Base CSS", "/"
-  = ' | '
-  = link_to "Components", "/components"
+.element-spacing
+  .assets-logo-iugu-ux
+
+.container.small-padding
+  .button-group.no-bottom-margin.nav
+    = link_to "Typography", "/", :class => 'button'
+    = link_to "Components", "/components", :class => 'button selected default'
+
+.element-spacing
+  .grid.component-grid
+    .grid-item.component-item
+      %h2
+        Buttons
+
+      %p
+        Lorem Ipsum
+
+      %h3
+        Markup
+
+      %a.button{ :href => "#" } Link Tag
+      %button.button Button Tag 
+
+    .grid-item.component-description
+      .container
+        %h5.no-bottom-margin Example using HREF
+        %pre.no-bottom-margin{ :class => "prettyprint linenums:1 linenums" }
+          = preserve do
+            :escaped
+              <a class="button">Link Tag</a>
+              <button class="button">Button Tag</button>
+
+.element-spacing
+  .grid.component-grid
+    .grid-item.component-item
+      %h4
+        Button (Default Action)
+      %a.button.default{ :href => "#" } Default Button
+
+    .grid-item.component-description
+      .container
+        %h5.no-bottom-margin Example using HREF
+        %pre.no-bottom-margin{ :class => "prettyprint linenums:1 linenums" }
+          = preserve do
+            :escaped
+              <a class="button default">Default Button</a>
+
+
+.element-spacing
+  .grid.component-grid
+    .grid-item.component-item
+      %h4
+        Button with Image
+
+      %a.button.default{ :href => "#" }
+        %div.assets-star-icon.no-space
+          &nbsp;
+
+    .grid-item.component-description
+      .container
+        %h5.no-bottom-margin Example using HREF
+        %pre.no-bottom-margin{ :class => "prettyprint linenums:1 linenums" }
+          = preserve do
+            :escaped
+              <a class="button default">Default Button</a>
+
+.element-spacing
+  .grid.component-grid
+    .grid-item.component-item
+      %h4
+        Button Grouping
+
+      .button-group
+        %a.button{ :href => "#" } 1
+        %a.button{ :href => "#" } 2
+        %a.button{ :href => "#" } 3
+        %a.button.default.selected{ :href => "#" } 4
+        %a.button{ :href => "#" } 5
+        %a.button{ :href => "#" } 6
+        %a.button{ :href => "#" } 7
+
+    .grid-item.component-description
+      .container
+        %h5.no-bottom-margin Example using HREF
+        %pre.no-bottom-margin{ :class => "prettyprint linenums:1 linenums" }
+          = preserve do
+            :escaped
+              <div class="button-group">
+                <a href="button">1</a>
+                <a href="button">2</a>
+                <a href="button">3</a>
+                <a href="button default selected">4</a>
+                <a href="button">5</a>
+                <a href="button">6</a>
+                <a href="button">7</a>
+                <a href="button">8</a>
+              </div>
+
+
+.element-spacing
+  .grid.component-grid
+    .grid-item.component-item
+      %h2
+        Inputs
+
+      %p
+        Lorem Ipsum
+
+      %h3
+        Markup
+
+      %form
+
+        %input{ :style => "width: 180px", :type => "text", :placeholder => "Nome Completo" }
+        %a.button.default
+          Salvar
+
+        .grouping
+          %input.failure{ :style => "width: 180px", :type => "text", :placeholder => "Nome Completo" }
+          %a.button.default
+            Salvar
+
+        .grouping
+          %input.success{ :style => "width: 180px", :type => "text", :placeholder => "Nome Completo" }
+          %a.button.default
+            Salvar
+
+
+    .grid-item.component-description
+      .container
+        %h5.no-bottom-margin Example using HREF
+        %pre.no-bottom-margin{ :class => "prettyprint linenums:1 linenums" }
+          = preserve do
+            :escaped
+              <form>
+                <input type="text" placeholder="Nome Completo" />
+              </form>
+
+
+
+
+#slider
+
 
 %h3
   Tags
@@ -55,7 +194,7 @@
   %span.badge.red
     45
   %span.badge.red
-    102
+    1025
   %span.badge.green
     3
 
@@ -116,6 +255,17 @@
   Containers
 
 .container
+  .notice.notice-blue
+    %button.close{ :'data-dismiss' => "notice" }
+      &times;
+    %h4.notice-heading
+      Info!
+    Best check yo self, you're not looking too good.
+    %ul
+      %li
+        Checking item #5
+      %li
+        Analysing lorem ipsum
   Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
 
 .container.no-padding

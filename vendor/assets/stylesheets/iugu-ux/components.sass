@@ -1,3 +1,292 @@
+@import "compass/utilities/general/clearfix"
+
+$button_family: "Myriad Pro", "Helvetica", "Arial", "sans", "sans-serif"
+$buttonShadowColor: rgba(0,0,0,0.25)
+$uiElementInternalSpacing: 14px
+$uiElementBaseHeight: 40px
+$uiElementBaseFontSize: 13px
+$uiElementBasePlaceHolderColor: #C5C5C5
+
+// ooooooooooooooooooooooooooooooo
+//  1. Button
+// ooooooooooooooooooooooooooooooo
+.iugu-ui
+  .button,.button:visited
+    cursor: pointer
+    display: inline-block
+    @include border-radius(4px)
+    background-color: #fcfcfc
+    @include filter-gradient(#fcfcfc, #f2f2f2, vertical)
+    @include background-image(linear-gradient(top, #fcfcfc 0%,#f2f2f2 100%))
+    color: #585858
+    @include text-shadow( rgba(255,255,255,1) -1px -1px 0px )
+    padding: $uiElementInternalSpacing
+    height: 41px
+    font-size: 13px
+    line-height: 16px
+    text-decoration: none
+    text-align: center
+    font-family: $button_family
+    font-weight: 600
+    border-width: 0px
+    margin: 0px
+    text-transform: uppercase
+    white-space: nowrap
+    -webkit-appearance: none
+    -webkit-tap-highlight-color: rgba(0,0,0,0)
+    -webkit-touch-callout: none
+    -webkit-border: none
+    -webkit-margin: none
+    @include box-shadow(  rgba(255,255,255,0.25 ) 1px 1px 0px 0px inset, $buttonShadowColor -1px -1px 0px 0px inset, rgba(0,0,0,0.04) 0px 0px 0px 1px )
+    vertical-align: top
+    @include box-mode
+    margin-bottom: $baseElementSpacing
+    overflow: hidden
+    &.align-left
+      text-align: left
+    &.align-center
+      text-align: center
+    &.align-right
+      text-align: right
+    *
+      float: left
+      margin-right: 14px
+      display: block
+      &.no-space
+        margin-right: 0px !important
+    &.default
+      @include text-shadow( rgba(0,0,0,0.25) 1px 1px 0px )
+      background-color: #7ccf42
+      @include filter-gradient(#7ccf42, #6cb53a, vertical)
+      @include background-image(linear-gradient(top, #7ccf42 0%,#6cb53a 100%))
+      color: #FFF
+    &.no-space
+      margin-bottom: 0px !important
+
+.desktop
+  .iugu-ui
+    .button
+      &.default
+        &:hover
+          @include box-shadow(  rgba(255,255,255,0.25 ) 1px 1px 0px 0px inset, $buttonShadowColor -1px -1px 0px 0px inset, rgba(0,0,0,0.04) 0px 0px 0px 1px, rgba(255,190,75,0.45) 0px 0px 5px 4px inset )
+
+.desktop,.mobile
+  .iugu-ui
+    .button,.button.default
+      &.active,&.selected
+        @include box-shadow(  rgba(255,255,255,0.25 ) -1px -1px 0px 0px inset, $buttonShadowColor 1px 1px 0px 0px inset, rgba(0,0,0,0.04) 0px 0px 0px 1px )
+
+.mobile
+  .iugu-ui
+    .button
+      line-height: 13px
+
+.iugu-ui
+  button.button
+    line-height: 15px
+
+.ios
+  .iugu-ui
+    .button
+      line-height: 12px
+
+.iugu-ui
+  .button-group
+    @include clearfix
+    .button
+      float: left
+      min-width: 40px
+    .button:not(:first-child):not(:last-child)
+      @include border-radius(0px)
+    .button:first-child
+      @include border-radius(4px 0px 0px 4px)
+    .button:last-child
+      @include border-radius(0px 4px 4px 0px)
+    &.no-bottom-margin
+      .button
+        margin-bottom: 0px
+
+.ie
+  .iugu-ui
+    .button
+      @include border-radius(0px)
+
+// ooooooooooooooooooooooooooooooo
+//  2. Input
+// ooooooooooooooooooooooooooooooo
+.iugu-ui
+  input[type="text"]
+    border: none
+    padding-left: $uiElementInternalSpacing - 2px
+    padding-right: $uiElementInternalSpacing - 2px
+    height: $uiElementBaseHeight
+    padding-top: 3px
+    font-size: $uiElementBaseFontSize + 1px
+    -webkit-appearance: none
+    -webkit-tap-highlight-color: rgba(0,0,0,0)
+    -webkit-touch-callout: none
+    outline: none
+    @include box-mode
+    @include border-radius(4px)
+    @include box-shadow(  rgba(255,255,255,0.25 ) -1px -1px 0px 0px inset, $buttonShadowColor 1px 1px 0px 0px inset, rgba(0,0,0,0.04) 0px 0px 0px 1px )
+    margin-bottom: $baseLineSpacing
+
+    &.failure
+      background: #FFF5F5
+      padding-left: $uiElementInternalSpacing - 4px
+      padding-right: $uiElementInternalSpacing - 4px
+      border: 2px solid #DC4B4B
+      @include box-shadow( none )
+    &.success
+      padding-left: $uiElementInternalSpacing - 4px
+      padding-right: $uiElementInternalSpacing - 4px
+      border: 2px solid #57B436
+      @include box-shadow( none )
+
+  input[type="text"]::-webkit-input-placeholder
+    color: $uiElementBasePlaceHolderColor
+    font-weight: normal
+  input:-moz-placeholder[type="text"]
+    color: $uiElementBasePlaceHolderColor
+    font-weight: normal
+  input:-ms-input-placeholder[type="text"]
+    color: $uiElementBasePlaceHolderColor
+    font-weight: normal
+ 
+    // @include box-shadow(  rgba(255,255,255,0.25 ) 1px 1px 0px 0px inset, $buttonShadowColor -1px -1px 0px 0px inset, rgba(0,0,0,0.04) 0px 0px 0px 1px )
+
+.ie
+  .iugu-ui
+    input[type="text"]
+      @include border-radius(0px)
+
+.ui-slider
+  position: relative
+  text-align: left
+  background: #ececec
+  margin-left: 22px
+  margin-right: 22px
+
+.ui-slider .ui-slider-handle
+  position: absolute
+  z-index: 2
+  cursor: default
+  background: #300
+
+.ui-slider-handle,.ui-slider-handle:active
+  background: #333
+  width: 44px
+  height: 44px
+  outline: none
+  cursor: pointer
+  
+
+.ui-slider .ui-slider-range
+  position: absolute
+  z-index: 1
+  font-size: .7em
+  display: block
+  border: 0
+  background-position: 0 0
+
+.ui-slider-range
+  background: #ccc
+
+
+.ui-slider-horizontal
+  height: .8em
+
+.ui-slider-horizontal .ui-slider-handle
+  top: -17px
+  margin-left: -22px
+.ui-slider-horizontal .ui-slider-range
+  top: 0
+  height: 100%
+.ui-slider-horizontal .ui-slider-range-min
+  left: 0
+.ui-slider-horizontal .ui-slider-range-max
+  right: 0
+
+// ooooooooooooooooooooooooooooooo
+//  XX. Notice
+// ooooooooooooooooooooooooooooooo
+.iugu-ui
+  .borderless,.close
+    font-size: 20px
+    font-weight: bold
+    line-height: 20px
+    color: #000
+    +text-shadow(0 1px 0 rgba(255,255,255,1))
+    +opacity(0.2)
+    padding: 0px
+    margin: 0px
+    margin-top: -5px
+    cursor: pointer
+    background: transparent
+    border: 0
+    -webkit-appearance: none
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+    &:hover
+      color: #000
+      text-decoration: none
+      cursor: pointer
+      +opacity(0.4)
+
+  .notice .borderless, .notice .close
+    float: right
+    position: relative
+    top: 0px
+    right: -25px
+    line-height: 18px
+
+  .notice .close
+    padding: 10px 10px 20px 20px
+    right: -40px
+    top: -15px
+
+  .notice
+    font-size: $baseFontSize * 0.92857
+    line-height: ($baseFontSize * 0.92857)
+    padding: 10px
+    padding-right: 35px
+    margin-bottom: $baseElementSpacing
+    +text-shadow( 0 1px 0 rgba(255,255,255,.5) )
+    +border-radius( 5px )
+    border: 4px solid $yellowBorder
+    background-color: lighten($yellowBackground,5%)
+    color: #919191
+    .notice-heading
+      color: $yellowText
+    p,h1,h2,h3,h4,h5,h6
+      margin: 0px
+      padding: 0px
+    ul
+      margin-bottom: 0px
+      padding-top: 0px
+      padding-bottom: 0px
+      margin-top: $baseLineSpacing
+    ul ul
+      margin-top: 0px
+    ul li
+      line-height: $baseElementSpacing
+      padding-top: 0px
+      padding-bottom: 0px
+    &.notice-red
+      border-color: $redBorder
+      background-color: lighten($redBackground,5%)
+      .notice-heading
+        color: $redText
+    &.notice-green
+      border-color: $greenBorder
+      background-color: lighten($greenBackground,5%)
+      .notice-heading
+        color: $greenText
+    &.notice-blue
+      border-color: $blueBorder
+      background-color: lighten($blueBackground,5%)
+      .notice-heading
+        color: $blueText
+
 // ooooooooooooooooooooooooooooooo
 //  1. Tag
 // ooooooooooooooooooooooooooooooo
@@ -100,13 +389,16 @@ $tag_size: 0.70
     +border-radius(5px)
     +box-mode
     padding: 20px
-    +box-shadow( 0 1px 1px rgba(0, 0, 0, 0.3), -1px 2px 2px rgba(0, 0, 0, 0.1) )
+    +box-shadow( 1px 1px 1px rgba(0, 0, 0, 0.10) )
+    // -1px 2px 2px rgba(0, 0, 0, 0.05) )
     margin-bottom: $baseElementSpacing
     > .container
       border: 1px solid $baseLineColor
       +box-shadow( -1px -1px rgba( 0,0,0, 0.3 ) )
     &.no-padding
       padding: 0px
+    &.small-padding
+      padding: 10px
     .padding
       padding: 20px
     .header
@@ -121,7 +413,7 @@ $tag_size: 0.70
 // ooooooooooooooooooooooooooooooo
 .iugu-ui
   .tabbed
-    +box-shadow( 0 1px 1px rgba(0, 0, 0, 0.3), -1px 2px 2px rgba(0, 0, 0, 0.1) )
+    +box-shadow( 1px 1px 1px rgba(0, 0, 0, 0.10) )
     +border-radius(5px)
     background: darken( $white, 15% )
     .nav
@@ -139,7 +431,7 @@ $tag_size: 0.70
         padding: 0px
         background: darken( $white, 15% )
         text-align: center
-        font-size: 20px
+        font-size: 18px
         line-height: 20px
         font-weight: bold
         cursor: pointer

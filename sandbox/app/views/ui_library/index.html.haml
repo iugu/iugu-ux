@@ -1,10 +1,13 @@
-%div{ :style => "margin-bottom: 20px" }
-  = link_to "Base CSS", "/"
-  = ' | '
-  = link_to "Components", "/components"
+.element-spacing
+  .assets-logo-iugu-ux
+
+.container.small-padding
+  .button-group.no-bottom-margin.nav
+    = link_to "Typography", "/", :class => 'button selected default'
+    = link_to "Components", "/components", :class => 'button'
 
 .grid
-  .grid-item{ :style => "width:640px" }
+  .grid-item{ :style => "width:60%" }
     %h3 Titles
     %h1 H1 Lorem ipsum dolor sit amet
     %h2 H2 Lorem ipsum dolor sit amet
@@ -29,7 +32,7 @@
     %p.lead
       Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum. Integer <em>posuere erat</em> a ante venenatis dapibus posuere <strong>velit aliquet</strong>.
 
-  .grid-item-right{ :style => "width:200px" }
+  .grid-item-right{ :style => "width:30%" }
     %h3 Titles in a Box
     .wrapper.b10
 

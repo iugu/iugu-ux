@@ -9,3 +9,4 @@
 //= require ./capabilities
 //= require ./enable-prettify
 //= require ./web-app
+//= require ./components/iugu-ux-components.js
