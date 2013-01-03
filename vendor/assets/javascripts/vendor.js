@@ -11,5 +11,8 @@
 //= require ./vendor/jquery.ui
 //= require ./vendor/jquery.ui.touch-punch
 //= require ./vendor/jquery.base64
+//= require ./vendor/mobiscroll.core-2.3.1
+//= require ./vendor/mobiscroll.datetime-2.3
+//= require ./vendor/mobiscroll.select-2.3.1
 //= require ./vendor/underscore
 //= require ./vendor/backbone

@@ -5,7 +5,8 @@ $buttonShadowColor: rgba(0,0,0,0.25)
 $uiElementInternalSpacing: 14px
 $uiElementBaseHeight: 40px
 $uiElementBaseFontSize: 13px
-$uiElementBasePlaceHolderColor: #C5C5C5
+$uiElementBasePlaceHolderColor: #999
+$uiElementBaseColor: #7ccf42
 
 // ooooooooooooooooooooooooooooooo
 //  1. Button
@@ -37,7 +38,7 @@ $uiElementBasePlaceHolderColor: #C5C5C5
     -webkit-touch-callout: none
     -webkit-border: none
     -webkit-margin: none
-    @include box-shadow(  rgba(255,255,255,0.25 ) 1px 1px 0px 0px inset, $buttonShadowColor -1px -1px 0px 0px inset, rgba(0,0,0,0.04) 0px 0px 0px 1px )
+    @include box-shadow(  rgba(255,255,255,0.25 ) 1px 1px 0px 0px inset, $buttonShadowColor -1px -1px 0px 0px inset, rgba(0,0,0,0.10) 0px 0px 0px 1px )
     vertical-align: top
     @include box-mode
     margin-bottom: $baseElementSpacing
@@ -50,7 +51,7 @@ $uiElementBasePlaceHolderColor: #C5C5C5
       text-align: right
     *
       float: left
-      margin-right: 14px
+      margin-right: $uiElementInternalSpacing
       display: block
       &.no-space
         margin-right: 0px !important
@@ -60,6 +61,12 @@ $uiElementBasePlaceHolderColor: #C5C5C5
       @include filter-gradient(#7ccf42, #6cb53a, vertical)
       @include background-image(linear-gradient(top, #7ccf42 0%,#6cb53a 100%))
       color: #FFF
+    &.warning
+      @include text-shadow( rgba(0,0,0,0.25) 1px 1px 0px )
+      background-color: #D23F3F
+      @include filter-gradient(#D23F3F, #B93737, vertical)
+      @include background-image(linear-gradient(top, #D23F3F 0%,#B93737 100%))
+      color: #FFF
     &.no-space
       margin-bottom: 0px !important
 
@@ -68,13 +75,13 @@ $uiElementBasePlaceHolderColor: #C5C5C5
     .button
       &.default
         &:hover
-          @include box-shadow(  rgba(255,255,255,0.25 ) 1px 1px 0px 0px inset, $buttonShadowColor -1px -1px 0px 0px inset, rgba(0,0,0,0.04) 0px 0px 0px 1px, rgba(255,190,75,0.45) 0px 0px 5px 4px inset )
+          @include box-shadow(  rgba(255,255,255,0.25 ) 1px 1px 0px 0px inset, $buttonShadowColor -1px -1px 0px 0px inset, rgba(0,0,0,0.10) 0px 0px 0px 1px, rgba(255,190,75,0.45) 0px 0px 5px 4px inset )
 
 .desktop,.mobile
   .iugu-ui
     .button,.button.default
       &.active,&.selected
-        @include box-shadow(  rgba(255,255,255,0.25 ) -1px -1px 0px 0px inset, $buttonShadowColor 1px 1px 0px 0px inset, rgba(0,0,0,0.04) 0px 0px 0px 1px )
+        @include box-shadow(  rgba(255,255,255,0.25 ) -1px -1px 0px 0px inset, $buttonShadowColor 1px 1px 0px 0px inset, rgba(0,0,0,0.10) 0px 0px 0px 1px )
 
 .mobile
   .iugu-ui
@@ -115,7 +122,7 @@ $uiElementBasePlaceHolderColor: #C5C5C5
 //  2. Input
 // ooooooooooooooooooooooooooooooo
 .iugu-ui
-  input[type="text"]
+  input[type="text"],input.string,input.password
     border: none
     padding-left: $uiElementInternalSpacing - 2px
     padding-right: $uiElementInternalSpacing - 2px
@@ -128,7 +135,7 @@ $uiElementBasePlaceHolderColor: #C5C5C5
     outline: none
     @include box-mode
     @include border-radius(4px)
-    @include box-shadow(  rgba(255,255,255,0.25 ) -1px -1px 0px 0px inset, $buttonShadowColor 1px 1px 0px 0px inset, rgba(0,0,0,0.04) 0px 0px 0px 1px )
+    @include box-shadow(  rgba(255,255,255,0.25 ) -1px -1px 0px 0px inset, $buttonShadowColor 1px 1px 0px 0px inset, rgba(0,0,0,0.10) 0px 0px 0px 1px )
     margin-bottom: $baseLineSpacing
 
     &.failure
@@ -143,13 +150,37 @@ $uiElementBasePlaceHolderColor: #C5C5C5
       border: 2px solid #57B436
       @include box-shadow( none )
 
-  input[type="text"]::-webkit-input-placeholder
+  .field_with_errors
+    input[type="text"],input.string,input.password
+      background: #FFF5F5
+      padding-left: $uiElementInternalSpacing - 4px
+      padding-right: $uiElementInternalSpacing - 4px
+      border: 2px solid #DC4B4B
+      @include box-shadow( none )
+
+    span.error
+      display: block
+      padding: 2px
+      padding-top: 0px
+      padding-bottom: 4px
+      font-size: 12px
+      color: #DC4B4B
+
+  .field_with_no_errors
+    input[type="text"],input.string,input.password
+      padding-left: $uiElementInternalSpacing - 4px
+      padding-right: $uiElementInternalSpacing - 4px
+      border: 2px solid #57B436
+      @include box-shadow( none )
+
+
+  input.string::-webkit-input-placeholder
     color: $uiElementBasePlaceHolderColor
     font-weight: normal
-  input:-moz-placeholder[type="text"]
+  input.string:-moz-placeholder
     color: $uiElementBasePlaceHolderColor
     font-weight: normal
-  input:-ms-input-placeholder[type="text"]
+  input.string:-ms-input-placeholder
     color: $uiElementBasePlaceHolderColor
     font-weight: normal
  
@@ -160,52 +191,191 @@ $uiElementBasePlaceHolderColor: #C5C5C5
     input[type="text"]
       @include border-radius(0px)
 
-.ui-slider
-  position: relative
-  text-align: left
-  background: #ececec
-  margin-left: 22px
-  margin-right: 22px
+.iugu-ui
+  .ui-slider .ui-slider-handle
+    position: absolute
+    z-index: 2
 
-.ui-slider .ui-slider-handle
-  position: absolute
-  z-index: 2
-  cursor: default
-  background: #300
+  .ui-slider
+    position: relative
+    text-align: left
+    background: $baseUIInsetColor
+    @include border-radius( 5px )
+    @include box-shadow(  $baseUILighterShadowColor 1px 1px 0px 0px inset )
 
-.ui-slider-handle,.ui-slider-handle:active
-  background: #333
-  width: 44px
-  height: 44px
-  outline: none
-  cursor: pointer
-  
+    .ui-slider-handle,.ui-slider-handle:active
+      padding: 12px
+      cursor: pointer
 
-.ui-slider .ui-slider-range
-  position: absolute
-  z-index: 1
-  font-size: .7em
+      .ui-slider-handle-visual
+        background: $baseUIColor
+        width: 10px
+        height: 10px
+        border: 6px solid #fff
+        +border-radius( 11px )
+        @include box-shadow(  rgba(255,255,255,0.25 ) 1px 1px 0px 0px inset, $buttonShadowColor -1px -1px 0px 0px inset, rgba(0,0,0,0.15) 1px 1px 0px 0px )
+        outline: 0
+
+    .ui-slider-range
+      position: absolute
+      z-index: 1
+      font-size: .7em
+      display: block
+      border: 0
+      background-position: 0 0
+      background: $baseUIColor
+      @include box-shadow(  rgba(255,255,255,0.25 ) -1px -1px 0px 0px inset, $buttonShadowColor 1px 1px 0px 0px inset )
+
+  .ui-slider-horizontal
+    height: 6px
+    margin-top: 12px
+    margin-bottom: 12px
+    margin-left: 11px
+    margin-right: 11px
+    .ui-slider-handle
+      top: -21px
+      margin-left: -22px
+    .ui-slider-range
+      top: 0
+      height: 100%
+    .ui-slider-range-min
+      left: 0
+    .ui-slider-range-max
+      right: 0
+
+  .ui-slider-vertical
+    width: 6px
+    .ui-slider-handle
+      margin-bottom: -22px
+      left: -20px
+    .ui-slider-range
+      width: 6px
+
+.ie
+  .iugu-ui
+    .ui-slider
+      +border-radius( 0px )
+
+
+// ooooooooooooooooooooooooooooooo
+//  XX. Selectors
+// ooooooooooooooooooooooooooooooo
+.ui-selector-input-hidden
+  display: none
+.ui-selector-input-visible
   display: block
-  border: 0
-  background-position: 0 0
+.iugu-ui
+  .ui-selector-floating-title
+    position: relative
+    span
+      position: absolute
+      top: $uiElementInternalSpacing
+      left: $uiElementInternalSpacing
+      z-index: 10
+      color: $uiElementBasePlaceHolderColor
+      font-size: 13px
+      line-height: 16px
+.iugu-ui
+  .ui-selector.date.dw-inline
+    .dwwc
+      margin-top: 20px
+      padding-top: 6px
+      border-top: 2px solid $uiElementBasePlaceHolderColor
+    .dw
+      color: lighten($uiElementBasePlaceHolderColor, 10%)
+  .ui-selector
+    position: relative
+    .dw
+      @include border-radius(4px)
+      background-color: #fcfcfc
+      @include filter-gradient(#fcfcfc, #f2f2f2, vertical)
+      @include background-image(linear-gradient(top, #fcfcfc 0%,#f2f2f2 100%))
+      color: $uiElementBasePlaceHolderColor
+      @include text-shadow( rgba(255,255,255,1) -1px -1px 0px )
+      padding: $uiElementInternalSpacing
+      padding-left: $uiElementInternalSpacing - 4px
+      padding-right: $uiElementInternalSpacing - 4px
+      font-size: 13px
+      line-height: 16px
+      text-decoration: none
+      text-align: center
+      font-family: $button_family
+      font-weight: 600
+      border-width: 0px
+      margin: 0px
+      white-space: nowrap
+      -webkit-appearance: none
+      -webkit-tap-highlight-color: rgba(0,0,0,0)
+      -webkit-touch-callout: none
+      -webkit-border: none
+      -webkit-margin: none
+      @include box-shadow(  rgba(255,255,255,0.25 ) 1px 1px 0px 0px inset, $buttonShadowColor -1px -1px 0px 0px inset, rgba(0,0,0,0.10) 0px 0px 0px 1px )
+      vertical-align: top
+      @include box-mode
+      margin-bottom: $baseLineSpacing
+      overflow: hidden
 
-.ui-slider-range
-  background: #ccc
+    table
+      border: none
+      padding: 0px
+      margin: 0px
+      +border-radius( 0px )
+      td
+        padding: 0px
+        padding-left: 4px
+        padding-right: 4px
+        margin: 0px
+        border: 0px
+        ul
+          list-style: none
+          margin: 0px
+          padding: 0px
+          margin-left: 10px
+          margin-right: 10px
+          li
+            margin: 0px
+            padding: 0px
+            text-transform: uppercase
+            color: #585858
+            
+
+    .hidden
+      display: none
+
+    .dwwol
+      border: 2px solid $baseUIColor
+      +border-radius(8px)
+      display: block
+      height: 36px
+      margin-top: -21px
+      width: 100%
+      position: absolute
+      top: 50%
+      left: -2px
+    .dwl
+      position: absolute
+      top: -20px
+      left: 0px
+      z-index: 4
+      background: #fcfcfc
+    .dwwl
+      position: relative
+    .dww
+      overflow: hidden
+      position: relative
+      margin-top: 20px
+    .dwwo
+      display: block
+      height: 100%
+      left: 0
+      position: absolute
+      top: 0
+      width: 100%
+      z-index: 3
 
 
-.ui-slider-horizontal
-  height: .8em
+      +background( linear-gradient( #fcfcfc 10px, rgba(245, 245, 245, 0) 41%, rgba(245, 245, 245, 0) 41%, #f2f2f2 100%) )
 
-.ui-slider-horizontal .ui-slider-handle
-  top: -17px
-  margin-left: -22px
-.ui-slider-horizontal .ui-slider-range
-  top: 0
-  height: 100%
-.ui-slider-horizontal .ui-slider-range-min
-  left: 0
-.ui-slider-horizontal .ui-slider-range-max
-  right: 0
 
 // ooooooooooooooooooooooooooooooo
 //  XX. Notice
@@ -245,8 +415,8 @@ $uiElementBasePlaceHolderColor: #C5C5C5
     top: -15px
 
   .notice
-    font-size: $baseFontSize * 0.92857
-    line-height: ($baseFontSize * 0.92857)
+    font-size: $baseFontSize * 0.85714
+    line-height: ($baseFontSize * 0.85714)
     padding: 10px
     padding-right: 35px
     margin-bottom: $baseElementSpacing
@@ -401,6 +571,7 @@ $tag_size: 0.70
       padding: 10px
     .padding
       padding: 20px
+      position: relative
     .header
       border-bottom: 1px solid $baseLineColor
       padding: 8px

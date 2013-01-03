@@ -11,7 +11,7 @@ module IuguUX
         app.config.assets.paths << File.join( IuguUX.assets_path, 'javascripts', 'web-app' )
         app.config.assets.paths << File.join( IuguUX.assets_path, 'stylesheets' )
         app.config.assets.paths << File.join( IuguUX.assets_path, 'stylesheets', 'iugu-ux' )
-        app.config.assets.precompile << %w( vendor.js iugu-ux.css iugu-ux.js )
+        # app.config.assets.precompile << %w( vendor
 
         # app.config.compass.add_import_path File.join( IuguUX.assets_path, 'stylesheets' )
         # app.config.sass.load_paths << File.join( IuguUX.assets_path, 'stylesheets' )
