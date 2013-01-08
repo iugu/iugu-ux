@@ -39,7 +39,10 @@ String.prototype.capitalize = ->
 
 @_callback_xdr = ->
   app.ajax = app._xdr_frame.contentWindow.jQuery.ajax
+  app.ajaxSetup = app._xdr_frame.contentWindow.jQuery.ajaxSetup
   app._features['xdr'] = true
+  if (Backbone)
+    Backbone.ajax = app.ajax
 
 @_features_check = ->
   debug 'Waiting featured to be loaded...'
@@ -71,6 +74,7 @@ String.prototype.capitalize = ->
   @app._features = {}
   @app._features['xdr'] = true
   @app.ajax = jQuery.ajax
+  @app.ajaxSetup = jQuery.ajaxSetup
 
   @app.root = '/'
   if app_root

@@ -13,7 +13,7 @@ class window.app.BaseResource extends Backbone.Model
     base = @appendLocaleInfo(base)
 
   configureAjax: ->
-    $.ajaxSetup
+    app.ajaxSetup
       headers:
         Authorization: $.base64.encode api_token
 
