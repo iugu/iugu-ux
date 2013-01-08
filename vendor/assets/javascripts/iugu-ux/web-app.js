@@ -15,10 +15,14 @@
 //= require web-app/environment
 //= require web-app/config
 //= require web-app/comm
-//= require web-app/presenters
 //= require web-app/i18n-languages
 //= require web-app/i18n
 //= require web-app/sound
 //= require web-app/helpers
+
+//= require ./iugu-ui-helpers.js
+//= require ./components/iugu-ux-components.js
+
 //= require web-app/models
+//= require web-app/presenters
 //= require web-app/usecode

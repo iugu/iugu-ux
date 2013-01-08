@@ -16,3 +16,8 @@
 //= require ./vendor/mobiscroll.select-2.3.1
 //= require ./vendor/underscore
 //= require ./vendor/backbone
+//= require ./vendor/backbone.validation.js
+//= require ./vendor/backbone.paginator.js
+//= require ./vendor/rivets.js
+//= require ./vendor/async.js
+//= require ./vendor/tasks.js

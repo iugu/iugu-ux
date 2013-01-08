@@ -1,0 +1,6 @@
+<div class="notice notice-green">
+  <a class="close" data-dismiss="notice" href="#">x</a>
+  <h4 class="notice-heading"><%= @headerText %></h4>
+  <p><%= @bodyText %></p><br/>
+  <a class="button" data-dismiss="alert" href="#"><%= @buttonText %></a>
+</div>

@@ -1,0 +1,19 @@
+<table class="table table-bordered table-hover" style="margin-bottom: 0px">
+  <thead>
+    <tr>
+      <% for field in _.pairs(@fields): %>
+        <% if _.indexOf(@sortableBy, field[0]) == -1: %>
+          <th><%= field[1] %></th>
+        <% else: %>
+          <% icon_class = "" %>
+          <% icon_class = "" if @sortBy[field[0]] == "" %>
+          <% icon_class = "ASC" if @sortBy[field[0]] == "asc" %>
+          <% icon_class = "DESC" if @sortBy[field[0]] == "desc" %>
+          <th><a id="<%= field[0] %>" class="button sort-button" href="#" data-direction="<%= icon_class %>"><%= field[1] %>&nbsp;<%= icon_class %></a></th>
+        <% end %>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody class="records">
+  </tbody>
+</table>

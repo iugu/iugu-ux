@@ -1,0 +1,19 @@
+<div class="button-group paginator">
+  <% if @enableAdditionalButtons: %>
+  <a href="#" class="button <%= "disabled" if @currentPage == @firstPage %> previous">&lt;</a>
+  <% end %>
+  <a href="#" class="button <%= "default" if @currentPage == @firstPage %> page"><%= @firstPage %></a>
+  <% if @pageButtons?: %>
+  <% @pageButtons[0] = '...' if (@currentPage - 3) > @firstPage %>
+  <% @pageButtons[@pageButtons.length - 1] = '...' if (@currentPage + 3) < @lastPage %>
+  <% for page in @pageButtons: %>
+  <a href="#" class="button <%= "default" if @currentPage == page %> <%= "disabled" if page == '...' %> page"><%= page %></a>
+  <% end %>
+  <% end %>
+  <% if @lastPage > 1: %>
+  <a href="#" class="button <%= "default" if @currentPage == @lastPage %> page"><%= @lastPage %></a>
+  <% end %>
+  <% if @enableAdditionalButtons: %>
+  <a href="#" class="button <%= "disabled" if @currentPage == @lastPage %> next">&gt;</a>
+  <% end %>
+</div>

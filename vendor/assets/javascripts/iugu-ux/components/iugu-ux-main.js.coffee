@@ -1,8 +1,7 @@
-@configure_ui_action = (button,callback=null) ->
+@configure_ui_action = (button,callback=null,disable_click=false) ->
   button = $(button)
   if window.IS_MOBILE
     button.on 'touchstart', (evt) ->
-      # evt.preventDefault()
       $(@).addClass 'active'
     button.on 'touchend', (evt) ->
       # evt.preventDefault()
@@ -16,6 +15,9 @@
       # evt.preventDefault()
       $(@).removeClass 'active'
       callback(evt) if callback
+  if disable_click
+    button.on 'click', (evt) ->
+      evt.preventDefault()
 
 @configure_ui_button = (button) ->
   # alert $(button).html()

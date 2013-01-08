@@ -12,7 +12,4 @@ class UiLibraryController < ApplicationController
     render :layout => false
   end
 
-  def mediaquery
-  end
-
 end

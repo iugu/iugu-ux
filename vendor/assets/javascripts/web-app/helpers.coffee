@@ -29,6 +29,9 @@
   return unless enable_debug
   console.log text
 
+@debug_capabilities = ( )  ->
+  debug 'Detected capabilities: ' + $('html').attr('class') + ' ' + navigator.oscpu + ' ' + navigator.platform + navigator.userAgent
+
 String.prototype.capitalize = ->
   @replace( /(^|\s)([a-z])/g , (m,p1,p2) ->
     p1+p2.toUpperCase()
@@ -84,3 +87,5 @@ String.prototype.capitalize = ->
 
   @app._features_checker_interval = setInterval( @_features_check, 250 )
   @_features_check()
+  
+  debug_capabilities()

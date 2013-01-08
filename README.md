@@ -190,4 +190,6 @@ $blueBorder: darken(adjust-hue($blueBackground, -10), 3%)
 ### Aplicação (Web-App)
 
 
+Como criar sprites normal e HD:
 
++find-sprite( $grupo_sprites, 'nome' )

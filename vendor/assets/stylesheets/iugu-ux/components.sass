@@ -1,4 +1,9 @@
 @import "compass/utilities/general/clearfix"
+@import "compass/css3"
+@import "variables"
+@import "mixins"
+@import "adaptative-mixins"
+@import "sprite-mixins"
 
 $button_family: "Myriad Pro", "Helvetica", "Arial", "sans", "sans-serif"
 $buttonShadowColor: rgba(0,0,0,0.25)
@@ -655,3 +660,184 @@ $tag_size: 0.70
         line-height: 16px
       > .container
         +box-shadow( none )
+
+
+
+// ooooooooooooooooooooooooooooooo
+//  XXX. UI Responsive Box
+// ooooooooooooooooooooooooooooooo
+body.ui-box-background,body.ui-box-background #app
+  height: 100%
+  width: 100%
+  position: relative
+  @include box-sizing( border-box )
+
+body
+  overflow: hidden
+
+body.ui-box-background
+  background: $baseUIBoxBackground !important
+
+.ui-responsive-box
+  @include pie-clearfix
+  background: $baseUIBackground
+  width: 100%
+  margin-left: auto
+  margin-right: auto
+  position: relative
+  color: #666
+  height: 100%
+  @include box-sizing( border-box )
+  border-left: 1px solid $baseUIBackground_highlight
+  border-top: 1px solid $baseUIBackground_highlight
+  border-right: 1px solid $baseUIBackground
+  border-bottom: 1px solid $baseUIBackground
+
+  .sidebar
+    float: left
+    width: $desktopSidebarWidth 
+    height: 100%
+    background: $secondaryUIBackground
+    border-right: 1px solid $secondaryUIBackground_darken
+    padding: 20px
+    @include box-sizing( border-box )
+    position: relative
+
+  .content-area
+    height: 100%
+    position: relative
+    @include background( top, linear-gradient( lighten($baseUIBackground, 3) 44px, $baseUIBackground ) )
+
+    @include box-sizing( border-box )
+    .small-navigation
+      display: none
+    
+    &.handle-sidebar
+      border-left: 1px solid $secondaryUIBackground_lighten
+      margin-left: $desktopSidebarWidth
+
+  .handle-scrolling
+    width: 100%
+    height: 100%
+    -webkit-overflow-scrolling: touch
+    position: relative
+
+  .content
+    position: absolute
+    overflow: hidden
+    top: 1px
+    bottom: 1px
+    left: 2px
+    right: 1px
+
+@include for-large-screens(1024px)
+  body.ui-box-background
+    padding: 20px
+    @include background-image( radial-gradient(top center, circle, $applicationBackgroundHighlightColor 0px, rgba($applicationBackgroundHighlightColor,0) 300px) ,linear-gradient(bottom, $applicationBackgroundHighlightColor 30%,$applicationBackgroundHighlightColor 70%) )
+  .ui-responsive-box
+    max-width: 980px
+    @include box-shadow( rgba(0,0,0,0.54) 0px 0px 2px, rgba(0,0,0,0.25) 0px 0px 20px )
+    border: 1px solid #FF0000, 2px solid #00FFFF
+    @include border-radius( 4px, 4px )
+
+@include for-small-screens(680px)
+  body.ui-box-background
+    background: $baseSidebarBackgroundColor
+
+  .mobile
+    .ui-responsive-box
+      .content-area.handle-sidebar
+        +translateZ(0px)
+    .handle-scrolling
+      overflow-y: scroll
+
+  .ui-responsive-box
+    border: none
+    background: $baseSidebarBackgroundColor
+
+    .sidebar
+      float: none
+      position: absolute
+      z-index: 1000
+      width: $mobileSidebarWidth
+      border: none
+      background: $baseSidebarBackgroundColor
+      visibility: hidden
+
+      @include transition-delay( 1.5s )
+
+    .content-area.handle-sidebar
+      margin-left: 0px
+      border-left: none
+      z-index: 2000
+      min-width: 320px
+
+      @include transition-property( transform )
+      @include transition-duration( 300ms )
+      @include transition-timing-function( cubic-bezier(0.39, 0.575, 0.565, 1) )
+
+    .content-area
+      @include background( top, linear-gradient( lighten($baseUIBackground, 3) 44px, $baseUIBackground ) )
+      @include box-shadow( rgba(0,0,0,0.54) 0px 0px 2px, rgba(0,0,0,0.8) 0px 0px 15px )
+      border-left: 1px solid $baseUIBackground_highlight
+      border-top: 1px solid $baseUIBackground_highlight
+      border-right: 1px solid $baseUIBackground
+      border-bottom: 1px solid $baseUIBackground
+      @include border-radius( 4px, 4px )
+
+
+      &.handle-sidebar
+        .small-navigation
+          display: block
+          height: $toolbarHeight
+          position: relative
+          background: $baseHeaderBackground
+          @include background( top, linear-gradient( $baseHeaderBackground 22px, $baseHeaderBackground_darken ) )
+
+          margin-top: -1px
+          margin-right: -2px
+
+          @include border-radius( 4px 4px 0px 0px )
+          border-left: 1px solid $baseHeaderBackground_lighten
+          border-top: 1px solid $baseHeaderBackground_lighten
+          border-right: 1px solid $baseHeaderBackground
+          border-bottom: 1px solid $baseHeaderBackground_shadow
+          
+          .toggle-sidebar
+            display: block
+            width: 44px
+            height: 44px
+            cursor: pointer
+            position: absolute
+            top: 0px
+            left: 0px
+            z-index: 10
+          .responsive-title
+            display: block
+            text-align: center
+            height: 44px
+            font-size: 17px
+            line-height: 44px
+            color: #FFF
+            @include box-mode
+            left: 60px
+            right: 60px
+            font-weight: bold
+            @include text-shadow( rgba(0,0,0,0.25) -1px -1px 0px )
+
+  .content-area
+    .content
+      top: 48px
+
+  .desktop .open, .mobile .open
+    border: none
+    .content-area.handle-sidebar
+      +translateX( $mobileSidebarWidth )
+
+    .sidebar
+      display: block
+      visibility: visible
+      margin: 1px
+
+      @include transition-property( border )
+      @include transition-delay( 0.3s )

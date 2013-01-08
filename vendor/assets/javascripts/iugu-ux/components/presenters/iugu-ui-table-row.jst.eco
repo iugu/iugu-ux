@@ -1,0 +1,3 @@
+<% for field in _.keys(@options.fields): %>
+<td class="<%= field %>"><%= @item.get(field) %></td>
+<% end %>
