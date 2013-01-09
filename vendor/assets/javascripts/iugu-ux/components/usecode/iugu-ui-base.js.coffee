@@ -83,6 +83,6 @@ class IuguUI.Base extends Backbone.View
     if @className
       $(@el).removeClass @className
     @unload()
-    @remove
+    @remove()
 
 @IuguUI.Base = IuguUI.Base
