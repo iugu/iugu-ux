@@ -1,5 +1,10 @@
 @configure_ui_action = (button,callback=null,disable_click=false) ->
   button = $(button)
+  if button.data
+    return if button.data('iugu-ui-button-configured')
+
+  button.data('iugu-ui-buttin-configured',true)
+  
   if window.IS_MOBILE
     button.on 'touchstart', (evt) ->
       $(@).addClass 'active'
@@ -26,8 +31,8 @@
     debug "CLICKED OK"
 
 $ ->
-  $(".button").each (el) ->
-    configure_ui_button @
+  # $(".button").each (el) ->
+  #  configure_ui_button @
 
   $("#slider").slider(
     orientation: "vertical"

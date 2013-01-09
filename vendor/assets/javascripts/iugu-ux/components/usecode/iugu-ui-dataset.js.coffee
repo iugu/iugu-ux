@@ -23,6 +23,7 @@ class IuguUI.Dataset extends IuguUI.Base
         tagName: @options.itemTagName
         className: @options.itemClassName
         identifier: @identifier() + "record"
+        presenter: @options.recordPresenter
         parent: @
     ).render().el
 

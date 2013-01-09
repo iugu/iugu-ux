@@ -1,6 +1,4 @@
-<section style="background:#FFF;padding-top:5px;padding-bottom:5px">
-  <input class="page" type="text" style="width: 50px; text-align: center;margin-bottom:1px" value=<%= @currentPage %>></input>
+<input class="page string" type="number" pattern="\d*" style="width: 50px; text-align: center;margin-bottom:1px" value=<%= @currentPage %>></input>
 
-  <a href="#" class="button <%= "disabled" if @currentPage == @firstPage %> previous">&lt;</a>
-  <a href="#" class="button <%= "disabled" if @currentPage == @lastPage %> next">&gt;</a>
-</section>
+<a href="#" class="button default <%= "disabled" if @currentPage == @firstPage %> previous"><div class="iux-default-icon-arrow-left no-space"></div></a>
+<a href="#" class="button default <%= "disabled" if @currentPage == @lastPage %> next"><div class="iux-default-icon-arrow-right no-space"></div></a>

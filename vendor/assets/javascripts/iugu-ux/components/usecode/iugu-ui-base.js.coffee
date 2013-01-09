@@ -20,6 +20,9 @@ class IuguUI.Base extends Backbone.View
   render: ->
     $(@el).html @getLayout() @context()
 
+    if @className
+      $(@el).addClass @className
+
     @
 
   getLayout: ->
@@ -77,6 +80,8 @@ class IuguUI.Base extends Backbone.View
 
   close: () ->
     debug 'Called IuguUI.Base:close'
+    if @className
+      $(@el).removeClass @className
     @unload()
     @remove
 

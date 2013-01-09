@@ -13,5 +13,6 @@ class IuguUI.DatasetRecord extends IuguUI.Base
   context: ->
     item: @model
     options: @options
+    presenter: @options.presenter
 
 @IuguUI.DatasetRecord = IuguUI.DatasetRecord

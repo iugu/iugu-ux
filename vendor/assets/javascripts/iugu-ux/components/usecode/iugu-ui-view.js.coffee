@@ -64,6 +64,13 @@ class IuguUI.View extends IuguUI.Base
     super
     rivets.bind this.$el, {model: @model} if @model
 
+    if app.activeView != @
+      app.activeView.close() if app.activeView
+      app.activeView = @
+
+    if window.Root.setTitle
+      window.Root.setTitle @viewTitle
+
     @
 
   unload: () ->

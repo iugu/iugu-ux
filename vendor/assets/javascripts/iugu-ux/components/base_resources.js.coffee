@@ -36,12 +36,13 @@ window.app.BaseResources = Backbone.Paginator.requestPager.extend
     return response.items
 
   buildChangedPageEventOptions: ->
+    that = @
     success: ( ( collection, response ) ->
-      @trigger 'changed-page:success'
-    ).bind @
+      that.trigger 'changed-page:success'
+    )
     error: ( ( collection, response ) ->
-      @trigger 'changed-page:error'
-    ).bind @
+      that.trigger 'changed-page:error'
+    )
 
   gotoFirst: ->
     @goTo @information.firstPage, @buildChangedPageEventOptions()

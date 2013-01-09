@@ -72,6 +72,16 @@ $uiElementBaseColor: #7ccf42
       @include filter-gradient(#D23F3F, #B93737, vertical)
       @include background-image(linear-gradient(top, #D23F3F 0%,#B93737 100%))
       color: #FFF
+    &.disabled,&.default.disabled
+      @include border-radius(4px)
+      background-color: #fcfcfc !important
+      @include filter-gradient(#fcfcfc, #f2f2f2, vertical)
+      @include background-image(linear-gradient(top, #fcfcfc 0%,#f2f2f2 100%))
+      color: #cccccc
+      @include text-shadow( rgba(255,255,255,1) -1px -1px 0px )
+      @include box-shadow(  rgba(255,255,255,0.25 ) 1px 1px 0px 0px inset, $buttonShadowColor -1px -1px 0px 0px inset, rgba(0,0,0,0.10) 0px 0px 0px 1px !important )
+      div
+        @include opacity(0.5)
     &.no-space
       margin-bottom: 0px !important
 
@@ -720,17 +730,18 @@ body.ui-box-background
     width: 100%
     height: 100%
     -webkit-overflow-scrolling: touch
-    position: relative
+
+  .handle-scrolling > *
+    -webkit-transform: translateZ(0px)
 
   .content
     position: absolute
-    overflow: hidden
     top: 1px
     bottom: 1px
     left: 2px
     right: 1px
 
-@include for-large-screens(1024px)
+@include for-large-screens(1025px)
   body.ui-box-background
     padding: 20px
     @include background-image( radial-gradient(top center, circle, $applicationBackgroundHighlightColor 0px, rgba($applicationBackgroundHighlightColor,0) 300px) ,linear-gradient(bottom, $applicationBackgroundHighlightColor 30%,$applicationBackgroundHighlightColor 70%) )
@@ -841,3 +852,57 @@ body.ui-box-background
 
       @include transition-property( border )
       @include transition-delay( 0.3s )
+
+
+// ooooooooooooooooooooooooooooooo
+//  ??. DataSet 
+// ooooooooooooooooooooooooooooooo
+.dataset
+  table.table
+    overflow: visible
+    th
+      .row-container
+        cursor: pointer
+        .icon
+          position: absolute
+          right: 3px
+          top: 5px
+    td,th
+      overflow: visible
+      padding: 0px
+      .row-container
+        width: 100%
+        height: 44px
+        position: relative
+        .row-data
+          padding: 0px
+          display: block
+          position: absolute
+          top: 12px
+          line-height: 100%
+          left: 12px
+          bottom: 12px
+          right: 12px
+          overflow: hidden
+          font-size: 13px
+          line-height: 22px
+        
+    thead
+      tr
+        th
+          color: #FFF
+          background: $uiElementBaseColor
+
+@include for-small-screens(680px)
+  .dataset
+    table.table
+      thead
+        tr
+          th
+            background: none
+            color: #333
+      th,td
+        .row-container
+          .row-data
+            font-size: 12px
+            line-height: 22px

@@ -1,19 +1,30 @@
-<table class="table table-bordered table-hover" style="margin-bottom: 0px">
-  <thead>
-    <tr>
-      <% for field in _.pairs(@fields): %>
-        <% if _.indexOf(@sortableBy, field[0]) == -1: %>
-          <th><%= field[1] %></th>
-        <% else: %>
-          <% icon_class = "" %>
-          <% icon_class = "" if @sortBy[field[0]] == "" %>
-          <% icon_class = "ASC" if @sortBy[field[0]] == "asc" %>
-          <% icon_class = "DESC" if @sortBy[field[0]] == "desc" %>
-          <th><a id="<%= field[0] %>" class="button sort-button" href="#" data-direction="<%= icon_class %>"><%= field[1] %>&nbsp;<%= icon_class %></a></th>
+<div class="dataset">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <% for field in _.pairs(@fields): %>
+          <% if _.indexOf(@sortableBy, field[0]) == -1: %>
+            <th>
+              <div class="row-container"><div class="row-data">
+              <%= field[1] %>
+              </div></div>
+            </th>
+          <% else: %>
+            <% icon_class = "" %>
+            <% icon_class = "" if @sortBy[field[0]] == "" %>
+            <% icon_class = "iux-default-icon-arrow-asc" if @sortBy[field[0]] == "asc" %>
+            <% icon_class = "iux-default-icon-arrow-desc" if @sortBy[field[0]] == "desc" %>
+            <th class="sort-button" id="<%= field[0] %>" data-direction="<%= @sortBy[field[0]] %>">
+              <div class="row-container"><div class="row-data">
+                <%= field[1] %>
+                <div class="icon <%= icon_class %>"></div>
+              </div></div>
+            </th>
+          <% end %>
         <% end %>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody class="records">
-  </tbody>
-</table>
+      </tr>
+    </thead>
+    <tbody class="records">
+    </tbody>
+  </table>
+</div>
