@@ -4,7 +4,6 @@ class IuguUI.Base extends Backbone.View
     baseURL: ""
 
   initialize: ->
-    #_.bindAll @, 'render', 'root', 'identifier', 'delegateChild', 'mapDOMEvent', 'handleEvent', 'handleDOMEvent', 'unload', 'close'
     _.bindAll @
 
     @options = _.extend {}, @defaults, @options
@@ -20,7 +19,6 @@ class IuguUI.Base extends Backbone.View
     @
 
   render: ->
-    debug @context()
     $(@el).html @getLayout() @context()
 
     if @className

@@ -8,7 +8,7 @@ class IuguUI.SearchFilter extends IuguUI.Base
     multiSelection: false
 
   events:
-    'click .search-filter-button': 'searchCollection'
+    'click [data-action=search-filter-button]': 'searchCollection'
 
   searchCollection: (e) ->
     e.preventDefault()
@@ -27,13 +27,13 @@ class IuguUI.SearchFilter extends IuguUI.Base
       @collection.configureFilter @options.filterName + '_filter', @selected
     else
       @collection.removeFilter @options.filterName + '_filter'
-
-    @collection.fetch()
+    
+    @collection.goTo(1)
 
   initialize: ->
     @selected = []
     _.bindAll @, 'searchCollection', 'render'
-    @collection.on 'all', @render, @
+    @collection.on 'reset', @render, @
     @collection.on "removed-filter:#{@options.filterName}_filter", @removedFilter, @
     super
     @
@@ -45,8 +45,7 @@ class IuguUI.SearchFilter extends IuguUI.Base
     fixedFilters: @options.fixedFilters
 
   render: ->
-    if @collection.facets
-      super
+    super
 
   removedFilter: ->
     @selected = []

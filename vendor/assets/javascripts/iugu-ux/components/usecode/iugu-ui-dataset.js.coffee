@@ -1,5 +1,6 @@
-class IuguUI.Dataset extends IuguUI.Base
+class IuguUI.Dataset extends IuguUI.View
   layout: "iugu-ui-dataset"
+  secondaryView: true
 
   defaults:
     itemLayout: "iugu-ui-dataset-record"
@@ -9,7 +10,9 @@ class IuguUI.Dataset extends IuguUI.Base
   initialize: ->
     super
     _.bindAll @, 'renderItems', 'addRecord'
-    @collection.on('all', @render)
+
+    @collection.on 'fetch', @enableLoader, @
+    @collection.on 'reset', @load, @
 
     @
 

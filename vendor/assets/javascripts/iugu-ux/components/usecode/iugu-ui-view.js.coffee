@@ -25,7 +25,12 @@ class IuguUI.View extends IuguUI.Base
   fillSlots: ( context ) ->
     _.each( _.keys(context)
       ( key ) ->
-        @$(key).html context[key]
+        renderContext = context[key]
+        if renderContext.el
+          context[key].$el.detach()
+          @$(key).empty().append context[key].el
+        else
+          @$(key).empty().append context[key]
     )
 
   resetSlots: ( slots ) ->
@@ -36,7 +41,7 @@ class IuguUI.View extends IuguUI.Base
     
   enableLoader: ->
     debug "ENABLED LOADER"
-    @viewLoader = $('<div style="position:absolute;top:0px;left:0px;width:100%;height:100%;"><div style="position:absolute;left:0px;top:0px;width:100%;height:100%;background:rgba(255,255,255,0.5);z-index:2"></div><div style="position:absolute;top:50%;left:50%;width:100px;height:100px;margin-left:-50px;margin-top:-50px;background:#333;line-height:100px;text-align:center;color:#fff">...</div></div>')
+    @viewLoader = $('<div style="position:absolute;top:0px;left:0px;width:100%;height:100%;"><div style="position:absolute;left:0px;top:0px;width:100%;height:100%;background:rgba(255,255,255,0.5);z-index:2"></div><div style="position:absolute;top:50%;left:50%;width:64px;height:64px;margin-left:-32px;margin-top:-32px;background:#fff;-moz-border-radius(5px);line-height:64px;text-align:center;color:#fff"><img src="http://preloaders.net/preloaders/3/Chasing%20arrows.gif" width="32" height="32" /></div></div>')
     $(@el).append @viewLoader
 
   disableLoader: ->

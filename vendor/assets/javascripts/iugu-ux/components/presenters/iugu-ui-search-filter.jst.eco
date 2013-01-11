@@ -1,15 +1,18 @@
 <section style="background:#FFF;padding-top:5px;padding-bottom:5px">
-  <% facets = _.pick(@collection.facets, @filterName) %>
+  <% if @collection.facets: %>
+    <% facets = _.pick(@collection.facets, @filterName) %>
+  <% end %>
+  <% facets = [] unless facets %>
   <% printed = [] %>
   <% for facet in _.pairs(facets): %>
     <% for term in facet[1].terms: %>
       <% printed.push(term.term.toString()) %>
-      <a href="#" data-filter=<%= term.term %> class="button search-filter-button <%= "default" unless _.indexOf(@selected, term.term.toString()) == -1 %>"><%= term.term.toString() %>( <%= term.count %> )</a>
+      <a href="#" data-filter=<%= term.term %> data-action="search-filter-button" class="button <%= "default" unless _.indexOf(@selected, term.term.toString()) == -1 %>"><%= term.term.toString() %>( <%= term.count %> )</a>
     <% end %>
-    <% for term in @fixedFilters: %>
-      <% if _.indexOf(printed, term) == -1: %>
-        <a href="#" data-filter=<%= term %> class="button search-filter-button <%= "default" unless _.indexOf(@selected, term) == -1 %>"><%= term %>( 0 )</a>
-      <% end %>
+  <% end %>
+  <% for term in @fixedFilters: %>
+    <% if _.indexOf(printed, term) == -1: %>
+      <a href="#" data-filter=<%= term %> class="disabled button <%= "default" unless _.indexOf(@selected, term) == -1 %>"><%= term %>( 0 )</a>
     <% end %>
   <% end %>
 </section>
