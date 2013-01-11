@@ -4,13 +4,15 @@ class IuguUI.Base extends Backbone.View
     baseURL: ""
 
   initialize: ->
-    _.bindAll @, 'render', 'root', 'identifier', 'delegateChild', 'mapDOMEvent', 'handleEvent', 'handleDOMEvent', 'unload', 'close'
+    #_.bindAll @, 'render', 'root', 'identifier', 'delegateChild', 'mapDOMEvent', 'handleEvent', 'handleDOMEvent', 'unload', 'close'
+    _.bindAll @
 
     @options = _.extend {}, @defaults, @options
 
     @layout = @options.layout if @options.layout
     @parent = @options.parent if @options.parent
-    
+    @context = @options.context if @options.context
+      
     @identifier = ( -> @options.identifier + ':' ) if @options.identifier
 
     @handleEvent 'initialize'
@@ -18,6 +20,7 @@ class IuguUI.Base extends Backbone.View
     @
 
   render: ->
+    debug @context()
     $(@el).html @getLayout() @context()
 
     if @className
@@ -25,10 +28,13 @@ class IuguUI.Base extends Backbone.View
 
     @
 
-  getLayout: ->
-    if JST[ "web-app/presenters/" + @layout ]
-      return JST[ "web-app/presenters/" + @layout ]
-    JST[ "iugu-ux/components/presenters/" + @layout ]
+  renderPartial: ( layout, target, context=@context ) ->
+    $(target).html @getLayout(target) context
+
+  getLayout: (layout_file=@layout) ->
+    if JST[ "web-app/presenters/" + layout_file ]
+      return JST[ "web-app/presenters/" + layout_file ]
+    JST[ "iugu-ux/components/presenters/" + layout_file ]
 
   context: ->
     return { }
@@ -69,7 +75,7 @@ class IuguUI.Base extends Backbone.View
     @handleEvent triggerType
 
   trigger: (events) ->
-    if app.debug_events
+    if enable_debug_events
       debug 'Triggered Event: ' + arguments[0]
     super
 
@@ -84,5 +90,6 @@ class IuguUI.Base extends Backbone.View
       $(@el).removeClass @className
     @unload()
     @remove()
+
 
 @IuguUI.Base = IuguUI.Base

@@ -2,10 +2,10 @@ class IuguUI.ScrollableContainer extends IuguUI.Base
   layout: "iugu-ui-scrollable-container"
 
   getHandler: ->
-    @$('.content')
+    @$('.content:first')
 
   getContainer: ->
-    @$('.handle-scrolling')
+    @$('.handle-scrolling:first')
 
   render: ->
     super

@@ -1,7 +1,15 @@
 class IuguUI.View extends IuguUI.Base
   layout: "iugu-ui-view"
+  secondaryView: false
 
   initialize: ->
+    super
+
+    window.Events.on "fillSlots", @fillSlots
+    window.Events.on "resetSlots", @resetSlots
+
+    @secondaryView = @options.secondaryView if @options.secondaryView
+
     if @model
       Backbone.Validation.bind @,
         forceUpdate: true
@@ -13,6 +21,33 @@ class IuguUI.View extends IuguUI.Base
           view.invalid view, attr, error, selector
 
       @model.on 'error', @addErrors, @
+
+  fillSlots: ( context ) ->
+    _.each( _.keys(context)
+      ( key ) ->
+        @$(key).html context[key]
+    )
+
+  resetSlots: ( slots ) ->
+    _.each( slots,
+      ( slot ) ->
+        @$(slot).empty()
+    )
+    
+  enableLoader: ->
+    debug "ENABLED LOADER"
+    @viewLoader = $('<div style="position:absolute;top:0px;left:0px;width:100%;height:100%;"><div style="position:absolute;left:0px;top:0px;width:100%;height:100%;background:rgba(255,255,255,0.5);z-index:2"></div><div style="position:absolute;top:50%;left:50%;width:100px;height:100px;margin-left:-50px;margin-top:-50px;background:#333;line-height:100px;text-align:center;color:#fff">...</div></div>')
+    $(@el).append @viewLoader
+
+  disableLoader: ->
+    debug "DISABLED LOADER"
+    if @viewLoader
+      @viewLoader.remove()
+
+  load: ->
+    debug "ON LOAD"
+    @disableLoader()
+    @render()
 
   valid: (view, attr, selector) ->
     control = view.$ '[' + selector + '=\"' + attr + '\"]'
@@ -61,25 +96,26 @@ class IuguUI.View extends IuguUI.Base
     )
 
   render: ->
-    super
     rivets.bind this.$el, {model: @model} if @model
 
-    if app.activeView != @
+    if app.activeView != @ and @secondaryView == false
       app.activeView.close() if app.activeView
       app.activeView = @
 
-    if window.Root.setTitle
-      window.Root.setTitle @viewTitle
+    if window.app.rootWindow.setTitle
+      window.app.rootWindow.setTitle @title
+
+    super
 
     @
 
   unload: () ->
-    super
-    debug 'Called IuguUI.View:close'
+    debug 'Called IuguUI.View:unload'
     if @model
       Backbone.Validation.unbind @
       @model.off null, null, @
     if @collection
       @collection.off null, null, @
+    super
 
 @IuguUI.View = IuguUI.View

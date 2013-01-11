@@ -57,6 +57,9 @@ String.prototype.capitalize = ->
   _.each @app._routers, ( index ) ->
     new index
 
+  if @app.main
+    @app.main()
+
   if @app.initialize_backbone_history and Backbone.history
     debug 'BackBone History Detected'
     Backbone.history.start({pushState: true, root: @app.root})
@@ -71,7 +74,6 @@ String.prototype.capitalize = ->
   if @app.API_IFRAME
     debug 'Requested API calls inside <iframe>'
 
-  @app._features = {}
   @app._features['xdr'] = true
   @app.ajax = jQuery.ajax
   @app.ajaxSetup = jQuery.ajaxSetup

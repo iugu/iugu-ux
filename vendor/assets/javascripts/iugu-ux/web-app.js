@@ -22,6 +22,8 @@
 
 //= require ./iugu-ui-helpers.js
 //= require ./components/iugu-ux-components.js
+//
+//= require web-app/managed_request
 
 //= require web-app/models
 //= require web-app/presenters

@@ -3,8 +3,7 @@ class IuguUI.Alert extends IuguUI.Base
 
   defaults:
     headerText: "HEADER TEXT"
-    bodyText: "BODY TEXT"
-    buttonText: "BUTTON TEXT"
+    alertClass: "notice-green"
 
   events:
     'click a.alertButton': 'handleDOMEvent'
@@ -13,5 +12,6 @@ class IuguUI.Alert extends IuguUI.Base
     headerText: @options.headerText
     bodyText: @options.bodyText
     buttonText: @options.buttonText
+    alertClass: @options.alertClass
 
 @IuguUI.Alert = IuguUI.Alert

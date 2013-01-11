@@ -18,6 +18,8 @@
 //= require ./vendor/backbone
 //= require ./vendor/backbone.validation.js
 //= require ./vendor/backbone.paginator.js
+//= require ./vendor/backbone.fetch-event.js
+//= require ./vendor/backbone.advanced-delegate.js
 //= require ./vendor/rivets.js
 //= require ./vendor/async.js
 //= require ./vendor/tasks.js
