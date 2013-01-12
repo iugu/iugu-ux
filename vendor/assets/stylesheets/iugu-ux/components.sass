@@ -688,6 +688,7 @@ body.ui-box-background
 body.ui-box-background
   background: $baseUIBoxBackground !important
 
+
 .ui-responsive-box
   @include pie-clearfix
   background: $baseUIBackground
@@ -729,6 +730,7 @@ body.ui-box-background
   .handle-scrolling
     width: 100%
     height: 100%
+    overflow-y: auto
     -webkit-overflow-scrolling: touch
 
   .handle-scrolling > *
@@ -756,7 +758,7 @@ body.ui-box-background
 
 @include for-small-screens(680px)
   body.ui-box-background
-    background: $baseSidebarBackgroundColor
+    background: $baseSidebarBackgroundColor !important
 
   .mobile
     .ui-responsive-box

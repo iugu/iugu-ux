@@ -6,4 +6,5 @@
  *= require_self
  *= require iugu-ux/iugu-ux-entry.sass
  *= require iugu-ux/google-code-prettify/prettify.css
+ *= require iugu-ux/backbone.forms.default.css
 */

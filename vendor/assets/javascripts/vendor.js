@@ -11,6 +11,7 @@
 //= require ./vendor/jquery.ui
 //= require ./vendor/jquery.ui.touch-punch
 //= require ./vendor/jquery.base64
+//= require ./vendor/jquery.fileupload.js
 //= require ./vendor/mobiscroll.core-2.3.1
 //= require ./vendor/mobiscroll.datetime-2.3
 //= require ./vendor/mobiscroll.select-2.3.1
@@ -20,6 +21,9 @@
 //= require ./vendor/backbone.paginator.js
 //= require ./vendor/backbone.fetch-event.js
 //= require ./vendor/backbone.advanced-delegate.js
+//= require ./vendor/backbone.forms.js
+//= require ./vendor/backbone.forms.list.js
+//= require ./vendor/backbone.forms.default.js
 //= require ./vendor/rivets.js
 //= require ./vendor/async.js
 //= require ./vendor/tasks.js

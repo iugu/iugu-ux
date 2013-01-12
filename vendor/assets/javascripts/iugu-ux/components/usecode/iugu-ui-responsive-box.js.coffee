@@ -29,8 +29,7 @@ class IuguUI.ResponsiveBox extends IuguUI.Base
   getTitle: ->
     @$('.responsive-title').html()
 
-  toggleSidebar: ( evt ) ->
-    evt.preventDefault()
+  reallyToggleSidebar: ->
     uibox = @$('.ui-responsive-box')
 
     uisidebar = uibox.children('.sidebar')
@@ -52,7 +51,10 @@ class IuguUI.ResponsiveBox extends IuguUI.Base
         preventContainer.remove()
       , 500
     )
-      
+
+  toggleSidebar: ( evt ) ->
+    evt.preventDefault()
+    @reallyToggleSidebar()
 
   render: ->
     super

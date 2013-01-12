@@ -12,6 +12,7 @@ class IuguUI.SearchFilter extends IuguUI.Base
 
   searchCollection: (e) ->
     e.preventDefault()
+    @handleEvent "facet:click" 
     button = $(e.target)
     filter = button.data('filter')
 

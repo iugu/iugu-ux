@@ -29,6 +29,10 @@ class ManagedRequest
     _.bindAll @
 
   execute: ->
+    app.ajaxSetup
+      headers:
+        Authorization: $.base64.encode api_token
+
     @requester
       type: @options.type
       url: @options.url
