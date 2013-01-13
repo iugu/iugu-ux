@@ -4,19 +4,20 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-//= require ./vendor/jquery
-//= require ./vendor/jquery.web-storage
-//= require ./vendor/jquery.cookie
-//= require ./vendor/jquery.checkboxes
-//= require ./vendor/jquery.ui
-//= require ./vendor/jquery.ui.touch-punch
-//= require ./vendor/jquery.base64
+//= require ./vendor/jquery.js
+//= require ./vendor/jquery.web-storage.js
+//= require ./vendor/jquery.cookie.js
+//= require ./vendor/jquery.checkboxes.js
+//= require ./vendor/jquery.ui.js
+//= require ./vendor/jquery.ui.touch-punch.js
+//= require ./vendor/jquery.iframe-transport.js
+//= require ./vendor/jquery.base64.js
 //= require ./vendor/jquery.fileupload.js
-//= require ./vendor/mobiscroll.core-2.3.1
-//= require ./vendor/mobiscroll.datetime-2.3
-//= require ./vendor/mobiscroll.select-2.3.1
-//= require ./vendor/underscore
-//= require ./vendor/backbone
+//= require ./vendor/mobiscroll.core-2.3.1.js
+//= require ./vendor/mobiscroll.datetime-2.3.js
+//= require ./vendor/mobiscroll.select-2.3.1.js
+//= require ./vendor/underscore.js
+//= require ./vendor/backbone.js
 //= require ./vendor/backbone.validation.js
 //= require ./vendor/backbone.paginator.js
 //= require ./vendor/backbone.fetch-event.js

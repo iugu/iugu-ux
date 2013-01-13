@@ -22,6 +22,7 @@
 
 //= require ./iugu-ui-helpers.js
 //= require ./components/iugu-ux-components.js
+//= require_tree ./editors
 //
 //= require web-app/managed_request
 
