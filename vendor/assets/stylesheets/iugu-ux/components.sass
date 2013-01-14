@@ -911,3 +911,51 @@ body.ui-box-background
           .row-data
             font-size: 12px
             line-height: 22px
+
+// ooooooooooooooooooooooooooooooo
+//  ??. Popup
+// ooooooooooooooooooooooooooooooo
+.popup-wrapper
+  position: absolute
+  left: 0px
+  right: 0px
+  top: 0px
+  bottom: 0px
+  z-index: 5000
+  .popup-modal
+    position: absolute
+    top: 0px
+    left: 0px
+    width: 100%
+    height: 100%
+    background: rgba(0,0,0,0.5)
+    z-index: 2
+  .popup-window
+    position: absolute
+    top: 50%
+    left: 50%
+    z-index: 5
+
+@include for-small-screens(680px)
+  .popup-wrapper
+    .popup-model
+      display: none
+    .popup-window
+      position: absolute
+      left: 0px
+      top: 46px
+      bottom: 0px
+      right: 0px
+      width: auto !important
+      height: auto !important
+      margin-top: auto !important
+      margin-left: auto !important
+      .container
+        width: auto !important
+        height: auto !important
+        position: absolute
+        left: 0px
+        top: 0px
+        bottom: 0px
+        right: 0px
+        margin-bottom: 0px

@@ -1,6 +1,7 @@
 class IuguUI.PopupContainer extends IuguUI.View
   layout: "iugu-ui-popup-container"
   secondaryView: true
+  className: "popup-wrapper"
 
   defaults:
     content: null
