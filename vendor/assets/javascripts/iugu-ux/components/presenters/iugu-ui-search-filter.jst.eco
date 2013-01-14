@@ -12,7 +12,7 @@
   <% end %>
   <% for term in @fixedFilters: %>
     <% if _.indexOf(printed, term) == -1: %>
-      <a href="#" data-filter=<%= term %> class="disabled button <%= "default" unless _.indexOf(@selected, term) == -1 %>"><%= term %>( 0 )</a>
+      <a href="#" data-filter=<%= term %> data-action="search-filter-button" class="button <%= "default" unless _.indexOf(@selected, term) == -1 %>"><%= term %>( 0 )</a>
     <% end %>
   <% end %>
 </section>

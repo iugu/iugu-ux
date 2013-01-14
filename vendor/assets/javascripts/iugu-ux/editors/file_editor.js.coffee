@@ -74,7 +74,15 @@ class Backbone.Form.editors.File extends Backbone.Form.editors.Base
     @$('.uploaded-file').data 'id'
 
   setValue: (value) ->
-    @$('.uploaded-file').data 'id', value
+    return unless value
+    sp = value.split ":"
+    @$('.uploaded-file').data 'id', sp[0]
+
+    if sp.length > 1
+      @$('.uploaded-file .uploaded-file-name').text sp[1]
+      @$('.progress').hide()
+      @$('.file-upload').hide()
+      @$('.uploaded-file').show()
 
   focus: ->
     return if @hasFocus
