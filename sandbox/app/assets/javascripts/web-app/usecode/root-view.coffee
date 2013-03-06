@@ -1,11 +1,5 @@
-RootView = Backbone.View.extend
+class RootView extends IuguUI.View
   el: "#app"
-  initialize: ->
-    _.bindAll @, 'render'
-
-  render: ->
-    $(@el).html JST["web-app/presenters/main-view"]
-
-    @
+  layout: "main-view"
 
 @RootView = RootView

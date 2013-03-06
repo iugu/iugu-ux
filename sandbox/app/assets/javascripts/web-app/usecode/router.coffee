@@ -1,7 +1,7 @@
 MainRouter = Backbone.Router.extend
   initialize: ->
-    window.Root = new window.RootView()
-    window.Root.render() if window.Root
+    window.app.rootWindow = new window.RootView()
+    window.app.rootWindow.render() if window.app.rootWindow
 
   routes:
     ""                        : "index"

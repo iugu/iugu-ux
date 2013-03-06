@@ -1,10 +1,10 @@
 var BrowserDetect = {
   init: function () {
-    this.browser = this.searchString(this.dataBrowser) || "unknow";
+    this.browser = this.searchString(this.dataBrowser) || "unknown";
     this.version = this.searchVersion(navigator.userAgent)
       || this.searchVersion(navigator.appVersion)
       || "unknown_version";
-    this.OS = this.searchString(this.dataOS) || "unknow_os";
+    this.OS = this.searchString(this.dataOS) || "unknown_os";
   },
   searchString: function (data) {
     for (var i=0;i<data.length;i++) {
@@ -132,6 +132,7 @@ $( function() {
   window.IS_DESKTOP = false;
   window.IS_IOS = false;
   window.IS_ANDROID = false;
+  window.IS_DEPRECATED_ANDROID = false;
 
   $("html").removeClass("no-js").addClass("js");
   $("html").removeClass("not-ready").addClass("ready");
@@ -150,6 +151,7 @@ $( function() {
     if (androidversion < 3)
     {
       $("html").addClass( 'deprecated_android' );
+      window.IS_DEPRECATED_ANDROID = true;
     }
   }
 

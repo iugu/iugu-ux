@@ -717,7 +717,7 @@ body.ui-box-background
   .content-area
     height: 100%
     position: relative
-    @include background( top, linear-gradient( lighten($baseUIBackground, 3) 44px, $baseUIBackground ) )
+    @include background( #FFF top linear-gradient( lighten($baseUIBackground, 3) 44px, $baseUIBackground ) )
 
     @include box-sizing( border-box )
     .small-navigation
@@ -793,7 +793,7 @@ body.ui-box-background
       @include transition-timing-function( cubic-bezier(0.39, 0.575, 0.565, 1) )
 
     .content-area
-      @include background( top, linear-gradient( lighten($baseUIBackground, 3) 44px, $baseUIBackground ) )
+      @include background( #FFF top linear-gradient( lighten($baseUIBackground, 3) 44px, $baseUIBackground ) )
       @include box-shadow( rgba(0,0,0,0.54) 0px 0px 2px, rgba(0,0,0,0.8) 0px 0px 15px )
       border-left: 1px solid $baseUIBackground_highlight
       border-top: 1px solid $baseUIBackground_highlight
@@ -858,6 +858,14 @@ body.ui-box-background
       @include transition-property( border )
       @include transition-delay( 0.3s )
 
+  .deprecated_android
+    .content-area
+      background: #FFF
+    *
+      @include border-radius(0px !important)
+    input[type="text"],input.string,input.password,.button
+      border: 1px solid #CCC !important
+      @include box-shadow( none !important ) 
 
 // ooooooooooooooooooooooooooooooo
 //  ??. DataSet 

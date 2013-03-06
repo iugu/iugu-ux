@@ -18,16 +18,41 @@ class IuguUI.Base extends Backbone.View
 
     @
 
+  handleDeprecated: ->
+    if window.app._iscroll_instances == undefined
+      window.app._iscroll_instances = []
+
+    unless window.IS_DEPRECATED_ANDROID
+      return
+
+    @$(".handle-scrolling").each( (index,handle_scrolling_elm) ->
+      elm = handle_scrolling_elm.parentNode
+      if $(handle_scrolling_elm).attr("initialized") != true
+        $(handle_scrolling_elm).css('overflow-y','visible')
+        $(handle_scrolling_elm).css('height','auto')
+        $(handle_scrolling_elm).attr("initialized",true)
+        window.app._iscroll_instances.push( new iScroll( elm, { hideScrollbar: false, hScroll: false } ) )
+    )
+
   render: ->
     $(@el).html @getLayout() @context()
 
     if @className
       $(@el).addClass @className
 
+    @handleDeprecated()
+
+    if window.app._iscroll_instances
+      for iscroll in window.app._iscroll_instances
+        if iscroll.wrapper
+          iscroll.refresh()
+
     @
 
   renderPartial: ( layout, target, context=@context ) ->
     $(target).html @getLayout(target) context
+
+    @handleDeprecated()
 
   getLayout: (layout_file=@layout) ->
     if JST[ "web-app/presenters/" + layout_file ]

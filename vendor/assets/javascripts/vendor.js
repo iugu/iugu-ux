@@ -28,3 +28,4 @@
 //= require ./vendor/rivets.js
 //= require ./vendor/async.js
 //= require ./vendor/tasks.js
+//= require ./vendor/iscroll.js
