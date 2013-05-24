@@ -120,10 +120,12 @@ $uiElementBaseColor: #7ccf42
       min-width: 40px
     .button:not(:first-child):not(:last-child)
       @include border-radius(0px)
-    .button:first-child
-      @include border-radius(4px 0px 0px 4px)
-    .button:last-child
-      @include border-radius(0px 4px 4px 0px)
+    .button:first-child:not(:last-child)
+      @include border-top-right-radius(0px)
+      @include border-bottom-right-radius(0px)
+    .button:last-child:not(:first-child)
+      @include border-top-left-radius(0px)
+      @include border-bottom-left-radius(0px)
     &.no-bottom-margin
       .button
         margin-bottom: 0px
