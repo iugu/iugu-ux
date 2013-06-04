@@ -98,7 +98,7 @@ class IuguUI.Base extends Backbone.View
     @handleEvent triggerType
 
   trigger: (events) ->
-    if enable_debug_events
+    if enable_debug_events? && enable_debug_events
       debug 'Triggered Event: ' + arguments[0]
     super
 
