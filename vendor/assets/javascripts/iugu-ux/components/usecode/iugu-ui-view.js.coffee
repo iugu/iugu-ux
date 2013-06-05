@@ -101,6 +101,8 @@ class IuguUI.View extends IuguUI.Base
     )
 
   render: ->
+    super
+
     rivets.bind this.$el, {model: @model} if @model
 
     if app.activeView != @ and @secondaryView == false
@@ -109,8 +111,6 @@ class IuguUI.View extends IuguUI.Base
 
     if window.app.rootWindow.setTitle
       window.app.rootWindow.setTitle @title
-
-    super
 
     @
 
