@@ -1,4 +1,4 @@
-class window.app.BaseResource extends Backbone.Model
+class window.app.BaseResource extends Backbone.AssociatedModel
   virtual_attributes: []
 
   sync: (method, model, options) ->

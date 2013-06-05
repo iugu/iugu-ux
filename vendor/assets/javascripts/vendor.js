@@ -18,6 +18,7 @@
 //= require ./vendor/mobiscroll.select-2.3.1.js
 //= require ./vendor/underscore.js
 //= require ./vendor/backbone.js
+//= require ./vendor/backbone.associations-min.js
 //= require ./vendor/backbone.validation.js
 //= require ./vendor/backbone.paginator.js
 //= require ./vendor/backbone.fetch-event.js
