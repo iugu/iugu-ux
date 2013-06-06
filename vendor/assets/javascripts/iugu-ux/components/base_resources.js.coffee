@@ -64,3 +64,10 @@ window.app.BaseResources = Backbone.Paginator.requestPager.extend
   disablePagination: () ->
     # 64 Bit Integer Size
     @perPage = 9223372036854775807
+
+  destroy: (object) ->
+    if object.id?
+      object.set '_destroy', true
+      @trigger 'remove'
+    else
+      @remove object
