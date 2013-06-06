@@ -6,8 +6,8 @@ class window.app.BaseResource extends Backbone.AssociatedModel
     Backbone.sync method, model, options
 
   toJSON: (options) ->
-    _.omit( _.clone( @attributes ), @virtual_attributes )
-
+    _.omit( _.clone( super(options) ), @virtual_attributes )
+  
   url: ->
     base = super
     base = @appendLocaleInfo(base)
