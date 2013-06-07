@@ -57,27 +57,25 @@ class IuguUI.View extends IuguUI.Base
   valid: (view, attr, selector) ->
     control = view.$ '[' + selector + '=\"' + attr + '\"]'
     group = control.parents ".form-group"
-    ctrlGroup = control.parents ".control-group"
     list = group.find ".error-list"
 
     return if view.model.preValidate attr, control.val()
 
     list.find(".error-" + attr).remove()
 
-    ctrlGroup.removeClass "error"
+    control.removeClass "failure"
 
     list.parent().remove() if list.find(".error").length == 0
 
   invalid: (view, attr, error, selector) ->
     control = view.$ '[' + selector + '=\"' + attr + '\"]'
     group = control.parents ".form-group"
-    ctrlGroup = control.parents ".control-group"
     list = group.find ".error-list"
       
-    ctrlGroup.addClass "error"
+    control.addClass "failure"
 
     if list.length == 0
-      group.prepend '<div class="alert alert-error"><ul class="error-list"></ul></div>'
+      group.prepend '<div class="notice notice-red"><ul class="error-list"></ul></div>'
       list = group.find ".error-list"
 
     list.find(".error-" + attr).remove()
