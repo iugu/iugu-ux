@@ -4,7 +4,7 @@ class window.app.BaseResource extends Backbone.AssociatedModel
   initialize: ->
     _.each @relations, (relation) ->
       if relation.type == "Many"
-        #@generateDefaults relation
+        @generateDefaults relation
         @generateTriggers relation
         @generateAddFunction relation
         @generateRemoveFunction relation
@@ -15,34 +15,31 @@ class window.app.BaseResource extends Backbone.AssociatedModel
     @
 
   generateDefaults: (relation) ->
-    @set("#{relation}", []) unless @get("#{relation}")
-    console.log @get("#{relation}")
+    @set("#{relation.key}", []) unless @get("#{relation.key}")
+
+  generateEvent: (on_event, key, context) ->
+    @get(key).on on_event, ->
+      @trigger "change:#{key}"
+    , context
 
   generateTriggers: (relation) ->
-    @get("#{relation.key}").on 'add', ->
-      @trigger "change:#{relation.key}"
-    , @
-    @get("#{relation.key}").on 'remove', ->
-      @trigger "change:#{relation.key}"
-    , @
+    @generateEvent 'add', relation.key, @
+    @generateEvent 'remove', relation.key, @
+
     @on 'sync', ->
-      @get("#{relation.key}").on 'add', ->
-        @trigger "change:#{relation.key}"
-      , @
-      @get("#{relation.key}").on 'remove', ->
-        @trigger "change:#{relation.key}"
-      , @
+      @generateEvent 'add', relation.key, @
+      @generateEvent 'remove', relation.key, @
+    , @
+
+  properCasedRelationName: (key) ->
+    key.substr(0,1).toUpperCase() + key.substr(1).toLowerCase()
 
   generateAddFunction: (relation) ->
-    name = relation.key
-    name = name.substr(0,1).toUpperCase() + name.substr(1).toLowerCase()
-    @["addTo#{name}"] = ->
+    @["addTo#{@properCasedRelationName relation.key}"] = ->
       @get(relation.key).push new relation.relatedModel
 
   generateRemoveFunction: (relation) ->
-    name = relation.key
-    name = name.substr(0,1).toUpperCase() + name.substr(1).toLowerCase()
-    @["removeFrom#{name}"] = (object) ->
+    @["removeFrom#{@properCasedRelationName relation.key}"] = (object) ->
       @get(relation.key).destroy(object)
 
   sync: (method, model, options) ->
