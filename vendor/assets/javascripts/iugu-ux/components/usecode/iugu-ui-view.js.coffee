@@ -14,11 +14,11 @@ class IuguUI.View extends IuguUI.Base
       Backbone.Validation.bind @,
         forceUpdate: true
 
-        valid: (view, attr, selector) ->
-          view.valid view, attr, selector
+        valid: (view, attr, selector, cid) ->
+          view.valid view, attr, selector, cid
 
-        invalid: (view, attr, error, selector) ->
-          view.invalid view, attr, error, selector
+        invalid: (view, attr, error, selector, cid) ->
+          view.invalid view, attr, error, selector, cid
 
       @model.on 'error', @addErrors, @
 
@@ -54,21 +54,26 @@ class IuguUI.View extends IuguUI.Base
     @disableLoader()
     @render()
 
-  valid: (view, attr, selector) ->
-    control = view.$ '[' + selector + '=\"' + attr + '\"]'
+  valid: (view, attr, selector, cid) ->
+    sel = '[' + selector + '~="' + attr + '"]'
+    sel = sel + '[cid="' + cid + '"]' if cid
+    control = view.$ sel
     group = control.parents ".form-group"
     list = group.find ".error-list"
 
     return if view.model.preValidate attr, control.val()
 
-    list.find(".error-" + attr).remove()
+    new_attr = attr.replace '.', '-'
+    @$(".error-" + new_attr).remove()
 
     control.removeClass "failure"
 
     list.parent().remove() if list.find(".error").length == 0
 
-  invalid: (view, attr, error, selector) ->
-    control = view.$ '[' + selector + '=\"' + attr + '\"]'
+  invalid: (view, attr, error, selector, cid) ->
+    sel = '[' + selector + '~="' + attr + '"]'
+    sel = sel + '[cid="' + cid + '"]' if cid
+    control = view.$ sel
     group = control.parents ".form-group"
     list = group.find ".error-list"
       
@@ -78,14 +83,20 @@ class IuguUI.View extends IuguUI.Base
       group.prepend '<div class="notice notice-red"><ul class="error-list"></ul></div>'
       list = group.find ".error-list"
 
-    list.find(".error-" + attr).remove()
+    new_attr = attr.replace '.', '-'
+
+    list.find(".error-" + new_attr).remove()
+
+    parent_model = ""
+    parent_model = "error-" + attr.split('.')[0] if cid?
+
 
     if _.isArray(error)
       _.each(error, (err) ->
-        list.append '<li class="error error-' + attr + '">' + attr + ' ' + err + '</li>'
+        list.append "<li class='error #{parent_model} error-#{new_attr}'>#{attr} #{err}</li>"
       )
     else
-      list.append '<li class="error error-' + attr + '">' + error + '</li>'
+      list.append "<li class='error #{parent_model} error-#{new_attr}'>#{error}</li>"
 
 
   addErrors: (model, errors) ->

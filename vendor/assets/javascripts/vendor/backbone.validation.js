@@ -5,13 +5,69 @@ Backbone.Validation = (function(_){
   // ---------------
 
   var defaultOptions = {
-      forceUpdate: false,
-      selector: 'name',
-      labelFormatter: 'sentenceCase',
-      valid: Function.prototype,
-      invalid: Function.prototype
+    forceUpdate: false,
+    selector: 'name',
+    labelFormatter: 'sentenceCase',
+    valid: Function.prototype,
+    invalid: Function.prototype
   };
 
+
+  // Helper functions
+  // ----------------
+
+  // Formatting functions used for formatting error messages
+  var formatFunctions = {
+    // Uses the configured label formatter to format the attribute name
+    // to make it more readable for the user
+    formatLabel: function(attrName, model) {
+      return defaultLabelFormatters[defaultOptions.labelFormatter](attrName, model);
+    },
+
+    // Replaces nummeric placeholders like {0} in a string with arguments
+    // passed to the function
+    format: function() {
+      var args = Array.prototype.slice.call(arguments),
+          text = args.shift();
+      return text.replace(/\{(\d+)\}/g, function(match, number) {
+        return typeof args[number] !== 'undefined' ? args[number] : match;
+      });
+    }
+  };
+
+  // Flattens an object
+  // eg:
+  //
+  //     var o = {
+  //       address: {
+  //         street: 'Street',
+  //         zip: 1234
+  //       }
+  //     };
+  //
+  // becomes:
+  //
+  //     var o = {
+  //       'address.street': 'Street',
+  //       'address.zip': 1234
+  //     };
+  var flatten = function (obj, into, prefix) {
+    into = into || {};
+    prefix = prefix || '';
+
+    _.each(obj, function(val, key) {
+      if(obj.hasOwnProperty(key)) {
+        if (val && typeof val === 'object' && !(val instanceof Date || val instanceof RegExp || val instanceof Backbone.Collection)) {
+          flatten(val, into, prefix + key + '.');
+        }
+        else {
+          into[prefix + key] = val;
+        }
+      }
+    });
+
+    return into;
+  };
 
   // Validation
   // ----------
@@ -70,7 +126,11 @@ Backbone.Validation = (function(_){
       // applying all the validators and returning the first error
       // message, if any.
       return _.reduce(getValidators(model, attr), function(memo, validator){
-        var result = validator.fn.call(defaultValidators, value, attr, validator.val, model, computed);
+        // Pass the format functions plus the default
+        // validators as the context to the validator
+        var ctx = _.extend({}, formatFunctions, defaultValidators),
+            result = validator.fn.call(ctx, value, attr, validator.val, model, computed);
+
         if(result === false || memo === false) {
           return false;
         }
@@ -81,22 +141,45 @@ Backbone.Validation = (function(_){
       }, '');
     };
 
+    var validateNestedCollection = function(collection) {
+      var errors = {};
+
+      _.each(collection.models, function(model) {
+        var validatedAttrs = getValidatedAttrs(model);
+        var allAttrs = _.extend({}, validatedAttrs, model.attributes);
+        var error = validateModel(model, allAttrs);
+
+        if (!error.isValid) {
+          errors[model.cid] = error;
+        }
+      });
+      if (_.isEmpty(errors))
+        errors = false;
+      return errors;
+    }
+
     // Loops through the model's attributes and validates them all.
     // Returns and object containing names of invalid attributes
     // as well as error messages.
     var validateModel = function(model, attrs) {
-      var error, attr,
+      var error,
           invalidAttrs = {},
           isValid = true,
-          computed = _.clone(attrs);
+          computed = _.clone(attrs),
+          flattened = flatten(attrs);
 
-      for (attr in attrs) {
-        error = validateAttr(model, attr, attrs[attr], computed);
+      _.each(flattened, function(val, attr) {
+        if(val instanceof Backbone.Collection) {
+          error = validateNestedCollection(val);
+        }
+        else {
+          error = validateAttr(model, attr, val, computed);
+        }
         if (error) {
           invalidAttrs[attr] = error;
           isValid = false;
         }
-      }
+      });
 
       return {
         invalidAttrs: invalidAttrs,
@@ -118,21 +201,48 @@ Backbone.Validation = (function(_){
         // entire model is valid. Passing true will force a validation
         // of the model.
         isValid: function(option) {
+          var flattened = flatten(this.attributes);
+
           if(_.isString(option)){
-            return !validateAttr(this, option, this.get(option), _.extend({}, this.attributes));
+            return !validateAttr(this, option, flattened[option], _.extend({}, this.attributes));
           }
           if(_.isArray(option)){
-            for (var i = 0; i < option.length; i++) {
-              if(validateAttr(this, option[i], this.get(option[i]), _.extend({}, this.attributes))){
-                return false;
-              }
-            }
-            return true;
+            return _.reduce(option, function(memo, attr) {
+              return memo && !validateAttr(this, attr, flattened[attr], _.extend({}, this.attributes));
+            }, true, this);
           }
           if(option === true) {
             this.validate();
           }
           return this.validation ? this._isValid : true;
+        },
+
+        callNestedValidForCollection: function(attribute, collection, opt, result) {
+          _.each(collection.models, function(model) {
+            var nestedValidatedAttrs = getValidatedAttrs(model);
+            _.each(nestedValidatedAttrs, function(error, attr) {
+              _.each(result, function(res, cid) {
+                var invalid = res.hasOwnProperty(attr);
+                if(!invalid) {
+                  opt.valid(view, attribute + '.' + attr, opt.selector, cid);
+                }
+              });
+            });
+          });
+        },
+
+        callNestedInvalidForCollection: function(attribute, collection, opt, result) {
+          _.each(collection.models, function(model) {
+            var nestedValidatedAttrs = getValidatedAttrs(model);
+            _.each(nestedValidatedAttrs, function(error, attr) {
+              _.each(result, function(res, cid) {
+                var invalid = res.invalidAttrs.hasOwnProperty(attr);
+                if(invalid) {
+                  opt.invalid(view, attribute + '.' + attr, res.invalidAttrs[attr], opt.selector, cid);
+                }
+              });
+            });
+          });
         },
 
         // This is called by Backbone when it needs to perform validation.
@@ -142,24 +252,38 @@ Backbone.Validation = (function(_){
           var model = this,
               validateAll = !attrs,
               opt = _.extend({}, options, setOptions),
-              allAttrs = _.extend(getValidatedAttrs(model), model.attributes, attrs),
-              changedAttrs = attrs || allAttrs,
+              validatedAttrs = getValidatedAttrs(model),
+              allAttrs = _.extend({}, validatedAttrs, model.attributes, attrs),
+              changedAttrs = flatten(attrs || allAttrs),
+
               result = validateModel(model, allAttrs);
 
           model._isValid = result.isValid;
 
           // After validation is performed, loop through all changed attributes
-          // and call either the valid or invalid callback so the view is updated.
-          for(var attr in allAttrs) {
+          // and call the valid callbacks so the view is updated.
+          _.each(validatedAttrs, function(val, attr){
+            var invalid = result.invalidAttrs.hasOwnProperty(attr);
+            if(!invalid){
+              opt.valid(view, attr, opt.selector, null);
+            } else if(changedAttrs[attr] instanceof Backbone.Collection) {
+              model.callNestedValidForCollection(attr, changedAttrs[attr], opt, result.invalidAttrs[attr]);
+            }
+          });
+
+          // After validation is performed, loop through all changed attributes
+          // and call the invalid callback so the view is updated.
+          _.each(validatedAttrs, function(val, attr){
             var invalid = result.invalidAttrs.hasOwnProperty(attr),
                 changed = changedAttrs.hasOwnProperty(attr);
-            if(invalid && (changed || validateAll)){
+
+            if(invalid && changedAttrs[attr] instanceof Backbone.Collection) {
+              model.callNestedInvalidForCollection(attr, changedAttrs[attr], opt, result.invalidAttrs[attr]);
+            }
+            else if(invalid && (changed || validateAll)){
               opt.invalid(view, attr, result.invalidAttrs[attr], opt.selector);
             }
-            if(!invalid){
-              opt.valid(view, attr, opt.selector);
-            }
-          }
+          });
 
           // Trigger validated events.
           // Need to defer this so the model is actually updated before
@@ -207,7 +331,7 @@ Backbone.Validation = (function(_){
     return {
 
       // Current version of the library
-      version: '0.6.2',
+      version: '0.7.1',
 
       // Called to configure the default options
       configure: function(options) {
@@ -219,6 +343,7 @@ Backbone.Validation = (function(_){
       bind: function(view, options) {
         var model = view.model,
             collection = view.collection;
+
         options = _.extend({}, defaultOptions, defaultCallbacks, options);
 
         if(typeof model === 'undefined' && typeof collection === 'undefined'){
@@ -229,7 +354,7 @@ Backbone.Validation = (function(_){
         if(model) {
           bindModel(view, model, options);
         }
-        if(collection) {
+        else if(collection) {
           collection.each(function(model){
             bindModel(view, model, options);
           });
@@ -271,8 +396,11 @@ Backbone.Validation = (function(_){
     // Gets called when a previously invalid field in the
     // view becomes valid. Removes any error message.
     // Should be overridden with custom functionality.
-    valid: function(view, attr, selector) {
-      view.$('[' + selector + '~=' + attr + ']')
+    valid: function(view, attr, selector, cid) {
+      var sel = '[' + selector + '~="' + attr + '"]';
+      if (cid)
+        sel = sel + '[cid="' + cid + '"]';
+      view.$(sel)
           .removeClass('invalid')
           .removeAttr('data-error');
     },
@@ -280,8 +408,11 @@ Backbone.Validation = (function(_){
     // Gets called when a field in the view becomes invalid.
     // Adds a error message.
     // Should be overridden with custom functionality.
-    invalid: function(view, attr, error, selector) {
-      view.$('[' + selector + '~=' + attr + ']')
+    invalid: function(view, attr, error, selector, cid) {
+      var sel = '[' + selector + '~="' + attr + '"]';
+      if (cid)
+        sel = sel + '[cid="' + cid + '"]';
+      view.$(sel)
           .addClass('invalid')
           .attr('data-error', error);
     }
@@ -365,9 +496,10 @@ Backbone.Validation = (function(_){
     //        }
     //      });
     label: function(attrName, model) {
-      return model.labels[attrName] || defaultLabelFormatters.sentenceCase(attrName, model);
+      return (model.labels && model.labels[attrName]) || defaultLabelFormatters.sentenceCase(attrName, model);
     }
   };
+
 
   // Built in validators
   // -------------------
@@ -375,31 +507,15 @@ Backbone.Validation = (function(_){
   var defaultValidators = Validation.validators = (function(){
     // Use native trim when defined
     var trim = String.prototype.trim ?
-        function(text) {
-            return text === null ? '' : String.prototype.trim.call(text);
-        } :
-        function(text) {
-            var trimLeft = /^\s+/,
-                trimRight = /\s+$/;
+      function(text) {
+        return text === null ? '' : String.prototype.trim.call(text);
+      } :
+      function(text) {
+        var trimLeft = /^\s+/,
+            trimRight = /\s+$/;
 
-            return text === null ? '' : text.toString().replace(trimLeft, '').replace(trimRight, '');
-        };
-
-    // Uses the configured label formatter to format the attribute name
-    // to make it more readable for the user
-    var formatLabel = function(attrName, model) {
-      return defaultLabelFormatters[defaultOptions.labelFormatter](attrName, model);
-    };
-
-    // Replaces nummeric placeholders like {0} in a string with arguments
-    // passed to the function
-    var format = function() {
-      var args = Array.prototype.slice.call(arguments);
-      var text = args.shift();
-      return text.replace(/\{(\d+)\}/g, function(match, number) {
-        return typeof args[number] !== 'undefined' ? args[number] : match;
-      });
-    };
+        return text === null ? '' : text.toString().replace(trimLeft, '').replace(trimRight, '');
+      };
 
     // Determines whether or not a value is a number
     var isNumber = function(value){
@@ -429,7 +545,7 @@ Backbone.Validation = (function(_){
           return false; // overrides all other validators
         }
         if (isRequired && !hasValue(value)) {
-          return format(defaultMessages.required, formatLabel(attr, model));
+          return this.format(defaultMessages.required, this.formatLabel(attr, model));
         }
       },
 
@@ -438,7 +554,7 @@ Backbone.Validation = (function(_){
       // `true` or 'true' are valid
       acceptance: function(value, attr, accept, model) {
         if(value !== 'true' && (!_.isBoolean(value) || value === false)) {
-          return format(defaultMessages.acceptance, formatLabel(attr, model));
+          return this.format(defaultMessages.acceptance, this.formatLabel(attr, model));
         }
       },
 
@@ -447,7 +563,7 @@ Backbone.Validation = (function(_){
       // the min value specified
       min: function(value, attr, minValue, model) {
         if (!isNumber(value) || value < minValue) {
-          return format(defaultMessages.min, formatLabel(attr, model), minValue);
+          return this.format(defaultMessages.min, this.formatLabel(attr, model), minValue);
         }
       },
 
@@ -456,7 +572,7 @@ Backbone.Validation = (function(_){
       // the max value specified
       max: function(value, attr, maxValue, model) {
         if (!isNumber(value) || value > maxValue) {
-          return format(defaultMessages.max, formatLabel(attr, model), maxValue);
+          return this.format(defaultMessages.max, this.formatLabel(attr, model), maxValue);
         }
       },
 
@@ -465,7 +581,7 @@ Backbone.Validation = (function(_){
       // the two numbers specified
       range: function(value, attr, range, model) {
         if(!isNumber(value) || value < range[0] || value > range[1]) {
-          return format(defaultMessages.range, formatLabel(attr, model), range[0], range[1]);
+          return this.format(defaultMessages.range, this.formatLabel(attr, model), range[0], range[1]);
         }
       },
 
@@ -474,7 +590,7 @@ Backbone.Validation = (function(_){
       // the length value specified
       length: function(value, attr, length, model) {
         if (!hasValue(value) || trim(value).length !== length) {
-          return format(defaultMessages.length, formatLabel(attr, model), length);
+          return this.format(defaultMessages.length, this.formatLabel(attr, model), length);
         }
       },
 
@@ -483,7 +599,7 @@ Backbone.Validation = (function(_){
       // the min length value specified
       minLength: function(value, attr, minLength, model) {
         if (!hasValue(value) || trim(value).length < minLength) {
-          return format(defaultMessages.minLength, formatLabel(attr, model), minLength);
+          return this.format(defaultMessages.minLength, this.formatLabel(attr, model), minLength);
         }
       },
 
@@ -492,7 +608,7 @@ Backbone.Validation = (function(_){
       // the max length value specified
       maxLength: function(value, attr, maxLength, model) {
         if (!hasValue(value) || trim(value).length > maxLength) {
-          return format(defaultMessages.maxLength, formatLabel(attr, model), maxLength);
+          return this.format(defaultMessages.maxLength, this.formatLabel(attr, model), maxLength);
         }
       },
 
@@ -501,7 +617,7 @@ Backbone.Validation = (function(_){
       // the two numbers specified
       rangeLength: function(value, attr, range, model) {
         if(!hasValue(value) || trim(value).length < range[0] || trim(value).length > range[1]) {
-          return format(defaultMessages.rangeLength, formatLabel(attr, model), range[0], range[1]);
+          return this.format(defaultMessages.rangeLength, this.formatLabel(attr, model), range[0], range[1]);
         }
       },
 
@@ -510,7 +626,7 @@ Backbone.Validation = (function(_){
       // the specified array. Case sensitive matching
       oneOf: function(value, attr, values, model) {
         if(!_.include(values, value)){
-          return format(defaultMessages.oneOf, formatLabel(attr, model), values.join(', '));
+          return this.format(defaultMessages.oneOf, this.formatLabel(attr, model), values.join(', '));
         }
       },
 
@@ -519,7 +635,7 @@ Backbone.Validation = (function(_){
       // with the name specified
       equalTo: function(value, attr, equalTo, model, computed) {
         if(value !== computed[equalTo]) {
-          return format(defaultMessages.equalTo, formatLabel(attr, model), formatLabel(equalTo, model));
+          return this.format(defaultMessages.equalTo, this.formatLabel(attr, model), this.formatLabel(equalTo, model));
         }
       },
 
@@ -528,7 +644,7 @@ Backbone.Validation = (function(_){
       // Can be a regular expression or the name of one of the built in patterns
       pattern: function(value, attr, pattern, model) {
         if (!hasValue(value) || !value.toString().match(defaultPatterns[pattern] || pattern)) {
-          return format(defaultMessages.pattern, formatLabel(attr, model), pattern);
+          return this.format(defaultMessages.pattern, this.formatLabel(attr, model), pattern);
         }
       }
     };
