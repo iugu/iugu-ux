@@ -33,7 +33,7 @@ window.app.BaseResources = Backbone.Paginator.requestPager.extend
     @totalRecords = response.totalItems
     @facets = response.facets
     @totalPages = Math.ceil(@totalRecords / @perPage)
-    return response.items
+    return response.items || response
 
   buildChangedPageEventOptions: ->
     that = @

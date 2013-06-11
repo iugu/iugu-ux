@@ -2,7 +2,7 @@
   <td class="<%= field %>">
     <div class="row-container">
       <div class="row-data">
-        <%= if @presenter[field] then @safe @presenter[field](@item) else @item.get(field) %>
+        <%= if @presenter && @presenter[field] then @safe @presenter[field](@item) else @item.get(field) %>
       </div>
     </div>
   </td>
