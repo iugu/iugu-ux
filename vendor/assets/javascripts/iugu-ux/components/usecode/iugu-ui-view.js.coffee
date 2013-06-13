@@ -22,6 +22,9 @@ class IuguUI.View extends IuguUI.Base
 
       @model.on 'error', @addErrors, @
 
+  redirectBack: ->
+    history.back()
+
   fillSlots: ( context ) ->
     _.each( _.keys(context)
       ( key ) ->
