@@ -19,6 +19,11 @@ window.app.BaseResources = Backbone.Paginator.requestPager.extend
     @server_api[param] = value
     @trigger 'configured-filter', param
 
+  configureAjax: ->
+    app.ajaxSetup
+      headers:
+        Authorization: $.base64.encode api_token
+
   removeFilter: (param) ->
     delete @server_api[param]
     @trigger "removed-filter:#{param}"

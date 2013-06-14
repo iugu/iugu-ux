@@ -53,6 +53,23 @@ class window.app.BaseResource extends Backbone.AssociatedModel
     base = super
     base = @appendLocaleInfo(base)
 
+  save: (attributes, options) ->
+    if @isValid(true)
+      super null, @handleViewContext options
+
+  handleViewContext: (options) ->
+    return options unless options.context
+    options.context.enableLoader()
+    options.wait = true
+    options.success = ->
+      options.context.redirectBack()
+    options.complete = ->
+      options.context.disableLoader()
+    options
+
+  destroy: (options) ->
+    super @handleViewContext options
+
   configureAjax: ->
     app.ajaxSetup
       headers:
