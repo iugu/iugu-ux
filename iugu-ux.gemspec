@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency 'coffee-script'
-  s.add_dependency 'sass', ">= 3.2.0.alpha.0"
+  s.add_dependency 'sass', "3.2.9"
   s.add_dependency 'eco'
   s.add_dependency 'haml'
   s.add_dependency 'compass'
