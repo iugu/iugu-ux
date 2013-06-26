@@ -61,7 +61,7 @@ class IuguUI.View extends IuguUI.Base
     sel = '[' + selector + '~="' + attr + '"]'
     sel = sel + '[cid="' + cid + '"]' if cid
     control = view.$ sel
-    group = control.parents ".form-group"
+    group = view.$ ".form-group"
     list = group.find ".error-list"
 
     return if view.model.preValidate attr, control.val()
@@ -69,6 +69,7 @@ class IuguUI.View extends IuguUI.Base
     new_attr = attr.replace '.', '-'
     @$(".error-" + new_attr).remove()
 
+    debug control
     control.removeClass "failure"
 
     list.parent().remove() if list.find(".error").length == 0
@@ -77,7 +78,7 @@ class IuguUI.View extends IuguUI.Base
     sel = '[' + selector + '~="' + attr + '"]'
     sel = sel + '[cid="' + cid + '"]' if cid
     control = view.$ sel
-    group = control.parents ".form-group"
+    group = view.$ ".form-group"
     list = group.find ".error-list"
       
     control.addClass "failure"
