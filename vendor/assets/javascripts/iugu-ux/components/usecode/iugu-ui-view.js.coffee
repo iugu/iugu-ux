@@ -69,7 +69,6 @@ class IuguUI.View extends IuguUI.Base
     new_attr = attr.replace '.', '-'
     @$(".error-" + new_attr).remove()
 
-    debug control
     control.removeClass "failure"
 
     list.parent().remove() if list.find(".error").length == 0
