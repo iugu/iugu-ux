@@ -93,10 +93,15 @@ class IuguUI.View extends IuguUI.Base
     parent_model = ""
     parent_model = "error-" + attr.split('.')[0] if cid?
 
+    model_name = @model.constructor.name.toLowerCase()
+    right_attr = attr.split '.'
+    right_attr = right_attr[right_attr.length-1]
+
+    right_attr = attr unless model_name?
 
     if _.isArray(error)
       _.each(error, (err) ->
-        list.append "<li class='error #{parent_model} error-#{new_attr}'>#{attr} #{err}</li>"
+        list.append "<li class='error #{parent_model} error-#{new_attr}'>#{_t(model_name + '_fields.' + right_attr)} #{err}</li>"
       )
     else
       list.append "<li class='error #{parent_model} error-#{new_attr}'>#{error}</li>"

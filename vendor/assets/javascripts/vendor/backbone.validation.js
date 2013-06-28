@@ -7,7 +7,7 @@ Backbone.Validation = (function(_){
   var defaultOptions = {
     forceUpdate: false,
     selector: 'name',
-    labelFormatter: 'sentenceCase',
+    labelFormatter: 'internationalized',
     valid: Function.prototype,
     invalid: Function.prototype
   };
@@ -28,7 +28,7 @@ Backbone.Validation = (function(_){
     // passed to the function
     format: function() {
       var args = Array.prototype.slice.call(arguments),
-          text = args.shift();
+          text = _t(args.shift());
       return text.replace(/\{(\d+)\}/g, function(match, number) {
         return typeof args[number] !== 'undefined' ? args[number] : match;
       });
@@ -443,18 +443,18 @@ Backbone.Validation = (function(_){
   // Error message for the build in validators.
   // {x} gets swapped out with arguments form the validator.
   var defaultMessages = Validation.messages = {
-    required: '{0} is required',
-    acceptance: '{0} must be accepted',
-    min: '{0} must be greater than or equal to {1}',
-    max: '{0} must be less than or equal to {1}',
-    range: '{0} must be between {1} and {2}',
-    length: '{0} must be {1} characters',
-    minLength: '{0} must be at least {1} characters',
-    maxLength: '{0} must be at most {1} characters',
-    rangeLength: '{0} must be between {1} and {2} characters',
-    oneOf: '{0} must be one of: {1}',
-    equalTo: '{0} must be the same as {1}',
-    pattern: '{0} must be a valid {1}'
+    required: 'validation_messages.required',
+    acceptance: 'validation_messages.acceptance',
+    min: 'validation_messages.min',
+    max: 'validation_messages.max',
+    range: 'validation_messages.range',
+    length: 'validation_messages.length',
+    minLength: 'validation_messages.minLength',
+    maxLength: 'validation_messages.maxLength',
+    rangeLength: 'validation_messages.rangeLength',
+    oneOf: 'validation_messages.oneOf',
+    equalTo: 'validation_messages.equalTo',
+    pattern: 'validation_messages.pattern'
   };
 
   // Label formatters
@@ -497,6 +497,12 @@ Backbone.Validation = (function(_){
     //      });
     label: function(attrName, model) {
       return (model.labels && model.labels[attrName]) || defaultLabelFormatters.sentenceCase(attrName, model);
+    },
+
+    internationalized: function(attrName, model) {
+      var right_attr = attrName.split('.');
+      right_attr = right_attr[right_attr.length-1];
+      return _t(model.constructor.name.toLowerCase() + '_fields.' + right_attr);
     }
   };
 
