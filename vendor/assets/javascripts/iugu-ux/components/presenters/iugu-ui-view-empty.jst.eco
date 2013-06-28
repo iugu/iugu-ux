@@ -1,0 +1,5 @@
+<div class="empty-view">
+  <img src="#" class="<%= @emptyCollection.imageClass %>"></img>
+  <%= @emptyCollection.text %><br/><br/>
+  <button class="button default <%= @emptyCollection.buttonClass %>"><%= @emptyCollection.buttonText %></button>
+</div>

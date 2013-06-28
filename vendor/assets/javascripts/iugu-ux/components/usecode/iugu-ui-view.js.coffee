@@ -8,6 +8,8 @@ class IuguUI.View extends IuguUI.Base
     window.Events.on "fillSlots", @fillSlots
     window.Events.on "resetSlots", @resetSlots
 
+    @defaultLayout = @layout
+
     @secondaryView = @options.secondaryView if @options.secondaryView
 
     if @model
@@ -117,7 +119,23 @@ class IuguUI.View extends IuguUI.Base
       invalid view, key, val, "name"
     )
 
+  doEmptyCollectionLogic: ->
+    if @collection? && @collection.length == 0
+      @layout = @emptyCollection.layout || 'iugu-ui-view-empty'
+      @extendContextWithEmptyCollection()
+    else
+      @layout = @defaultLayout if @defaultLayout?
+
+  extendContextWithEmptyCollection: ->
+    ctx = @context()
+    @context = ->
+      _.extend ctx,
+        emptyCollection: @emptyCollection
+
   render: ->
+    if @emptyCollection?
+      @doEmptyCollectionLogic()
+
     super
 
     rivets.bind this.$el, {model: @model} if @model
