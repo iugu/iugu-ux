@@ -6,13 +6,15 @@ class IuguUI.SearchFilter extends IuguUI.Base
     filterName: "age"
     fixedFilters: []
     multiSelection: false
+    translateTerms: false
+    translationPrefix: "translation."
 
   events:
     'click [data-action=search-filter-button]': 'searchCollection'
 
   searchCollection: (e) ->
     e.preventDefault()
-    @handleEvent "facet:click" 
+    @handleEvent "facet:click"
     button = $(e.target)
     filter = button.data('filter')
 
@@ -44,6 +46,8 @@ class IuguUI.SearchFilter extends IuguUI.Base
     selected: @selected
     filterName: @options.filterName
     fixedFilters: @options.fixedFilters
+    translateTerms: @options.translateTerms
+    translationPrefix: @options.translationPrefix
 
   render: ->
     super

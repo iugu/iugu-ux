@@ -4,6 +4,7 @@ class IuguUI.Base extends Backbone.View
     baseURL: ""
 
   initialize: ->
+    super
     _.bindAll @
 
     @options = _.extend {}, @defaults, @options

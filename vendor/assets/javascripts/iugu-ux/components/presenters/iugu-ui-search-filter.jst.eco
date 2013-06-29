@@ -7,12 +7,24 @@
   <% for facet in _.pairs(facets): %>
     <% for term in facet[1].terms: %>
       <% printed.push(term.term.toString()) %>
-      <a href="#" data-filter=<%= term.term %> data-action="search-filter-button" class="button <%= "default" unless _.indexOf(@selected, term.term.toString()) == -1 %>"><%= _t('invoice_status.' + term.term.toString()) %>( <%= term.count %> )</a>
+      <a href="#" data-filter=<%= term.term %> data-action="search-filter-button" class="button <%= "default" unless _.indexOf(@selected, term.term.toString()) == -1 %>">
+      <% if @translateTerms: %>
+        <%= _t("#{@translationPrefix}.#{term.term.toString()}") %>
+      <% else: %>
+        <%= term.term.toString() %>
+      <% end %>
+      ( <%= term.count %> )</a>
     <% end %>
   <% end %>
   <% for term in @fixedFilters: %>
     <% if _.indexOf(printed, term) == -1: %>
-      <a href="#" data-filter=<%= term %> data-action="search-filter-button" class="button <%= "default" unless _.indexOf(@selected, term) == -1 %>"><%= _t('invoice_status.' + term) %>( 0 )</a>
+      <a href="#" data-filter=<%= term %> data-action="search-filter-button" class="button <%= "default" unless _.indexOf(@selected, term) == -1 %>">
+      <% if @translateTerms: %>
+        <%= _t("#{@translationPrefix}.#{term}") %>
+      <% else: %>
+        <%= term %>
+      <% end %>
+      ( 0 )</a>
     <% end %>
   <% end %>
 </section>

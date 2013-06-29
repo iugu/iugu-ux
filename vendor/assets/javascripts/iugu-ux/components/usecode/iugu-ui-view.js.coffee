@@ -24,6 +24,8 @@ class IuguUI.View extends IuguUI.Base
 
       @model.on 'error', @addErrors, @
 
+    @
+
   redirectBack: ->
     history.back()
 
@@ -138,13 +140,13 @@ class IuguUI.View extends IuguUI.Base
 
     super
 
-    rivets.bind this.$el, {model: @model} if @model
+    rivets.bind @$el, {model: @model} if @model
 
     if app.activeView != @ and @secondaryView == false
       app.activeView.close() if app.activeView
       app.activeView = @
 
-    if window.app.rootWindow.setTitle
+    if window.app.rootWindow? and window.app.rootWindow.setTitle
       window.app.rootWindow.setTitle @title
 
     @
