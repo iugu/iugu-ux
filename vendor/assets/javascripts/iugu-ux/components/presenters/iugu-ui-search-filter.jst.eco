@@ -1,7 +1,19 @@
-<section style="background:#FFF;padding-top:5px;padding-bottom:5px">
-  <% if @collection.facets: %>
-    <% facets = _.pick(@collection.facets, @filterName) %>
+<% if @collection.facets: %>
+  <% facets = _.pick(@collection.facets, @filterName) %>
+<% end %>
+<% facets = [] unless facets %>
+<% printed = [] %>
+<% for facet in _.pairs(facets): %>
+  <% for term in facet[1].terms: %>
+    <% printed.push(term.term.toString()) %>
+    <a href="#" data-filter=<%= term.term %> data-action="search-filter-button" class="button tal <%= "active" unless _.indexOf(@selected, term.term.toString()) == -1 %>"><%= _t('invoice_status.' + term.term.toString()) %>
+    <div class="badge right">
+    <%= term.count %>
+    </div>
+
+  </a>
   <% end %>
+<<<<<<< HEAD
   <% facets = [] unless facets %>
   <% printed = [] %>
   <% for facet in _.pairs(facets): %>
@@ -28,3 +40,15 @@
     <% end %>
   <% end %>
 </section>
+=======
+<% end %>
+<% for term in @fixedFilters: %>
+  <% if _.indexOf(printed, term) == -1: %>
+    <a href="#" data-filter=<%= term %> data-action="search-filter-button" class="button tal <%= "active" unless _.indexOf(@selected, term) == -1 %>"><%= _t('invoice_status.' + term) %>
+    <div class="badge right">
+      0
+    </div>
+    </a>
+  <% end %>
+<% end %>
+>>>>>>> [ ! ] Commiting Changes for Collaboration

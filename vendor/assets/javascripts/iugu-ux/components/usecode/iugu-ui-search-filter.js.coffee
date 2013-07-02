@@ -1,6 +1,7 @@
 class IuguUI.SearchFilter extends IuguUI.Base
 
   layout: "iugu-ui-search-filter"
+  className: "search-filter"
 
   defaults:
     filterName: "age"
@@ -17,6 +18,7 @@ class IuguUI.SearchFilter extends IuguUI.Base
     @handleEvent "facet:click"
     button = $(e.target)
     filter = button.data('filter')
+    button.toggleClass('active')
 
     unless @options.multiSelection
       @selected = []

@@ -23,6 +23,7 @@ _.each(["View"], function(name) {
           if (window.TOUCH_SUPPORT) {
             this.$el.on( "touchstart" + eventName, selector, function(event) { $(this).addClass('active'); } );
             this.$el.on( "touchend" + eventName, selector, function(event) { $(this).removeClass('active'); } );
+            this.$el.on( "touchcancel" + eventName, selector, function(event) { $(this).removeClass('active'); } );
           }
           else {
             this.$el.on( "mousedown" + eventName, selector, function(event) { $(this).addClass('active'); } );

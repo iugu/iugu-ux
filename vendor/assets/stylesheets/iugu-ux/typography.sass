@@ -186,6 +186,27 @@ code
   color: $red
   font-weight: normal
 
+.padding
+  padding: $baseElementSpacing
+
+.small-padding
+  padding: $baseElementSpacing/2
+
+.big-padding
+  padding: $baseElementSpacing*2
+
+@include for-small-screens(680px)
+
+  .padding
+    padding: $baseElementSpacing*0.5
+
+  .small-padding
+    padding: $baseElementSpacing*0.25
+
+  .big-padding
+    padding: $baseElementSpacing*1
+
+// TODO: Revise
 .box
   +box-mode
   max-width: 100%

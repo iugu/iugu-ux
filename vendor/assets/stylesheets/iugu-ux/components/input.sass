@@ -1,0 +1,22 @@
+input[type="text"],input.string,input.password,input[type="email"],input[type="number"],input[type="url"],input[type="date"],input[type="datetime"],input[type="tel"],input[type="datetime"],input[type="month"],input[type="search"]
+  border: 2px solid #CCC
+  padding-left: $baseLineHeight - 2px
+  padding-right: $baseLineHeight - 2px
+  height: $baseFingerSize
+  padding-top: 3px
+  font-size: $baseFontSize + 1px
+  -webkit-appearance: none
+  -webkit-tap-highlight-color: rgba(0,0,0,0)
+  -webkit-touch-callout: none
+  outline: none
+  @include box-mode
+  margin-bottom: $baseLineSpacing
+  @include border-radius(0px)
+  &.failure
+    border: 2px solid #F00
+  &.success
+    border: 2px solid #0F0
+
+input[type="date"]
+  width: 120px
+  text-align: center

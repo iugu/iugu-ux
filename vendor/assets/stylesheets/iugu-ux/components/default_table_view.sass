@@ -1,0 +1,105 @@
+.default-table-view
+  width: 100%
+  height: 100%
+  position: relative
+  overflow: hidden
+  .dataset-container
+
+    position: absolute
+    top: 0px
+    bottom: 54px
+    left: 0px
+    right: 0px
+    overflow: visible
+
+    .handle-scrolling
+      -webkit-overflow-scrolling: none
+
+    .table-dataset
+
+      table
+        @include border-radius(0px)
+        caption + thead tr:first-child th,caption + tbody tr:first-child th,caption + tbody tr:first-child td,colgroup + thead tr:first-child th,colgroup + tbody tr:first-child th,colgroup + tbody tr:first-child td,thead:first-child tr:first-child th,tbody:first-child tr:first-child th,tbody:first-child tr:first-child td
+          border-top: 0px
+        thead:first-child tr:first-child th:first-child, tbody:first-child tr:first-child td:first-child
+          @include border-radius(0px)
+        thead:first-child tr:first-child th:last-child, tbody:first-child tr:first-child td:last-child
+          @include border-radius(0px)
+        thead:last-child tr:last-child th:first-child, tbody:last-child tr:last-child td:first-child
+          @include border-radius(0px)
+        thead:last-child tr:last-child th:last-child, tbody:last-child tr:last-child td:last-child
+          @include border-radius(0px)
+        tr td:first-child, tr th:first-child
+          border-left: none
+        margin-bottom: 0px
+        overflow: visible
+
+  .dataset-buttons
+    position: absolute
+    bottom: 0px
+    left: 0px
+    right: 0px
+    height: 52px
+    width: 100%
+    border-top: 1px solid #ececec
+
+    .buttons
+      position: absolute
+      top: 4px
+      bottom: 1px
+      left: 3px
+      width: 44px
+      height: 44px
+
+    .paginator
+      position: absolute
+      left: 80px
+      top: 2px
+      bottom: 1px
+      right: 140px
+
+      .paginator
+        width: 100%
+        position: relative
+        left: 0px
+        top: none
+        right: none
+        bottom: none
+
+    .navigator
+      position: absolute
+      right: 3px
+      top: 4px
+    .button
+      width: 44px
+
+.desktop
+  .dataset-container
+    .handle-scrolling
+      overflow-y: auto
+
+@include for-small-screens(820px)
+  .default-table-view
+    .dataset-container
+      left: 0px
+      top: 0px
+      right: 0px
+      bottom: 50px
+    .dataset-buttons
+      .paginator
+        display: none
+      .navigator
+        left: 0px
+        right: none
+        .page
+          position: absolute
+          left: 64px
+          width: 100px !important
+        .previous
+          position: absolute
+          right: 48px
+        .next
+          position: absolute
+          right: 0px
+        .table-dataset table
+          height: 1000px

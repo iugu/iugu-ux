@@ -1,0 +1,168 @@
+@import "compass/utilities/general/clearfix"
+
+body.ui-box-background,body.ui-box-background #app
+  height: 100%
+  width: 100%
+  position: relative
+  @include box-sizing( border-box )
+
+body.ui-box-background
+  overflow: hidden
+
+body.ui-box-background
+  background: $baseUIBoxBackgroundColor
+  background-image: none
+
+.ui-responsive-box
+  @include pie-clearfix
+  background: $baseUIBackgroundColor
+  width: 100%
+  margin-left: auto
+  margin-right: auto
+  position: relative
+  color: $textColor
+  height: 100%
+  @include box-sizing( border-box )
+
+  .sidebar
+    float: left
+    width: $desktopSidebarWidth 
+    height: 100%
+    background: $baseUIBackgroundColor
+    border-right: 1px solid $baseLineColor
+    padding: 20px
+    @include box-sizing( border-box )
+    position: relative
+
+  .content-area
+    height: 100%
+    position: relative
+    background: $baseUIBackgroundColor
+
+    @include box-sizing( border-box )
+    .small-navigation
+      display: none
+    
+    &.handle-sidebar
+      margin-left: $desktopSidebarWidth
+
+  .handle-scrolling
+    width: 100%
+    height: 100%
+    overflow-y: auto
+    -webkit-overflow-scrolling: touch
+
+  .handle-scrolling > *
+    -webkit-transform: translateZ(0px)
+
+  .handle-scrolling > div:first-child
+    height: 100%
+
+  .content
+    position: absolute
+    top: 0px
+    bottom: 0px
+    left: 0px
+    right: 0px
+
+@include for-large-screens(1025px)
+  body.ui-box-background
+    padding: 20px
+  .ui-responsive-box
+    max-width: 980px
+    @include box-shadow( 3px 3px 0px rgba(0,0,0,0.25))
+
+
+@include for-small-screens(680px)
+  body.ui-box-background
+    background: $baseSidebarBackgroundColor
+
+  .mobile
+    .ui-responsive-box
+      .content-area.handle-sidebar
+        +translateZ(0px)
+
+  .ios
+    .handle-scrolling
+      overflow-y: scroll
+  .android
+    .handle-scrolling
+      overflow-y: auto
+
+  .ui-responsive-box
+    border: none
+    background: $baseSidebarBackgroundColor
+
+    .sidebar
+      float: none
+      position: absolute
+      z-index: 1000
+      width: $mobileSidebarWidth
+      border: none
+      background: $baseSidebarBackgroundColor
+      visibility: hidden
+
+      @include transition-delay( 1.5s )
+
+    .content-area.handle-sidebar
+      margin-left: -1px
+      z-index: 2000
+      min-width: 320px
+      border-left: 1px solid $baseLineColor
+
+      @include transition-property( transform )
+      @include transition-duration( 300ms )
+      @include transition-timing-function( cubic-bezier(0.39, 0.575, 0.565, 1) )
+
+      &.handle-sidebar
+        .small-navigation
+          display: block
+          height: $toolbarHeight
+          position: relative
+          background: $baseHeaderBackgroundColor
+          border-bottom: 1px solid $baseHeaderLineColor
+
+          margin-top: -1px
+          margin-right: -2px
+
+          .toggle-sidebar
+            display: block
+            width: 44px
+            height: 44px
+            cursor: pointer
+            position: absolute
+            top: 0px
+            left: 0px
+            z-index: 10
+          .responsive-title
+            display: block
+            text-align: center
+            height: 44px
+            font-size: 17px
+            line-height: 44px
+            color: $baseHeaderTitleColor
+            @include box-mode
+            left: 60px
+            right: 60px
+            font-weight: bold
+
+  .content-area
+    .content
+      top: 44px
+
+  .desktop .open, .mobile .open
+    border: none
+    .content-area.handle-sidebar
+      +translateX( $mobileSidebarWidth )
+
+    .sidebar
+      display: block
+      visibility: visible
+      margin: 0px
+
+      @include transition-property( border )
+      @include transition-delay( 0.3s )
+
+  .deprecated_android
+    .content-area
+      background: #FFF

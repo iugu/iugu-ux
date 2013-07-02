@@ -1,0 +1,128 @@
+.desktop
+  .button
+    &:hover
+      background: #CCCCCC
+      color: #FFFFFF
+      @include transition-property(background)
+      @include transition-duration(0.10s)
+
+.button,.button:visited
+  position: relative
+  cursor: pointer
+  display: inline-block
+  text-decoration: none
+  text-align: center
+  border-width: 0px
+  margin: 0px
+  text-transform: uppercase
+  white-space: nowrap
+  -webkit-appearance: none
+  -webkit-tap-highlight-color: rgba(0,0,0,0)
+  -webkit-touch-callout: none
+  -webkit-border: none
+  -webkit-margin: none
+  vertical-align: top
+  @include box-shadow( none ) 
+  @include box-mode
+  margin-bottom: $baseElementSpacing
+  overflow: hidden
+
+  // Custom and Color
+  font-family: $uiFontFamily
+  font-weight: 600
+  @include border-radius( 0px )
+  background-color: #999999
+  color: #FFFFFF
+
+
+  &.selected, &.active
+    background: #333333
+    color: #fff
+    @include transition-duration(none)
+    @include transition-property(none)
+
+  &.transparent
+    background: transparent
+    color: $textColor
+
+  &.disabled
+    background: #ECECEC !important
+    color: #DDD !important
+    cursor: default
+    *
+      @include opacity(0.5)
+
+  // Sizing and Position
+
+  height: $baseFingerSize*1
+  font-size: $baseFontSize - 1px
+  line-height: ($baseFingerSize*1) - (($baseLineHeight * 1)*2) + 4px
+  padding: ($baseLineHeight * 1)
+  @include transition-property(background)
+  @include transition-duration(0.10s)
+
+  &.full-width
+    display: block
+    width: 100%
+
+  *
+    float: left
+    margin-right: $baseLineHeight
+    display: block
+    margin-top: 1px
+    &.no-space
+      margin-right: 0px !important
+
+  .right
+    position: absolute
+    right: 0px
+
+  &.large
+    height: $baseFingerSize*1.5
+    font-size: $baseFontSize * 1.5
+    line-height: ($baseFingerSize*1.5) - (($baseLineHeight * 1.5)*2) + 4px
+    padding: ($baseLineHeight * 1.5)
+    *
+      margin-right: $baseLineHeight * 1.5
+
+  &.small
+    height: $baseFingerSize*0.75
+    font-size: $baseFontSize * 0.75
+    line-height: ($baseFingerSize*0.80) - (($baseLineHeight * 0.75)*2)
+    padding: ($baseLineHeight * 0.75)
+    *
+      margin-right: $baseLineHeight * 0.75
+      margin-top: -2px
+
+  &.tal
+    text-align: left
+  &.tac
+    text-align: center
+  &.tar
+    text-align: right
+
+.group
+  word-spacing: 0px
+  letter-spacing: 0px
+  .button
+    margin-bottom: $baseElementSpacing/2
+  .button:last-child
+    margin-bottom: 0px
+  &.horizontal_stacking
+    .button
+      margin-bottom: 0px
+      min-width: 44px
+      border-right: 1px solid $baseLineColor
+      @include box-mode
+      float: left
+    .button:first-child
+    .button:last-child
+      border-right: none
+  &.vertical_stacking
+    .button
+      display: block
+      margin-bottom: 0px
+      border-bottom: 1px solid $baseLineColor
+    .button:last-child
+      border-bottom: none
+

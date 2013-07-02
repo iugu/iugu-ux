@@ -149,6 +149,9 @@ class IuguUI.View extends IuguUI.Base
     if window.app.rootWindow? and window.app.rootWindow.setTitle
       window.app.rootWindow.setTitle @title
 
+    IuguUI.Checkbox.load( @$el )
+    IuguUI.Combobox.load( @$el )
+
     @
 
   unload: () ->
