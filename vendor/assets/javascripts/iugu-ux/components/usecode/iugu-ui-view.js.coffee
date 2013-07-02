@@ -48,7 +48,7 @@ class IuguUI.View extends IuguUI.Base
     
   enableLoader: ->
     debug "ENABLED LOADER"
-    @viewLoader = $('<div style="position:absolute;top:0px;left:0px;width:100%;height:100%;"><div style="position:absolute;left:0px;top:0px;width:100%;height:100%;background:rgba(255,255,255,0.5);z-index:2"></div><div style="position:absolute;top:50%;left:50%;width:64px;height:64px;margin-left:-32px;margin-top:-32px;background:#fff;-moz-border-radius(5px);line-height:64px;text-align:center;color:#fff"><img src="/assets/loading.gif" width="32" height="32" /></div></div>')
+    @viewLoader = $('<div class="viewLoader"><div class="blockLayer"></div><div class="loaderContainer"><img src="/assets/loading.gif" width="32" height="32" /></div></div>')
     $(@el).append @viewLoader
 
   disableLoader: ->
@@ -73,7 +73,7 @@ class IuguUI.View extends IuguUI.Base
     new_attr = attr.replace '.', '-'
     @$(".error-" + new_attr).remove()
 
-    control.removeClass "failure"
+    control.parents('.iugu-ui-form-wrapper').removeClass "input-with-errors"
 
     list.parent().remove() if list.find(".error").length == 0
 
@@ -84,7 +84,7 @@ class IuguUI.View extends IuguUI.Base
     group = view.$ ".form-group"
     list = group.find ".error-list"
       
-    control.addClass "failure"
+    control.parents('.iugu-ui-form-wrapper').addClass "input-with-errors"
 
     if list.length == 0
       group.prepend '<div class="notice notice-red"><ul class="error-list"></ul></div>'
@@ -140,14 +140,23 @@ class IuguUI.View extends IuguUI.Base
 
     super
 
-    rivets.bind @$el, {model: @model} if @model
-
     if app.activeView != @ and @secondaryView == false
       app.activeView.close() if app.activeView
       app.activeView = @
 
     if window.app.rootWindow? and window.app.rootWindow.setTitle
       window.app.rootWindow.setTitle @title
+
+
+    rivets.bind @$el, {model: @model} if @model
+
+    IuguUI.Combobox.load( @$el )
+
+    IuguUI.Button.load( @$el )
+
+    IuguUI.Checkbox.load( @$el )
+    IuguUI.Radio.load( @$el )
+
 
     @
 

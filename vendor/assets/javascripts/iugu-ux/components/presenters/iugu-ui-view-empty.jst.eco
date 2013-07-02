@@ -1,5 +1,13 @@
 <div class="empty-view">
-  <img src="#" class="<%= @emptyCollection.imageClass %>"></img>
-  <%= @emptyCollection.text %><br/><br/>
-  <button class="button default <%= @emptyCollection.buttonClass %>"><%= @emptyCollection.buttonText %></button>
+  <div class="empty-view-wrapper">
+    <div src="#" class="empty-icon <%= @emptyCollection.imageClass %>"></div>
+    <div class="empty-title"><%= @emptyCollection.title if @emptyCollection.title %></div>
+    <div class="empty-description"><%= @emptyCollection.text if @emptyCollection.text %></div>
+    <a class="button default <%= @emptyCollection.buttonClass %>">
+    <% if @emptyCollection.icon: %>
+      <div class="<%= @emptyCollection.icon %>"></div>
+    <% end %>
+    <%= @emptyCollection.buttonText %>
+    </a>
+  </div>
 </div>

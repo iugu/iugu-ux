@@ -156,11 +156,11 @@ table
 .table-stripping
   tbody
     tr:nth-child(odd) td, tr:nth-child(odd) th
-      background-color: $lineAlternateBackgroundColor
+      background-color: $tableAlternateBackgroundColor
 
 .table-highlighting
   tbody tr:hover td, tbody tr:hover td
-    background-color: $lineHighlightBackgroundColor 
+    background-color: $tableHighlightBackgroundColor 
     cursor: pointer
 
 pre.prettyprint
@@ -179,13 +179,34 @@ pre.prettyprint
     margin: 0px
 
 code
-  background-color: $lineAlternateBackgroundColor
+  background-color: $codeBackgroundColor
   border: 1px solid $baseLineColor
   padding: 2px 4px
   +border-radius( 3px )
-  color: $red
+  color: $textColor
   font-weight: normal
 
+.padding
+  padding: $baseElementSpacing
+
+.small-padding
+  padding: $baseElementSpacing/2
+
+.big-padding
+  padding: $baseElementSpacing*2
+
+@include for-small-screens(680px)
+
+  .padding
+    padding: $baseElementSpacing*0.5
+
+  .small-padding
+    padding: $baseElementSpacing*0.25
+
+  .big-padding
+    padding: $baseElementSpacing*1
+
+// TODO: Revise
 .box
   +box-mode
   max-width: 100%
@@ -194,7 +215,7 @@ code
   +box-shadow( -1px 1px 1px rgba(0, 0, 0, 0.15))
   margin-bottom: $gridSpacing
   &.box-highlighting:hover
-    border: 1px solid $gray
+    border: 1px solid $baseLineColor
     cursor: pointer
   &.box-rounded
     +border-radius( 3px )

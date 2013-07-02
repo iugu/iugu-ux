@@ -1,0 +1,29 @@
+.container
+  @include box-mode
+  @include box-shadow( none )
+
+  background: #FFFFFF
+
+  padding: $baseElementSpacing
+  margin-bottom: $baseElementSpacing
+  &.no-padding
+    padding: 0px
+  &.small-padding
+    padding: $baseElementSpacing/2
+
+.container, .content
+  .container
+    border: 1px solid $baseLineColor
+    @include border-radius(0px)
+    @include box-shadow(none)
+    &.covered
+      background: #e0e0e0
+      border: none
+  .padding
+    padding: $baseElementSpacing
+  .header
+    border-bottom: 1px solid $baseLineColor
+    padding: $baseLineSpacing
+  .footer
+    border-top: 1px solid $baseLineColor
+    padding: $baseLineSpacing

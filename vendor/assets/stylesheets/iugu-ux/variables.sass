@@ -1,79 +1,96 @@
-$sansFontFamily: Helvetica, Arial, sans-serif
+// Base Spacing and Typography
+$sansFontFamily: Helvetica, Arial, "sans", sans-serif
+$uiFontFamily: "Myriad Pro", "Helvetica", "Arial", "sans", "sans-serif"
 
 $baseElementSpacing: 20px
 $baseFontSize: 14px
 $baseFontFamily: $sansFontFamily
 $baseLineHeight: 14px
 $baseLineSpacing: 6px
-$baseBlockSize: 20px
-$baseLineColor: #DDD
-$baseLineShadowColor: #BBB
-
-$lineAlternateBackgroundColor: #EFEFEF
-$lineHighlightBackgroundColor: #E7E7E7
-
-$gridSpacing: $baseElementSpacing 
-
-$textColor: #333333
-
-$bodyBackgroundColor: #FFFFFF
-$applicationBackgroundColor: #F2F2F2
-
-$baseUIBoxBackground: #7FCF42
-$baseUIBackground: #FFFFFF
-$baseSidebarBackgroundColor: #3D3D3D
-$baseHeaderBackground: #7CCF42
-
-$desktopSidebarWidth: 256px
-$mobileSidebarWidth: 256px
-
-$toolbarHeight: 44px
-
-$applicationBackgroundHighlightColor: lighten( $baseUIBoxBackground, 10 )
-
-$baseUIBackground_lighten: lighten( $baseUIBackground, 10 )
-$baseUIBackground_darken: darken( $baseUIBackground, 10 )
-$baseUIBackground_highlight: lighten( $baseUIBackground, 50 )
-$baseUIBackground_shadow: darken( $baseUIBackground, 50 )
-
-$secondaryUIBackground: darken( $baseUIBackground, 3 )
-$secondaryUIBackground_lighten: lighten( $secondaryUIBackground, 10 )
-$secondaryUIBackground_darken: darken( $secondaryUIBackground, 10 )
-$secondaryUIBackground_highlight: lighten( $secondaryUIBackground, 50 )
-$secondaryUIBackground_shadow: darken( $secondaryUIBackground, 50 )
-
-$baseHeaderBackground_lighten: lighten(   $baseHeaderBackground, 10 )
-$baseHeaderBackground_darken: darken(     $baseHeaderBackground, 10 )
-$baseHeaderBackground_highlight: lighten( $baseHeaderBackground, 50 )
-$baseHeaderBackground_shadow: darken(     $baseHeaderBackground, 50 )
 
 $headingFontWeight: bold
 $headingFontColor: #000000
 
-$white: #FFFFFF
-$gray: #999999
-$red: #b94a48
-$yellow: #f89406
-$green: #468847
-$blue: #3a87ad
+// Default Grid Size
+$baseBlockSize: 20px
+$gridSpacing: $baseElementSpacing 
 
-$redText: #b94a48
-$redBackground: #f2dede
-$redBorder: darken(adjust-hue($redBackground, -10), 3%)
+// Default Height of Components
+$baseFingerSize: 44px
 
-$yellowText: #c09853
-$yellowBackground: #fcf8e3
-$yellowBorder: darken(adjust-hue($yellowBackground, -10), 3%)
+// Default Sizing for Components
+$desktopSidebarWidth: 256px
+$mobileSidebarWidth: 256px
+$toolbarHeight: 44px
 
-$greenText: #468847
-$greenBackground: #dff0d8
-$greenBorder: darken(adjust-hue($greenBackground, -10), 3%)
+// Used in <HR> and other stuff
+$baseLineColor: #DDD
+$baseLineShadowColor: #BBB
 
-$blueText: #3a87ad
-$blueBackground: #d9edf7
-$blueBorder: darken(adjust-hue($blueBackground, -10), 3%)
+// Table Colors
+$tableAlternateBackgroundColor: #EFEFEF
+$tableHighlightBackgroundColor: #E7E7E7
 
-$baseUIInsetColor: #D6D6D6
-$baseUIColor: #6AC13C
-$baseUIShadowColor: rgba(0,0,0,0.25)
-$baseUILighterShadowColor: rgba(0,0,0,0.15)
+// Color Background Color
+$codeBackgroundColor: $tableAlternateBackgroundColor
+
+// Default Document Text Color
+$textColor: #333333
+
+// Default Background Color
+$bodyBackgroundColor: #F2F2F2
+
+// Default Application Background Color - (For responsive/embed/boxed)
+$applicationBackgroundColor: #ECECEC
+
+// Responsive Box - Default Header Background Color
+$baseUIBoxHeaderBackgroundColor: #FFFFFF
+// Responsive Box - Default Header Line Color
+$baseUIBoxHeaderLineColor: #DDD
+// Responsive Box - Default Header Title Color
+$baseUIBoxHeaderTitleColor: #333
+
+// Responsive Box - Default Background Color
+$baseUIBoxBackgroundColor: #FFFFFF
+
+// Responsive Box - Default Sidebar Background Color
+$baseUIBoxSidebarBackgroundColor: #FFFFFF
+
+// Responsive Box - Default Page Background Color
+$baseUIBoxPageBackgroundColor: #ECECEC
+
+// $applicationBackgroundHighlightColor: lighten( $baseUIBoxBackground, 10 )
+// $baseUIBackground_lighten: lighten( $baseUIBackground, 10 )
+// $baseUIBackground_darken: darken( $baseUIBackground, 10 )
+// $baseUIBackground_highlight: lighten( $baseUIBackground, 50 )
+// $baseUIBackground_shadow: darken( $baseUIBackground, 50 )
+
+// $secondaryUIBackground: darken( $baseUIBackground, 3 )
+// $secondaryUIBackground_lighten: lighten( $secondaryUIBackground, 10 )
+// $secondaryUIBackground_darken: darken( $secondaryUIBackground, 10 )
+// $secondaryUIBackground_highlight: lighten( $secondaryUIBackground, 50 )
+// $secondaryUIBackground_shadow: darken( $secondaryUIBackground, 50 )
+
+// $white: #FFFFFF
+// $gray: #999999
+// $red: #b94a48
+// $yellow: #f89406
+// $green: #468847
+// $blue: #3a87ad
+
+// $redText: #b94a48
+// $redBackground: #f2dede
+// $redBorder: darken(adjust-hue($redBackground, -10), 3%)
+
+// $yellowText: #c09853
+// $yellowBackground: #fcf8e3
+// $yellowBorder: darken(adjust-hue($yellowBackground, -10), 3%)
+
+// $greenText: #468847
+// $greenBackground: #dff0d8
+// $greenBorder: darken(adjust-hue($greenBackground, -10), 3%)
+
+// $blueText: #3a87ad
+// $blueBackground: #d9edf7
+// $blueBorder: darken(adjust-hue($blueBackground, -10), 3%)
+

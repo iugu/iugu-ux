@@ -29,12 +29,8 @@ class IuguUI.ResponsiveBox extends IuguUI.Base
   getTitle: ->
     @$('.responsive-title').html()
 
-  reallyToggleSidebar: ->
+  disableFeedback: ->
     uibox = @$('.ui-responsive-box')
-
-    uisidebar = uibox.children('.sidebar')
-    if ( uisidebar.css('z-index') != '1000' )
-      return
 
     preventContainer = $(document.createElement('div'))
     preventContainer.css('position','absolute')
@@ -45,16 +41,56 @@ class IuguUI.ResponsiveBox extends IuguUI.Base
     preventContainer.css('backgroundColor','transparent')
     preventContainer.css('z-index','5000')
     uibox.append(preventContainer)
-    uibox.toggleClass('open')
     setTimeout(
       () ->
         preventContainer.remove()
       , 500
     )
 
+  hasMovableSidebar: ->
+    uibox = @$('.ui-responsive-box')
+
+    uisidebar = uibox.children('.sidebar')
+    if ( uisidebar.css('z-index') != '1000' )
+      return false
+
+    true
+
+  configureDisplayForSidebar: (type) ->
+    uibox = @$('.ui-responsive-box')
+    return unless uibox
+    switch type
+      when "open"
+        uibox.addClass('open') unless uibox.hasClass('open')
+      when "close"
+        uibox.removeClass('open') if uibox.hasClass('open')
+      else
+        uibox.toggleClass('open')
+
+
   toggleSidebar: ( evt ) ->
-    evt.preventDefault()
-    @reallyToggleSidebar()
+    evt.preventDefault() if evt
+
+    return unless @hasMovableSidebar()
+
+    @disableFeedback()
+    @configureDisplayForSidebar "toggle"
+
+  openSidebar: ( evt ) ->
+    evt.preventDefault() if evt
+
+    return unless @hasMovableSidebar()
+
+    @disableFeedback()
+    @configureDisplayForSidebar "open"
+
+  closeSidebar: ( evt ) ->
+    evt.preventDefault() if evt
+
+    return unless @hasMovableSidebar()
+
+    @disableFeedback()
+    @configureDisplayForSidebar "close"
 
   render: ->
     super

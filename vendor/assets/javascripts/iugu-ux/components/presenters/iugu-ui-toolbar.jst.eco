@@ -1,5 +1,10 @@
 <div class="button-group">
   <% for button in _.pairs(@buttons): %>
-    <a href="#" class="button" data-action="<%= button[0] %>"><div class="<%= button[1] %>"><%= button[1] %></div></a>
+    <a href="#" class="button <%= button[0] %> <%= button[1].class %>" data-action="<%= button[0] %>">
+      <% if button[1].class: %>
+      <div class="icon no-space"></div>
+      <% end %>
+    <%- button[1].text %>
+    </a>
   <% end %>
 </div>
