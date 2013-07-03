@@ -47,20 +47,16 @@ class IuguUI.Checkbox
 
     @decorator = $('<a>',
       class: checkbox_classes + ( if @el.is(":checked") then ' selected' else '')
-      html: '<div class="outer_decorator"><div class="inner_decorator"></div>' + optional_labels + '</div>'
+      html: '<div class="outer_decorator"><div class="inner_decorator"><span>✓</span></div>' + optional_labels + '</div>'
+      "data-mode": "toggle"
+      "data-input": @el.attr("id")
     )
-
-    @decorator.bind 'click', @toggle
-    @el.bind 'change', @toggle
 
     @decorator.insertAfter( @el )
 
-    @el.hide()
-
-  toggle: ->
-    @decorator.toggleClass "selected"
-    isChecked = @decorator.hasClass "selected"
-    @el.attr "checked", isChecked
+    new IuguUI.Button
+      el: @decorator
+      context: @el
 
 @IuguUI.Checkbox = IuguUI.Checkbox
 

@@ -1,0 +1,63 @@
+.radio
+  position: relative
+  cursor: pointer
+  display: inline-block
+  text-decoration: none
+  text-align: center
+  border-width: 0px
+  margin: 0px
+  text-transform: uppercase
+  white-space: nowrap
+  -webkit-appearance: none
+  -webkit-tap-highlight-color: rgba(0,0,0,0)
+  -webkit-touch-callout: none
+  -webkit-border: none
+  -webkit-margin: none
+  vertical-align: top
+  @include box-shadow( none ) 
+  @include box-mode
+  margin-bottom: $baseLineSpacing
+  overflow: hidden
+  display: inline-block
+
+  width: 44px
+  height: 44px
+  background: none
+  color: #333
+  @include border-radius( 0px )
+  position: relative
+
+  &:hover, &.selected
+    background: none 
+
+  .outer_decorator
+    height: 32px
+    width: 32px
+    position: absolute
+    top: 6px
+    left: 6px
+    @include border-radius(32px)
+    @include box-mode
+    background: #FFFFFF
+
+    .inner_decorator
+      width: 16px
+      height: 16px
+      @include border-radius(16px)
+      @include box-mode
+      background: #FFF
+      position: absolute
+      left: 8px
+      top: 8px
+      display: block
+      border: 3px solid #CCC
+
+    .label_decorator_on, .label_decorator_off
+      display: none
+
+  &.selected
+    .outer_decorator
+      .inner_decorator
+        display: block
+        background: #333
+        border: none

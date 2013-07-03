@@ -48,7 +48,7 @@ class IuguUI.View extends IuguUI.Base
     
   enableLoader: ->
     debug "ENABLED LOADER"
-    @viewLoader = $('<div style="position:absolute;top:0px;left:0px;width:100%;height:100%;"><div style="position:absolute;left:0px;top:0px;width:100%;height:100%;background:rgba(255,255,255,0.5);z-index:2"></div><div style="position:absolute;top:50%;left:50%;width:64px;height:64px;margin-left:-32px;margin-top:-32px;background:#fff;-moz-border-radius(5px);line-height:64px;text-align:center;color:#fff"><img src="/assets/loading.gif" width="32" height="32" /></div></div>')
+    @viewLoader = $('<div class="viewLoader"><div class="blockLayer"></div><div class="loaderContainer"><img src="/assets/loading.gif" width="32" height="32" /></div></div>')
     $(@el).append @viewLoader
 
   disableLoader: ->
@@ -149,8 +149,11 @@ class IuguUI.View extends IuguUI.Base
     if window.app.rootWindow? and window.app.rootWindow.setTitle
       window.app.rootWindow.setTitle @title
 
+    IuguUI.Button.load( @$el )
+
     IuguUI.Checkbox.load( @$el )
     IuguUI.Combobox.load( @$el )
+    IuguUI.Radio.load( @$el )
 
     @
 
