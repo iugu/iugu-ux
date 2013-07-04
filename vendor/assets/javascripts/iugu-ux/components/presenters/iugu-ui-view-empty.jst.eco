@@ -1,5 +1,7 @@
 <div class="empty-view">
-  <img src="#" class="<%= @emptyCollection.imageClass %>"></img>
-  <%= @emptyCollection.text %><br/><br/>
-  <button class="button default <%= @emptyCollection.buttonClass %>"><%= @emptyCollection.buttonText %></button>
+  <div class="empty-view-wrapper">
+    <div src="#" class="empty-icon <%= @emptyCollection.imageClass %>"></div>
+    <div class="empty-description"><%= @emptyCollection.text %></div>
+    <a class="button default <%= @emptyCollection.buttonClass %>"><%= @emptyCollection.buttonText %></a>
+  </div>
 </div>

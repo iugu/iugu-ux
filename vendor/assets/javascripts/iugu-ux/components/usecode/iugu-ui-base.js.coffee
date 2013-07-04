@@ -12,7 +12,8 @@ class IuguUI.Base extends Backbone.View
     @layout = @options.layout if @options.layout
     @parent = @options.parent if @options.parent
     @context = @options.context if @options.context
-      
+    @title = @options.title if @options.title
+
     @identifier = ( -> @options.identifier + ':' ) if @options.identifier
 
     @handleEvent 'initialize'
@@ -36,7 +37,11 @@ class IuguUI.Base extends Backbone.View
     )
 
   render: ->
-    $(@el).html @getLayout() @context()
+    current_context = {}
+    current_context.title = @title if @title
+    current_context = _.extend current_context, @context()
+
+    $(@el).html @getLayout() current_context
 
     if @className
       $(@el).addClass @className
