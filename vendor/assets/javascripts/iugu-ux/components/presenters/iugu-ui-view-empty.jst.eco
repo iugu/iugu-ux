@@ -3,6 +3,11 @@
     <div src="#" class="empty-icon <%= @emptyCollection.imageClass %>"></div>
     <div class="empty-title"><%= @emptyCollection.title if @emptyCollection.title %></div>
     <div class="empty-description"><%= @emptyCollection.text if @emptyCollection.text %></div>
-    <a class="button default <%= @emptyCollection.buttonClass %>"><%= @emptyCollection.buttonText %></a>
+    <a class="button default <%= @emptyCollection.buttonClass %>">
+    <% if @emptyCollection.icon: %>
+      <div class="<%= @emptyCollection.icon %>"></div>
+    <% end %>
+    <%= @emptyCollection.buttonText %>
+    </a>
   </div>
 </div>
