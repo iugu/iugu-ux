@@ -10,7 +10,7 @@ body.ui-box-background
   overflow: hidden
 
 body.ui-box-background
-  background: $applicationBackgroundColor
+  background: $baseUIBoxPageBackgroundColor
   background-image: none
 
 .ui-responsive-box
@@ -27,7 +27,7 @@ body.ui-box-background
     float: left
     width: $desktopSidebarWidth 
     height: 100%
-    background: $baseUIBackgroundColor
+    background: $baseUIBoxSidebarBackgroundColor
     border-right: 1px solid $baseLineColor
     padding: 20px
     @include box-sizing( border-box )
@@ -36,7 +36,7 @@ body.ui-box-background
   .content-area
     height: 100%
     position: relative
-    background: $baseUIBackgroundColor
+    background: $baseUIBoxBackgroundColor
 
     @include box-sizing( border-box )
     .small-navigation
@@ -74,7 +74,7 @@ body.ui-box-background
 
 @include for-small-screens(680px)
   body.ui-box-background
-    background: $baseSidebarBackgroundColor
+    background: $baseUIBoxSidebarBackgroundColor
 
   .mobile
     .ui-responsive-box
@@ -90,7 +90,7 @@ body.ui-box-background
 
   .ui-responsive-box
     border: none
-    background: $baseSidebarBackgroundColor
+    background: $baseUIBoxSidebarBackgroundColor
 
     .sidebar
       float: none
@@ -98,7 +98,7 @@ body.ui-box-background
       z-index: 1000
       width: $mobileSidebarWidth
       border: none
-      background: $baseSidebarBackgroundColor
+      background: $baseUIBoxSidebarBackgroundColor
       visibility: hidden
 
       @include transition-delay( 1.5s )
@@ -118,8 +118,8 @@ body.ui-box-background
           display: block
           height: $toolbarHeight
           position: relative
-          background: $baseHeaderBackgroundColor
-          border-bottom: 1px solid $baseHeaderLineColor
+          background: $baseUIBoxHeaderBackgroundColor
+          border-bottom: 1px solid $baseUIBoxHeaderLineColor
 
           margin-top: -1px
           margin-right: -2px
@@ -139,7 +139,7 @@ body.ui-box-background
             height: 44px
             font-size: 17px
             line-height: 44px
-            color: $baseHeaderTitleColor
+            color: $baseUIBoxHeaderTitleColor
             @include box-mode
             left: 60px
             right: 60px
