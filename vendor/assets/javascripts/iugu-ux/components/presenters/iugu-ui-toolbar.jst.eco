@@ -1,5 +1,5 @@
 <div class="button-group">
   <% for button in _.pairs(@buttons): %>
-    <a href="#" class="button <%= button[0] %>" data-action="<%= button[0] %>"><%- button[1] %></a>
+    <a href="#" class="button <%= button[0] %> <%= button[1].class %>" data-action="<%= button[0] %>"><%- button[1].text %></a>
   <% end %>
 </div>
