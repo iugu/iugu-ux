@@ -73,7 +73,7 @@ class IuguUI.View extends IuguUI.Base
     new_attr = attr.replace '.', '-'
     @$(".error-" + new_attr).remove()
 
-    control.removeClass "failure"
+    control.parents('.iugu-ui-form-wrapper').removeClass "input-with-errors"
 
     list.parent().remove() if list.find(".error").length == 0
 
@@ -84,7 +84,7 @@ class IuguUI.View extends IuguUI.Base
     group = view.$ ".form-group"
     list = group.find ".error-list"
       
-    control.addClass "failure"
+    control.parents('.iugu-ui-form-wrapper').addClass "input-with-errors"
 
     if list.length == 0
       group.prepend '<div class="notice notice-red"><ul class="error-list"></ul></div>'
