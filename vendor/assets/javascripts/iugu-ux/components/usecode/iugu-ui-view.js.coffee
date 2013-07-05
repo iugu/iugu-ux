@@ -97,7 +97,7 @@ class IuguUI.View extends IuguUI.Base
     parent_model = ""
     parent_model = "error-" + attr.split('.')[0] if cid?
 
-    model_name = @model.constructor.name.toLowerCase()
+    model_name = @model.identifier
     right_attr = attr.split '.'
     right_attr = right_attr[right_attr.length-1]
 
