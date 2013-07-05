@@ -140,8 +140,6 @@ class IuguUI.View extends IuguUI.Base
 
     super
 
-    rivets.bind @$el, {model: @model} if @model
-
     if app.activeView != @ and @secondaryView == false
       app.activeView.close() if app.activeView
       app.activeView = @
@@ -149,11 +147,18 @@ class IuguUI.View extends IuguUI.Base
     if window.app.rootWindow? and window.app.rootWindow.setTitle
       window.app.rootWindow.setTitle @title
 
+
+
+    IuguUI.Combobox.load( @$el )
+
+    rivets.bind @$el, {model: @model} if @model
+
     IuguUI.Button.load( @$el )
 
     IuguUI.Checkbox.load( @$el )
-    IuguUI.Combobox.load( @$el )
     IuguUI.Radio.load( @$el )
+
+
 
     @
 

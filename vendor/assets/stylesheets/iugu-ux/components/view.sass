@@ -34,22 +34,35 @@
 .empty-view-wrapper
   position: absolute
   top: 50%
-  left: 50%
-  width: 160px
-  height: 160px
-  margin-left: -80px
-  margin-top: -80px
+  width: 100%
+  height: 220px
+  @include box-mode
+  padding-left: 20px
+  padding-right: 20px
+  margin-top: -110px
 
   .empty-icon
     margin-left: auto
     margin-right: auto
-    background: #CCC
     margin-bottom: $baseElementSpacing
+
+  .empty-title
+    font-weight: bold
+    text-transform: uppercase
+    margin-bottom: $baseElementSpacing
+    text-align: center
 
   .empty-description
     text-align: center
     margin-bottom: $baseElementSpacing
 
   .button
-    width: 160px
     margin-bottom: 0px
+    margin-left: auto
+    margin-right: auto
+    display: block
+    max-width: 300px
+
+    *
+      margin-top: -3px
+      margin-right: 14px

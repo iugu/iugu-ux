@@ -113,7 +113,7 @@ class IuguUI.Combobox
 
   mark_selected: ->
     @el.find("ul a").removeClass("selected")
-    @el.find('ul [data-value="' + @caller_element.data("value") + '"]').addClass("selected")
+    @el.find('ul [data-value="' + @caller_element.data("internal-value") + '"]').addClass("selected")
 
   change: ( value, title ) ->
 
@@ -132,6 +132,7 @@ class IuguUI.Combobox
 
       if @input_holder and @input_holder.is("select") and value != @input_holder.find("option:selected").val()
         @input_holder.val(value)
+        @input_holder.trigger("change")
 
     @close_menu()
 

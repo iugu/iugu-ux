@@ -46,7 +46,6 @@ class IuguUI.Button
     else if input_selector
       @input_element = $(input_selector)
 
-
     if @getInput() and @el.data("value") == @getInput().val()
       @el.addClass("selected") unless @el.hasClass("selected")
 
@@ -82,6 +81,9 @@ class IuguUI.Button
       @getInput().attr "checked", @el.hasClass("selected")
     else
       @getInput().val( value ) if @getInput()
+
+    if (@getInput())
+      @getInput().trigger("change")
 
   toggleable: ->
     return false unless @toggle_button
