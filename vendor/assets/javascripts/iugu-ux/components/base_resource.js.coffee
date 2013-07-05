@@ -61,10 +61,17 @@ class window.app.BaseResource extends Backbone.AssociatedModel
     return options unless options.context
     options.context.enableLoader()
     options.wait = true
-    options.success = ->
-      options.context.redirectBack()
-    options.complete = ->
-      options.context.disableLoader()
+    options.complete = (jqXHR, textStatus) ->
+      return options.context.disableLoader() unless textStatus == "success"
+
+      if options.elastic_delay is on
+        setTimeout( ->
+          options.context.disableLoader()
+          options.context.redirectBack()
+        , 1000)
+      else
+        options.context.disableLoader()
+        options.context.redirectBack()
     options
 
   destroy: (options) ->
