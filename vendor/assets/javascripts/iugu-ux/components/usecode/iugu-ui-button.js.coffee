@@ -46,14 +46,18 @@ class IuguUI.Button
     else if input_selector
       @input_element = $(input_selector)
 
-    if @getInput() and @el.data("value") == @getInput().val()
+    if @getInput() and @el.data("value") and @el.data("value").toString() == @getInput().val().toString()
       @el.addClass("selected") unless @el.hasClass("selected")
 
     if @getInput() and @getInput().is(":checkbox") and @getInput().is(":checked")
       @el.addClass("selected")
 
+
     if @getInput() and @getInput().is(":radio") and @getInput().is(":checked")
       @el.addClass("selected")
+
+    if @getInput() and @getInput().is(":radio") or @getInput().is(":checkbox")
+      @getInput().bind "change", @inputChangedCallback
 
     @el.bind "click", @click
 
@@ -71,6 +75,16 @@ class IuguUI.Button
     elms = @linkedElements()
     return false unless elms and elms.size() > 1
     true
+
+  inputChangedCallback: ->
+    if @hasLinkedElements()
+      @linkedElements().removeClass("selected")
+
+    if @getInput() and @getInput().is(":checkbox") and @getInput().is(":checked")
+      @el.addClass("selected")
+
+    if @getInput() and @getInput().is(":radio") and @getInput().is(":checked")
+      @el.addClass("selected")
 
   configureInputElementValue: ( value ) ->
     return unless @getInput()

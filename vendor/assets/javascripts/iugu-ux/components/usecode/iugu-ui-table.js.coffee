@@ -13,6 +13,7 @@ class IuguUI.Table extends IuguUI.Dataset
     sortableBy: @options.sortableBy
     fields: @options.fields
     sortBy: @sortBy
+    identifier: @options.identifier
 
   initialize: ->
     super

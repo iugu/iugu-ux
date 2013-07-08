@@ -1,5 +1,5 @@
 <div class="dataset">
-  <table class="table table-bordered">
+  <table class="table table-bordered <%= @identifier %>">
     <thead>
       <tr>
         <% for field in _.pairs(@fields): %>
