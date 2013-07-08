@@ -23,6 +23,8 @@
 //= require ./vendor/backbone.forms.js
 //= require ./vendor/backbone.forms.list.js
 //= require ./vendor/backbone.forms.default.js
+//= require ./vendor/numeral.js
+//= require ./vendor/numeral.languages.js
 //= require ./vendor/rivets.js
 //= require ./vendor/async.js
 //= require ./vendor/tasks.js

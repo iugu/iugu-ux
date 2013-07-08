@@ -49,8 +49,6 @@ class IuguUI.Button
     if @getInput() and @el.data("value") == @getInput().val()
       @el.addClass("selected") unless @el.hasClass("selected")
 
-    debug @getInput()
-
     if @getInput() and @getInput().is(":checkbox") and @getInput().is(":checked")
       @el.addClass("selected")
 
