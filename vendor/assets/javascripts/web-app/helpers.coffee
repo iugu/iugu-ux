@@ -84,7 +84,7 @@ String.prototype.capitalize = ->
     debug 'Custom Application Root Detected: ' + @app.root
 
   if typeof(subdomain_xdr_url) != 'undefined' && subdomain_xdr_url != ''
-    console.log 'Has XDR'
+    debug 'Has XDR'
     @app._features['xdr'] = false
     @app._xdr_frame = $('<iframe>').attr('src', subdomain_xdr_url ).load(@_callback_xdr).appendTo('head')[0]
 
