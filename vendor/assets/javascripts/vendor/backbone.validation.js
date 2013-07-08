@@ -502,7 +502,7 @@ Backbone.Validation = (function(_){
     internationalized: function(attrName, model) {
       var right_attr = attrName.split('.');
       right_attr = right_attr[right_attr.length-1];
-      return _t(model.constructor.name.toLowerCase() + '_fields.' + right_attr);
+      return _t(model.identifier '_fields.' + right_attr);
     }
   };
 
