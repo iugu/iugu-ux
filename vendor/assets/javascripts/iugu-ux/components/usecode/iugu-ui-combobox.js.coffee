@@ -42,6 +42,7 @@ class IuguUI.Combobox
       @root_element = $('<div>',
         "data-display-selection": true
         "data-mark-selected": true
+        "class": @el.attr("class")
       )
 
       ul_element = $('<ul>')

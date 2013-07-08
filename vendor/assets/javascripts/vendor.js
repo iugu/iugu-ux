@@ -13,9 +13,6 @@
 //= require ./vendor/jquery.iframe-transport.js
 //= require ./vendor/jquery.base64.js
 //= require ./vendor/jquery.fileupload.js
-//= require ./vendor/mobiscroll.core-2.3.1.js
-//= require ./vendor/mobiscroll.datetime-2.3.js
-//= require ./vendor/mobiscroll.select-2.3.1.js
 //= require ./vendor/underscore.js
 //= require ./vendor/backbone.js
 //= require ./vendor/backbone.associations-min.js
