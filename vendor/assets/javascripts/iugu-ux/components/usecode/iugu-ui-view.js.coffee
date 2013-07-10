@@ -140,6 +140,8 @@ class IuguUI.View extends IuguUI.Base
 
     super
 
+    @secondaryView = @options.secondaryView if @options.secondaryView?
+
     if app.activeView != @ and @secondaryView == false
       app.activeView.close() if app.activeView
       app.activeView = @

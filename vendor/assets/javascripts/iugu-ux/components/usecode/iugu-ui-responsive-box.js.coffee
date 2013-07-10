@@ -30,7 +30,7 @@ class IuguUI.ResponsiveBox extends IuguUI.Base
     @$('.responsive-title').html()
 
   pushRootView: (view) ->
-    debug "CLEAN AND PUSH VIEW"
+    debug "PUSH ROOT VIEW"
     @views = []
     @pushView view
 
