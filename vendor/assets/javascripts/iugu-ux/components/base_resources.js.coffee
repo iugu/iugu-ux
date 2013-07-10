@@ -1,19 +1,20 @@
 window.app.BaseResources = Backbone.Paginator.requestPager.extend
 
+  initialize: ->
+    @server_api =
+      'limit': ->
+        return @perPage
+
+      'start': ->
+        return (@currentPage - 1) * @perPage
+
+      'api_token': ->
+        return api_token
+
   paginator_ui:
     firstPage: 1
     currentPage: 1
     perPage: 30
-
-  server_api:
-    'limit': ->
-      return @perPage
-
-    'start': ->
-      return (@currentPage - 1) * @perPage
-
-    'api_token': ->
-      return api_token
 
   configureFilter: ( param, value ) ->
     @server_api[param] = value
