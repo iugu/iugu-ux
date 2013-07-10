@@ -4,6 +4,7 @@ class _i18n
   setDefaultLocale: ( _locale ) ->
     debug 'Configuring Language: ' + _locale
     @locale = _locale
+    IuguUI.Money.configureLocale( _locale.toLowerCase() )
 
   getText: ( _string, _locale = "" ) ->
     _locale = @locale if _locale == ""

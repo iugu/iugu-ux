@@ -159,6 +159,8 @@ class IuguUI.View extends IuguUI.Base
     IuguUI.Checkbox.load( @$el )
     IuguUI.Radio.load( @$el )
 
+    IuguUI.Money.load( @$el )
+
 
     @
 
