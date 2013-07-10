@@ -12,7 +12,7 @@ class IuguUI.ResponsiveBox extends IuguUI.Base
     @content = new IuguUI.ScrollableContainer()
     @sidebar_wrapper = null
     @content_wrapper = null
-
+    @views = []
 
   getSidebarWrapper: ->
     @sidebar_wrapper
@@ -28,6 +28,26 @@ class IuguUI.ResponsiveBox extends IuguUI.Base
 
   getTitle: ->
     @$('.responsive-title').html()
+
+  pushRootView: (view) ->
+    debug "CLEAN AND PUSH VIEW"
+    @views = []
+    @pushView view
+
+  pushView: (view) ->
+    debug "PUSH VIEW"
+    @views.push view
+    @getContent().html view.el
+
+  popView: (data = null) ->
+    debug "POP VIEW"
+    lastView = _.last @views
+    @views.pop()
+
+    view = _.last @views
+    if view
+      @getContent().html view.el
+      view.trigger lastView.identifier() + "pop", data
 
   disableFeedback: ->
     uibox = @$('.ui-responsive-box')

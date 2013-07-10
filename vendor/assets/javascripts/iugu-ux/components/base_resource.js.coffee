@@ -58,7 +58,7 @@ class window.app.BaseResource extends Backbone.AssociatedModel
       super null, @handleViewContext options
 
   handleViewContext: (options) ->
-    return options unless options.context
+    return options unless options.context && (!options.callback_view? || !options.callback_view)
     options.context.enableLoader()
     options.wait = true
     options.complete = (jqXHR, textStatus) ->
