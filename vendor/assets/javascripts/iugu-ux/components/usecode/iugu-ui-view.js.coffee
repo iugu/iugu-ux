@@ -12,6 +12,8 @@ class IuguUI.View extends IuguUI.Base
 
     @secondaryView = @options.secondaryView if @options.secondaryView
 
+    @firstRender = true
+
     if @model
       Backbone.Validation.bind @,
         forceUpdate: true
@@ -135,8 +137,10 @@ class IuguUI.View extends IuguUI.Base
         emptyCollection: @emptyCollection
 
   render: ->
-    if @emptyCollection?
+    if @emptyCollection? && @firstRender
       @doEmptyCollectionLogic()
+
+    @firstRender = false
 
     super
 

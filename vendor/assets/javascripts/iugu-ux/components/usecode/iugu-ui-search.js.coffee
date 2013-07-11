@@ -25,4 +25,11 @@ class IuguUI.Search extends IuguUI.Base
   render: ->
     super
 
+    lastQuery = @collection.getFilter 'query'
+    if lastQuery? && lastQuery.length > 0
+      input = @$('input.search-query')
+      input.val lastQuery
+      input.focus()
+
+
 @IuguUI.Search = IuguUI.Search

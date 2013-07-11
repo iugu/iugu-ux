@@ -25,6 +25,9 @@ window.app.BaseResources = Backbone.Paginator.requestPager.extend
       headers:
         Authorization: $.base64.encode api_token
 
+  getFilter: (param) ->
+    @server_api[param]
+
   removeFilter: (param) ->
     delete @server_api[param]
     @trigger "removed-filter:#{param}"
