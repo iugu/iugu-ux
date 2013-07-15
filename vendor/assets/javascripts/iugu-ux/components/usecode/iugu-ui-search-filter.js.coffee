@@ -20,7 +20,7 @@ class IuguUI.SearchFilter extends IuguUI.Base
     filter = button.data('filter')
     button.toggleClass('active')
 
-    unless @options.multiSelection
+    unless @options.multiSelection || (@selected.length > 0 && _.first(@selected) == filter)
       @selected = []
 
     unless _.indexOf(@selected, filter.toString()) == -1
