@@ -1,25 +1,43 @@
 <% if @collection.facets: %>
-  <% facets = _.pick(@collection.facets, @filterName) %>
+  <% facets = _.pick(@collection.facets, @filterNames) %>
 <% end %>
 <% facets = [] unless facets %>
 <% printed = [] %>
 <% for facet in _.pairs(facets): %>
-  <% for term in facet[1].terms: %>
-    <% printed.push(term.term.toString()) %>
-    <a href="#" data-filter=<%= term.term %> data-action="search-filter-button" class="button tal <%= "active" unless _.indexOf(@selected, term.term.toString()) == -1 %>">
-    
-      <% if @translateTerms: %>
-        <%= _t("#{@translationPrefix}.#{term.term.toString()}") %>
-      <% else: %>
-        <%= term.term.toString() %>
-      <% end %>
+  <% if facet[1]._type == 'terms': %>
+    <% for term in facet[1].terms: %>
+      <% printed.push(term.term.toString()) %>
+      <a href="#" data-filter=<%= term.term %> data-action="search-filter-button" class="button tal <%= "active" unless _.indexOf(@selected, term.term.toString()) == -1 %>">
+      
+        <% if @translateTerms: %>
+          <%= _t("#{@translationPrefix}.#{term.term.toString()}") %>
+        <% else: %>
+          <%= term.term.toString() %>
+        <% end %>
 
-      <div class="badge right">
-      <%= term.count %>
-      </div>
+        <div class="badge right">
+        <%= term.count %>
+        </div>
 
-    </a>
+      </a>
 
+    <% end %>
+  <% end %>
+  <% if facet[1]._type == 'filter': %>
+    <% printed.push(facet[0]) %>
+      <a href="#" data-filter=<%= facet[0] %> data-action="search-filter-button" class="button tal <%= "active" unless _.indexOf(@selected, facet[0].toString()) == -1 %>">
+      
+        <% if @translateTerms: %>
+          <%= _t("#{@translationPrefix}.#{facet[0].toString()}") %>
+        <% else: %>
+          <%= facet[0].toString() %>
+        <% end %>
+
+        <div class="badge right">
+        <%= facet[1].count %>
+        </div>
+
+      </a>
   <% end %>
 <% end %>
 <% for term in @fixedFilters: %>

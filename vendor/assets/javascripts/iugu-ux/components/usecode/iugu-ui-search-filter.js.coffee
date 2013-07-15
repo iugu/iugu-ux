@@ -4,7 +4,8 @@ class IuguUI.SearchFilter extends IuguUI.Base
   className: "search-filter"
 
   defaults:
-    filterName: "age"
+    name: "age"
+    filterNames: [ "age" ]
     fixedFilters: []
     multiSelection: false
     translateTerms: false
@@ -29,9 +30,9 @@ class IuguUI.SearchFilter extends IuguUI.Base
       @selected.push(filter.toString())
 
     if @selected.length > 0
-      @collection.configureFilter @options.filterName + '_filter', @selected
+      @collection.configureFilter @options.name + '_filter', @selected
     else
-      @collection.removeFilter @options.filterName + '_filter'
+      @collection.removeFilter @options.name + '_filter'
     
     @collection.goTo(1)
 
@@ -39,14 +40,14 @@ class IuguUI.SearchFilter extends IuguUI.Base
     @selected = []
     _.bindAll @, 'searchCollection', 'render'
     @collection.on 'reset', @render, @
-    @collection.on "removed-filter:#{@options.filterName}_filter", @removedFilter, @
+    @collection.on "removed-filter:#{@options.name}_filter", @removedFilter, @
     super
     @
 
   context: ->
     collection: @collection
     selected: @selected
-    filterName: @options.filterName
+    filterNames: @options.filterNames
     fixedFilters: @options.fixedFilters
     translateTerms: @options.translateTerms
     translationPrefix: @options.translationPrefix
