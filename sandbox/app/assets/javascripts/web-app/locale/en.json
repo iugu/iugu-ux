@@ -7,5 +7,8 @@
   'quantity': {
     'coupom': 'coupom',
     'coupoms': 'coupoms'
+  },
+  'misc': {
+    'search': 'Search'
   }
 }
