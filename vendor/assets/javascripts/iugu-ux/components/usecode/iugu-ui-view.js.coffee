@@ -114,6 +114,7 @@ class IuguUI.View extends IuguUI.Base
 
 
   addErrors: (model, errors) ->
+    debug "COCO"
     invalid = @invalid
     view = @
 
