@@ -1,5 +1,6 @@
 class IuguUI.Helpers
   @formatISO8601Date: ( date ) ->
+    return "" unless date
     dt = date.split('-')
     return "" if dt.length < 3
     "#{dt[2]}/#{dt[1]}/#{dt[0]}"
