@@ -1,4 +1,9 @@
 class IuguUI.Helpers
+  @formatISO8601Date: ( date ) ->
+    dt = date.split('-')
+    return "" if dt.length < 3
+    "#{dt[2]}/#{dt[1]}/#{dt[0]}"
+
   @bindNavigatorToCollection: ( collection, navigator, context ) ->
     navigator.context = () ->
       info = collection.info()
