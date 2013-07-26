@@ -84,3 +84,9 @@ class window.app.BaseResource extends Backbone.AssociatedModel
 
   appendLocaleInfo: (uri) ->
     uri + (if uri.indexOf('?') then '?' else '&') + 'hl=' + encodeURIComponent( i18n.locale )
+
+  request: ( type, url, options ) ->
+    @configureAjax()
+    options = _.extend options,
+      type: type
+    app.ajax url, options
