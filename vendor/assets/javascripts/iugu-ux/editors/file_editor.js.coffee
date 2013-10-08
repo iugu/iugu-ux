@@ -26,8 +26,8 @@ class Backbone.Form.editors.File extends Backbone.Form.editors.Base
     @$('.file-upload').show()
 
   setProgressBar: ( context, value ) ->
-    context.$('.progress .bar').css 'width', value + '%'
-    context.$('.progress .bar').text value + '%'
+    #context.$('.progress .bar').css 'width', value + '%'
+    context.$('.progress .bar').text value
 
   initialize: (options) ->
     Backbone.Form.editors.Base.prototype.initialize.call @, options
@@ -48,10 +48,15 @@ class Backbone.Form.editors.File extends Backbone.Form.editors.Base
       formData:
         title: that.schema.title
         api_token: window.api_token
-      
+      maxFileSize: 2000000
       progressall: (evt, data) ->
-        progress = parseInt data.loaded / data.total * 100, 10
+        progress = "Enviando..."
         that.setProgressBar that, progress
+
+      error: ->
+        that.removeDocumentDOM()
+        that.$('.progress').hide()
+        alert("Não foi possível enviar o arquivo.")
 
       send: (evt, data) ->
         that.$('.file-upload').hide()
@@ -63,7 +68,6 @@ class Backbone.Form.editors.File extends Backbone.Form.editors.Base
         that.$('.uploaded-file').show()
         that.$('.uploaded-file .uploaded-file-name').text data.result.file_file_name
         that.$('.uploaded-file').data 'id', data.result.id
-        debug data
 
   render: ->
     @setValue(@value)
