@@ -153,8 +153,11 @@ class IuguUI.View extends IuguUI.Base
     if window.app.rootWindow? and window.app.rootWindow.setTitle
       window.app.rootWindow.setTitle @title
 
+    bindToRivets = {}
+    bindToRivets['model'] = @model if @model
+    bindToRivets['collection'] = @collection if @collection
 
-    rivets.bind @$el, {model: @model} if @model
+    rivets.bind @$el, bindToRivets if @model or @collection
 
     IuguUI.Combobox.load( @$el )
 
