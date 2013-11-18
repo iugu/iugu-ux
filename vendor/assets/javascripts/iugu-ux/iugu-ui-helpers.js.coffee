@@ -5,6 +5,14 @@ class IuguUI.Helpers
     return "" if dt.length < 3
     "#{dt[2]}/#{dt[1]}/#{dt[0]}"
 
+  @formatISO8601DateTime: ( datetime ) ->
+    return "" unless datetime
+    datetime = datetime.split('T')
+    date = datetime[0]
+    time = datetime[1].split('-')[0]
+    "#{time} #{@formatISO8601Date(date)}"
+
+
   @bindNavigatorToCollection: ( collection, navigator, context ) ->
     navigator.context = () ->
       info = collection.info()
