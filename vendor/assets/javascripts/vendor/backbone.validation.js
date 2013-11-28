@@ -110,7 +110,7 @@ Backbone.Validation = (function(_){
           memo.push({
             fn: defaultValidators[validator],
             val: attrValidation[validator],
-            msg: attrValidation.msg
+            msg: attrValidation.msg instanceof Function ? attrValidation.msg() : attrValidation.msg
           });
         });
         return memo;
