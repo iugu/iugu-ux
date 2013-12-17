@@ -40,6 +40,7 @@ String.prototype.capitalize = ->
 @_callback_xdr = ->
   app.ajax = app._xdr_frame.contentWindow.jQuery.ajax
   app.ajaxSetup = app._xdr_frame.contentWindow.jQuery.ajaxSetup
+  app.ajaxPrefilter = app._xdr_frame.contentWindow.jQuery.ajaxPrefilter
   app._features['xdr'] = true
   if (Backbone)
     Backbone.ajax = app.ajax
@@ -77,6 +78,7 @@ String.prototype.capitalize = ->
   @app._features['xdr'] = true
   @app.ajax = jQuery.ajax
   @app.ajaxSetup = jQuery.ajaxSetup
+  @app.ajaxPrefilter = jQuery.ajaxPrefilter
 
   @app.root = '/'
   if app_root

@@ -1,6 +1,7 @@
 window.app.BaseResources = Backbone.Paginator.requestPager.extend
 
   initialize: ->
+    @factorySync = @sync
     @server_api =
       'limit': ->
         return @perPage
@@ -8,8 +9,8 @@ window.app.BaseResources = Backbone.Paginator.requestPager.extend
       'start': ->
         return (@currentPage - 1) * @perPage
 
-      'api_token': ->
-        return api_token
+      #      'api_token': ->
+      #        return api_token
 
   paginator_ui:
     firstPage: 1
@@ -20,13 +21,14 @@ window.app.BaseResources = Backbone.Paginator.requestPager.extend
     @server_api[param] = value
     @trigger 'configured-filter', param
 
-  configureAjax: ->
-    params = if ajax_params then ajax_params else {}
+  getAjaxParameters: ->
+    return if ajax_params? then ajax_params else {}
 
+  configureAjax: ->
     app.ajaxSetup
       headers:
         Authorization: $.base64.encode api_token
-      data: params
+      data: @getAjaxParameters()
 
   getFilter: (param) ->
     @server_api[param]

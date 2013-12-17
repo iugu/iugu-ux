@@ -42,10 +42,6 @@ class window.app.BaseResource extends Backbone.AssociatedModel
     @["removeFrom#{@properCasedRelationName relation.key}"] = (object) ->
       @get(relation.key).destroy(object)
 
-  sync: (method, model, options) ->
-    @configureAjax()
-    Backbone.sync method, model, options
-
   toJSON: (options) ->
     _.omit( _.clone( super(options) ), @virtual_attributes )
   
@@ -55,7 +51,7 @@ class window.app.BaseResource extends Backbone.AssociatedModel
 
   save: (attributes, options) ->
     if @isValid(true)
-      super null, @handleViewContext options
+      super attributes, @handleViewContext options
 
   handleViewContext: (options) ->
     return options unless options.context
@@ -77,18 +73,20 @@ class window.app.BaseResource extends Backbone.AssociatedModel
   destroy: (options) ->
     super @handleViewContext options
 
+  getAjaxParameters: ->
+    return if ajax_params? then ajax_params else {}
+
   configureAjax: ->
-    params = if ajax_params then ajax_params else {}
     app.ajaxSetup
       headers:
         Authorization: $.base64.encode api_token
-      data: params
+      data: @getAjaxParameters()
 
   appendLocaleInfo: (uri) ->
     uri + (if uri.indexOf('?') then '?' else '&') + 'hl=' + encodeURIComponent( i18n.locale )
 
   request: ( type, url, options ) ->
-    @configureAjax()
     options = _.extend options,
       type: type
+
     app.ajax url, options
