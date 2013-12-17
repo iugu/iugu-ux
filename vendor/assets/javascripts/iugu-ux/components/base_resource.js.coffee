@@ -78,9 +78,11 @@ class window.app.BaseResource extends Backbone.AssociatedModel
     super @handleViewContext options
 
   configureAjax: ->
+    params = if ajax_params then ajax_params else {}
     app.ajaxSetup
       headers:
         Authorization: $.base64.encode api_token
+      data: params
 
   appendLocaleInfo: (uri) ->
     uri + (if uri.indexOf('?') then '?' else '&') + 'hl=' + encodeURIComponent( i18n.locale )

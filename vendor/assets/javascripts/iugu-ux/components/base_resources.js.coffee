@@ -21,9 +21,12 @@ window.app.BaseResources = Backbone.Paginator.requestPager.extend
     @trigger 'configured-filter', param
 
   configureAjax: ->
+    params = if ajax_params then ajax_params else {}
+
     app.ajaxSetup
       headers:
         Authorization: $.base64.encode api_token
+      data: params
 
   getFilter: (param) ->
     @server_api[param]
