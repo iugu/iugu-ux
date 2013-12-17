@@ -732,11 +732,11 @@ Backbone.Paginator = (function ( Backbone, _, $ ) {
 
 			// Allows the passing in of {data: {foo: 'bar'}} at request time to overwrite server_api defaults
 			if( options.data ){
-				// options.data = decodeURIComponent($.param(_.extend(queryAttributes,options.data)));
-        options.data = _.extend(queryAttributes,options.data);
+				options.data = decodeURIComponent($.param(_.extend(queryAttributes,options.data)));
+        // options.data = _.extend(queryAttributes,options.data);
 			}else{
-        options.data = queryAttributes;
-				// options.data = decodeURIComponent($.param(queryAttributes));
+        // options.data = queryAttributes;
+				options.data = decodeURIComponent($.param(queryAttributes));
 			}
 
 			queryOptions = _.extend(queryOptions, {
