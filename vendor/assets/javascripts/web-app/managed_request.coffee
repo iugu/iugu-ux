@@ -17,6 +17,7 @@ class ManagedRequest
   constructor: ( options ) ->
     @options = _.extend {}, @defaults, @options, options
     @requester = Backbone.ajax
+    #@requester = window.app.ajax
     @requester = @options.ajax if @options.ajax
 
     @trigger = () ->
@@ -29,10 +30,6 @@ class ManagedRequest
     _.bindAll @
 
   execute: ->
-    app.ajaxSetup
-      headers:
-        Authorization: $.base64.encode api_token
-
     @requester
       type: @options.type
       url: @options.url
@@ -40,6 +37,9 @@ class ManagedRequest
       success: @success
       error: @error
       complete: @complete
+      dataType: "json"
+      contentType: "application/json"
+      processData: false
 
   success: (data, textStatus, jqXHR) ->
     if data.errors
