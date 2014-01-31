@@ -13,6 +13,7 @@
 //= require ./vendor/jquery.iframe-transport.js
 //= require ./vendor/jquery.base64.js
 //= require ./vendor/jquery.fileupload.js
+//= require ./vendor/jquery.maskMoney.js
 //= require ./vendor/underscore.js
 //= require ./vendor/backbone.js
 //= require ./vendor/backbone.associations-min.js

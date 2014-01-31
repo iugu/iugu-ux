@@ -34,6 +34,13 @@ class IuguUI.Money
 
       $(@).data "iux.initialized", true
 
+  maskOptions: ->
+    if i18n.locale.toLowerCase() == "pt-br"
+      {prefix: 'R$', thousands:'.', decimal: ","}
+    else
+      {prefix: '$', thousands:',', decimal: "."}
+
+
   constructor: ( options ) ->
     @initialize( options )
   
@@ -54,19 +61,21 @@ class IuguUI.Money
       class: @input_element.attr "class"
     )
 
+    @decorator.maskMoney(@maskOptions())
+
     @decorator.insertAfter( @el )
 
     that = @
 
     @decorator.bind "focus", ->
-      $(this).val( IuguUI.Money.fromCentsToMoney( that.input_element.val()  ) )
+      $(this).maskMoney('mask')
 
     @decorator.bind "blur", ->
-      that.input_element.val( IuguUI.Money.fromMoneyToCents( $(this).val() ) )
-      that.input_element.trigger "change"
-      $(this).val( IuguUI.Money.fromCentsToMoney( that.input_element.val()  ) )
+      that.input_element.val($(this).val().replace(/[^0-9]/g, ''))
+      that.input_element.trigger('change')
 
-    @decorator.val( IuguUI.Money.fromCentsToMoney( that.input_element.val()  ) )
+    @decorator.val( that.input_element.val() )
+    @decorator.maskMoney('mask')
 
     @input_element.hide()
 
