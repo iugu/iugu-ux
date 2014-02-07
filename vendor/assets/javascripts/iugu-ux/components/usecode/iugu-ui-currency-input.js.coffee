@@ -71,8 +71,10 @@ class IuguUI.Money
       $(this).maskMoney('mask')
 
     @decorator.bind "blur", ->
-      that.input_element.val($(this).val().replace(/[^0-9]/g, ''))
+      val = if $(this).val().length == 0 then "0" else $(this).val()
+      that.input_element.val(val.replace(/[^0-9]/g, ''))
       that.input_element.trigger('change')
+      $(this).maskMoney('mask')
 
     @decorator.val( that.input_element.val() )
     @decorator.maskMoney('mask')
