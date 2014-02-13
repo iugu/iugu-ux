@@ -1,5 +1,7 @@
 window.app.BaseResources = Backbone.Paginator.requestPager.extend
 
+  arrayFilters: []
+
   initialize: ->
     @factorySync = @sync
     @server_api =
@@ -35,6 +37,7 @@ window.app.BaseResources = Backbone.Paginator.requestPager.extend
 
   removeFilter: (param) ->
     delete @server_api[param]
+    @trigger "removed-filter"
     @trigger "removed-filter:#{param}"
 
   removeFiltersEndingWith: (param) ->

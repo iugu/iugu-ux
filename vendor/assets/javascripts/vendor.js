@@ -16,6 +16,7 @@
 //= require ./vendor/jquery.maskMoney.js
 //= require ./vendor/underscore.js
 //= require ./vendor/backbone.js
+//= require ./vendor/backbone.queryparams.js
 //= require ./vendor/backbone.associations-min.js
 //= require ./vendor/backbone.validation.js
 //= require ./vendor/backbone.paginator.js

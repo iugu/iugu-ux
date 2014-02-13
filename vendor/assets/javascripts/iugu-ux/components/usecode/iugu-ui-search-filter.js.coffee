@@ -53,6 +53,10 @@ class IuguUI.SearchFilter extends IuguUI.Base
     translationPrefix: @options.translationPrefix
 
   render: ->
+    lastFilter = @collection.getFilter 'status_filter'
+    if lastFilter? && lastFilter.length > 0
+      @selected = lastFilter
+
     super
 
   removedFilter: ->

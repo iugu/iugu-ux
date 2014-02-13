@@ -58,6 +58,19 @@ class IuguUI.View extends IuguUI.Base
     if @viewLoader
       @viewLoader.remove()
 
+  setUrlWithFilter: (filter) ->
+    newUrl = Backbone.history.location.pathname.replace Backbone.history.root,''
+
+    that = @
+
+    qs = '?'
+    _.each _.keys(_.omit(@collection.server_api, ['limit', 'start'])), (key) ->
+      if _.indexOf(that.collection.arrayFilters, key) >= 0 then qs += "&#{key}=|#{that.collection.server_api[key]}" else qs += "&#{key}=#{that.collection.server_api[key]}"
+
+    qs = '' if qs.length == 1
+
+    Backbone.history.navigate(newUrl + qs)
+
   load: ->
     debug "ON LOAD"
     @disableLoader()
@@ -124,7 +137,7 @@ class IuguUI.View extends IuguUI.Base
     )
 
   doEmptyCollectionLogic: ->
-    if @collection? && @collection.length == 0
+    if @collection? && @collection.length == 0 && Backbone.history.location.search.length == 0
       @layout = @emptyCollection.layout || 'iugu-ui-view-empty'
       @extendContextWithEmptyCollection()
     else
