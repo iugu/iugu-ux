@@ -5,6 +5,10 @@
   border: none;
 }
 
+.bbf-form legend {
+  margin-bottom: 20px;
+}
+
 
 /* Field */
 .bbf-field {
@@ -56,6 +60,7 @@
 
   .bbf-radio label {
     float: none;
+    margin-left: 10px;
   }
 
 
