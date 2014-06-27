@@ -79,7 +79,7 @@ class Backbone.Form.editors.File extends Backbone.Form.editors.Base
 
   setValue: (value) ->
     return unless value
-    sp = value.split ":"
+    sp = value.toString().split ":"
     @$('.uploaded-file').data 'id', sp[0]
 
     if sp.length > 1
