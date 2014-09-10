@@ -64,7 +64,7 @@ class IuguUI.View extends IuguUI.Base
     that = @
 
     qs = '?'
-    _.each _.keys(_.omit(@collection.server_api, ['limit', 'start'])), (key) ->
+    _.each _.keys(_.omit(@collection.server_api, ['limit', 'start', 'sortBy'])), (key) ->
       if _.indexOf(that.collection.arrayFilters, key) >= 0 then qs += "&#{key}=|#{that.collection.server_api[key]}" else qs += "&#{key}=#{that.collection.server_api[key]}"
 
     qs = '' if qs.length == 1
