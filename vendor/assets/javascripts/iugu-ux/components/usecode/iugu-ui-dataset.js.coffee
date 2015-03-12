@@ -24,11 +24,15 @@ class IuguUI.Dataset extends IuguUI.View
         layout: @options.itemLayout
         fields: @options.fields
         tagName: @options.itemTagName
-        className: @options.itemClassName
+        className: @classForItem(item)
         identifier: @identifier() + "record"
         presenter: @options.recordPresenter
         parent: @
     ).render().el
+
+  classForItem: (item) ->
+    mod = @options.classModifier(item) if @options.classModifier
+    "#{@options.itemClassName} #{mod}"
 
   context: ->
     dataset: @collection
