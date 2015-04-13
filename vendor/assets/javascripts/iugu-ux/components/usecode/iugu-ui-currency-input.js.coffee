@@ -36,9 +36,9 @@ class IuguUI.Money
 
   maskOptions: ->
     if i18n.locale.toLowerCase() == "pt-br"
-      {prefix: 'R$', thousands:'.', decimal: ","}
+      {prefix: 'R$', thousands:'.', decimal: ",", allowNegative: !!@el.data('allow-negative')}
     else
-      {prefix: '$', thousands:',', decimal: "."}
+      {prefix: '$', thousands:',', decimal: ".", allowNegative: !!@el.data('allow-negative')}
 
 
   constructor: ( options ) ->
@@ -72,7 +72,7 @@ class IuguUI.Money
 
     @decorator.bind "blur", ->
       val = if $(this).val().length == 0 then "0" else $(this).val()
-      that.input_element.val(val.replace(/[^0-9]/g, ''))
+      that.input_element.val(val.replace(/[^\-0-9]/g, ''))
       that.input_element.trigger('change')
       $(this).maskMoney('mask')
 
