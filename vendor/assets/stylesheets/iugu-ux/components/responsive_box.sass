@@ -51,8 +51,6 @@ body.ui-box-background
     overflow-y: auto
     -webkit-overflow-scrolling: touch
 
-  .handle-scrolling > *
-    -webkit-transform: translateZ(0px)
 
   .handle-scrolling > div:first-child
     height: 100%
@@ -81,6 +79,9 @@ body.ui-box-background
       .content-area.handle-sidebar
         +translateZ(0px)
 
+  .ios, .android
+    .handle-scrolling > *
+      -webkit-transform: translateZ(0px)
   .ios
     .handle-scrolling
       overflow-y: scroll
