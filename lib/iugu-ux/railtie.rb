@@ -4,6 +4,7 @@ require 'compass-rails'
 module IuguUX
   class Engine < Rails::Engine
       initializer 'iugu-ux.setup', :group => :all do |app|
+        app.config.assets.js_compressor = Uglifier.new(:mangle => false)
         app.config.assets.precompile += IuguUX.src
         app.config.compass.sprite_load_path << app.root.join('app','assets','sprites')
         app.config.compass.sprite_load_path << IuguUX.sprite_load_path 
