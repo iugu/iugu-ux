@@ -4,7 +4,4 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-//= require_tree ./google-code-prettify
-//= require ./twitter-bootstrap/bootstrap.js
-//= require ./capabilities
-//= require ./enable-prettify
+//= require ./iugu-ux/web-app
