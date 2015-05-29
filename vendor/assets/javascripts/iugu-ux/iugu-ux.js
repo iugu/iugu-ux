@@ -8,10 +8,4 @@
 //= require ./twitter-bootstrap/bootstrap.js
 //= require ./capabilities
 //= require ./enable-prettify
-//= require web-app/environment
-//= require web-app/config
-//= require web-app/comm
-//= require web-app/i18n-languages
-//= require web-app/i18n
-//= require web-app/sound
-//= require web-app/helpers
+//= require ./web-app

@@ -15,7 +15,7 @@ module IuguUX
     @@src = src
   end
 
-  self.src = %w( iugu-ux.css iugu-ux.js web-app.js vendor.js )
+  self.src = %w( iugu-ux.css iugu-ux.js vendor.js )
 
   class << self
     def sprite_load_path

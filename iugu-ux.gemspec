@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'jquery-rails'
   s.add_development_dependency 'railties', "~> 3.1"
   s.add_development_dependency 'rails', "~> 3.2.6"
-  s.add_development_dependency 'uglifier'
+  #s.add_development_dependency 'uglifier'
+  s.add_development_dependency 'closure-compiler'
 
 end
