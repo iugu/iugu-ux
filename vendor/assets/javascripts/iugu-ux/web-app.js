@@ -13,13 +13,6 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require_self
-//= require web-app/environment
-//= require web-app/config
-//= require web-app/comm
-//= require web-app/i18n-languages
-//= require web-app/i18n
-//= require web-app/sound
-//= require web-app/helpers
 
 //= require ./iugu-ui-helpers.js
 //= require ./components/iugu-ux-components.js
