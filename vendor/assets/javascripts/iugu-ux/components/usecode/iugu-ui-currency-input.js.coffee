@@ -58,7 +58,7 @@ class IuguUI.Money
       type: "text"
       placeholder: @input_element.attr "placeholder"
       value: @input_element.attr "value"
-      class: @input_element.attr "class"
+      class: "#{@input_element.attr("class")} decorator"
     )
 
     @decorator.maskMoney(@maskOptions())
@@ -66,6 +66,10 @@ class IuguUI.Money
     @decorator.insertAfter( @el )
 
     that = @
+
+    @decorator.bind "reload", ->
+      $(this).val( that.input_element.val() )
+      $(this).maskMoney('mask')
 
     @decorator.bind "focus", ->
       $(this).maskMoney('mask')

@@ -41,6 +41,7 @@ class window.app.BaseResource extends Backbone.AssociatedModel
   generateRemoveFunction: (relation) ->
     @["removeFrom#{@properCasedRelationName relation.key}"] = (object) ->
       @get(relation.key).destroy(object)
+      $('input.decorator').trigger('reload')
 
   toJSON: (options) ->
     _.omit( _.clone( super(options) ), @virtual_attributes )
