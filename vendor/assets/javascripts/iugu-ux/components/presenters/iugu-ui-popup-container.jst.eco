@@ -1,6 +1,0 @@
-<div class="content">
-  <div class="popup-modal"></div>
-  <div class="popup-window" style="width:<%= @width %>px;height:<%= @height %>px;margin-left:-<%= @width/2 %>px;margin-top:-<%= @height/2 %>px">
-    <div class="container" style="width:<%= @width %>px;height:<%= @height %>px"></div>
-  </div>
-</div>

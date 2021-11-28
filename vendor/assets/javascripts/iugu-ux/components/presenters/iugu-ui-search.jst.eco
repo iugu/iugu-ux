@@ -1,3 +1,0 @@
-<div class="search-wrapper">
-  <input class="search search-query" placeholder="<%= _t 'misc.search' %>" type="text"></input>
-</div>

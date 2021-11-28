@@ -1,4 +1,0 @@
-<input class="page string" type="number" pattern="\d*" style="width: 50px; text-align: center;margin-bottom:1px" value=<%= @currentPage %>></input>
-
-<a href="#" class="button default <%= "disabled" if @currentPage == @firstPage %> previous"><div class="iux-default-icon-arrow-left no-space"></div></a>
-<a href="#" class="button default <%= "disabled" if @currentPage == @lastPage %> next"><div class="iux-default-icon-arrow-right no-space"></div></a>

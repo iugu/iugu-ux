@@ -1,4 +1,0 @@
-<div class="ui-horizontal-split-view">
-<div class="split-view-top" style="width: 100%; height: <%= @splitSize %>;"></div>
-<div class="split-view-bottom" style="width: 100%;"></div>
-</div>

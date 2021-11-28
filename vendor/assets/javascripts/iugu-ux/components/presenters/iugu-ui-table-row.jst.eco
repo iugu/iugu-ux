@@ -1,9 +1,0 @@
-<% for field in _.keys(@options.fields): %>
-  <td class="<%= field %>">
-    <div class="row-container">
-      <div class="row-data">
-        <%= if @presenter && @presenter[field] then @safe @presenter[field](@item) else @item.get(field) %>
-      </div>
-    </div>
-  </td>
-<% end %>
